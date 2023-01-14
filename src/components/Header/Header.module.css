@@ -1,0 +1,8 @@
+.headerWraper {
+    display: flex;
+    justify-content: center;
+}
+
+.arrow {
+    transform: rotate(180deg);
+}
