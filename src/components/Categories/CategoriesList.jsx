@@ -1,21 +1,19 @@
-// import s from "./CategoriesList.module.css";
-import Header from "../Header/Header";
+import s from "./CategoriesList.module.css";
 
 const CategoriesList = () => {
   return (
     <div>
-      <Header />
       <ul>
-        <li>
+        <li className={s.categoriesItem}>
           <p>Food</p>
-          <button type="submit">...</button>
+          <button type="button" className={s.buttonMore}>...</button>
         </li>
-        <li>
+        <li className={s.categoriesItem}>
           <p>Other</p>
-          <button type="submit">...</button>
+          <button type="button" className={s.buttonMore}>...</button>
         </li>
       </ul>
-      <form name="add_category" autoComplete="off" noValidate>
+      <form name="add_category" autoComplete="off" noValidate className={s.categoriesItem}>
         <label>
           <input type="text" name="category" placeholder="New category..." />
         </label>

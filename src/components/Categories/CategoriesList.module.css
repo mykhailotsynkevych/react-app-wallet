@@ -1,0 +1,11 @@
+.categoriesItem {
+    display: flex;
+    justify-content: space-between;
+}
+
+.buttonMore {
+    font-size: 18px;
+    display: flex;
+    transform: rotate(90deg);
+    text-align: center;
+}

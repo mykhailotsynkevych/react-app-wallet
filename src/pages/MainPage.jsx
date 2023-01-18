@@ -1,14 +1,23 @@
 import s from "./MainPage.module.css";
-import TransactionForm from "../components/TransactionForm/TransactionForm";
 import Header from "../components/Header/Header";
+import TransactionForm from "../components/TransactionForm/TransactionForm";
+import CategoriesList from "../components/Categories/CategoriesList";
 
 const MainPage = () => {
+  const isCategorieList = true;
+  
   return (
     <div className={s.wrapper}>
       <Header />
-      <TransactionForm />
-      <button>Income</button>
-      <button>Expense</button>
+      {isCategorieList ? (
+        <CategoriesList />
+      ) : (
+        <>
+          <TransactionForm />
+          <button>Income</button>
+          <button>Expense</button>
+        </>
+      )}
     </div>
   );
 };
