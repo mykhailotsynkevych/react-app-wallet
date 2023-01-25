@@ -4,7 +4,7 @@ import TransactionForm from "../components/TransactionForm/TransactionForm";
 import CategoriesList from "../components/Categories/CategoriesList";
 
 const MainPage = () => {
-  const isCategorieList = true;
+  const isCategorieList = false;
   
   return (
     <div className={s.wrapper}>

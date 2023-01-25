@@ -15,7 +15,11 @@ link {
 h1,
 h2,
 h3,
+h4,
+h5,
+h6,
 ul,
+ol,
 li,
 p {
   margin: 0;
@@ -25,12 +29,15 @@ p {
 
 img {
   display: block;
+  max-width: 100%;
+  height: auto;
 }
 
 .App {
   margin: 0px;
   padding: 10px 0px;
-  background-color: tomato;
+  background-color: rgb(255, 131, 110);
+  height: 100vh;
   text-align: center;
 }
 
