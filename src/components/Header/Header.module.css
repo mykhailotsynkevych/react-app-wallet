@@ -3,6 +3,7 @@
 }
 
 .arrow {
-    transform: rotate(180deg);
+    background-color: inherit;
+    width: 30px;
     margin: 10px;
 }

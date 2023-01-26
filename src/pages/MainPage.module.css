@@ -5,3 +5,16 @@
     background-color: white;
     box-shadow: 0px 8px 15px rgb(0 0 0 / 10%);
 }
+
+.btnTransaction {
+    margin: 15px;
+    width: 70px;
+    background-color: inherit;
+    transition: scale 0.3s ease 0s;
+}
+
+.btnTransaction:hover,
+.btnTransaction:focus {
+  cursor: pointer;
+  scale: 1.05;
+}
