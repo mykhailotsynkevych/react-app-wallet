@@ -1,7 +1,7 @@
 import s from "./MainPage.module.css";
 import Header from "../components/Header/Header";
 import TransactionForm from "../components/TransactionForm/TransactionForm";
-import CategoriesList from "../components/Categories/CategoriesList";
+import CategoriesList from "../components/CategoriesList/CategoriesList";
 import sprite from ".././icons/sprite.svg";
 
 const MainPage = () => {
