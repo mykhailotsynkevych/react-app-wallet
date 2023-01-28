@@ -17,7 +17,7 @@ const MainPage = () => {
           <TransactionForm />
           <button className={s.btnTransaction}>
             <svg width="70" height="70">
-              <use href={`${sprite}#icon-income`}></use>
+              <use href={sprite + "#icon-income"}></use>
             </svg>
           </button>
           <button className={s.btnTransaction}>

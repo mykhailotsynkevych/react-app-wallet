@@ -1,12 +1,12 @@
-import s from "./Header.module.css";
+import { StyledMainTitle, StyledHeaderWrapper, StyledMenuBurger } from "./Header.styled";
 import menuBurger from "../../icons/menu-burger.svg";
 
 const Header = () => {
   return (
-    <header className={s.headerWraper}>
-    <button type="button" className={s.arrow}><img src={menuBurger}/></button>
-    <h1>Header</h1>
-    </header>
+    <StyledHeaderWrapper>
+    <StyledMenuBurger type="button"><img src={menuBurger} alt='icon Burger Menu'/></StyledMenuBurger>
+    <StyledMainTitle>Header</StyledMainTitle>
+    </StyledHeaderWrapper>
   );
 };
 export default Header;
