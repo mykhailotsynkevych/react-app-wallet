@@ -3,13 +3,18 @@ import Header from "../components/Header/Header";
 import TransactionForm from "../components/TransactionForm/TransactionForm";
 import CategoriesList from "../components/CategoriesList/CategoriesList";
 import sprite from ".././icons/sprite.svg";
+import menuBurger from ".././icons/menu-burger.svg";
+import returnArrow from "../icons/return.svg";
 
 const MainPage = () => {
   const isCategorieList = false;
 
   return (
     <div className={s.wrapper}>
-      <Header />
+      <Header
+        title={isCategorieList ? "Categories" : "Wallet"}
+        icon={isCategorieList ? returnArrow : menuBurger}
+      />
       {isCategorieList ? (
         <CategoriesList />
       ) : (
