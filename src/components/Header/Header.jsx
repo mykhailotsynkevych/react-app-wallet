@@ -1,5 +1,4 @@
 import { StyledMainTitle, StyledHeaderWrapper, StyledMenuBurger } from "./Header.styled";
-// import menuBurger from "../../icons/menu-burger.svg";
 
 const Header = ({title, icon}) => {
   return (

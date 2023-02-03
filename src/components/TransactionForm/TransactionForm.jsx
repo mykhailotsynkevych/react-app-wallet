@@ -26,18 +26,23 @@ const TransactionForm = () => {
             Time
             <input type="time" name="time" />
           </label>
+
           <label>
             Category
-            <input type="button" name="category" defaultValue="Food"/>
+            <select name="category">
+              <option value="Flat">Flat</option>
+              <option value="Food" defaultValue>
+              Food
+              </option>
+              <option value="Auto">Auto</option>
+            </select>
           </label>
+
           <label>
             Sum
             <input type="number" name="sum" step="1" min="0" />
           </label>
-          <label>
-            Currency
-            <input type="button" name="currency" defaultValue="Euro"/>
-          </label>
+
           <label>
             Comment
             <textarea name="comment" rows="5" placeholder="Comment"></textarea>
