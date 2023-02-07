@@ -48,7 +48,7 @@ const TransactionForm = () => {
       <label>
         <textarea name="comment" rows="1" placeholder="Comment"></textarea>
       </label>
-      <button type="submit">Submit</button>
+      <button type="submit" className={s.formBtnSubmit}>Submit</button>
     </form>
   );
 };
