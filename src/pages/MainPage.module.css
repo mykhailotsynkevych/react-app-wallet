@@ -1,4 +1,5 @@
 .wrapper {
+  position: relative;
   max-width: 420px;
   margin-left: auto;
   margin-right: auto;
@@ -17,4 +18,10 @@
 .btnTransaction:focus {
   cursor: pointer;
   scale: 1.05;
+}
+
+.menuWrapper {
+  background-color: aqua;
+  /* color: ${({ price }) => (price ? "rgb(58, 44, 4)" : "red")}; */
+
 }

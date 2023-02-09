@@ -1,38 +1,57 @@
 import s from "./MainPage.module.css";
 import Header from "../components/Header/Header";
 import TransactionForm from "../components/TransactionForm/TransactionForm";
+import Menu from "../components/Menu/Menu";
 import CategoriesList from "../components/CategoriesList/CategoriesList";
 import sprite from ".././icons/sprite.svg";
 import menuBurger from ".././icons/menu-burger.svg";
 import returnArrow from "../icons/return.svg";
+import { Component } from "react";
 
-const MainPage = () => {
-  const isCategorieList = false;
+class MainPage extends Component {
 
-  return (
-    <div className={s.wrapper}>
-      <Header
-        title={isCategorieList ? "Categories" : "Wallet"}
-        icon={isCategorieList ? returnArrow : menuBurger}
-      />
-      {isCategorieList ? (
-        <CategoriesList />
-      ) : (
-        <>
-          <TransactionForm />
-          <button className={s.btnTransaction}>
-            <svg width="70" height="70">
-              <use href={sprite + "#icon-income"}></use>
-            </svg>
-          </button>
-          <button className={s.btnTransaction}>
-            <svg width="70" height="70">
-              <use href={`${sprite}#icon-expense`}></use>
-            </svg>
-          </button>
-        </>
-      )}
-    </div>
-  );
+
+  state = {
+    isCategorieList:false,
+    isMenuOpen: false,
+  }
+
+  handleToggleOpeningMenu = () => {
+    this.setState(prevState => {
+      return {isMenuOpen: !prevState.isMenuOpen}})
+  }
+
+  render() {
+    const {isCategorieList, isMenuOpen} = this.state
+    return (
+      <div className={s.wrapper}>
+        <Header
+          title={isCategorieList ? "Categories" : "Wallet"}
+          icon={isCategorieList ? returnArrow : menuBurger}
+          onClick={this.handleToggleOpeningMenu}
+        />
+        {isMenuOpen && <Menu active={isMenuOpen} />}
+        {isCategorieList ? (
+          <CategoriesList />
+        ) : (
+          <>
+            <TransactionForm />
+            <button className={s.btnTransaction}>
+              <svg width="70" height="70">
+                <use href={sprite + "#icon-income"}></use>
+              </svg>
+            </button>
+            <button className={s.btnTransaction}>
+              <svg width="70" height="70">
+                <use href={`${sprite}#icon-expense`}></use>
+              </svg>
+            </button>
+          </>
+        )}
+      </div>
+    );
+
+  }
+
 };
 export default MainPage;
