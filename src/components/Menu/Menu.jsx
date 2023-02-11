@@ -1,8 +1,7 @@
 import s from "./Menu.module.css";
 // import moreIcon from "../../icons/more.svg";
 
-const Menu = ({ active }) => {
-  console.log(active);
+const Menu = () => {
   return (
     <div className={s.menuWrapper}>
       <h1>Hello</h1>
