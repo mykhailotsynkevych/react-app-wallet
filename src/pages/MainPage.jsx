@@ -30,7 +30,7 @@ class MainPage extends Component {
           icon={isCategorieList ? returnArrow : menuBurger}
           onClick={this.handleToggleOpeningMenu}
         />
-        {isMenuOpen && <Menu/>}
+        {isMenuOpen && <Menu isMenuOpen={isMenuOpen}/>}
         {isCategorieList ? (
           <CategoriesList />
         ) : (

@@ -1,11 +1,13 @@
-import s from "./Menu.module.css";
-// import moreIcon from "../../icons/more.svg";
+import {
+  StyledMenuWrapper
+} from "./Menu.styled";
 
-const Menu = () => {
+
+const Menu = ({isMenuOpen}) => {
   return (
-    <div className={s.menuWrapper}>
+    <StyledMenuWrapper isOpen={isMenuOpen}>
       <h1>Hello</h1>
-    </div>
+    </StyledMenuWrapper>
   );
 };
 export default Menu;

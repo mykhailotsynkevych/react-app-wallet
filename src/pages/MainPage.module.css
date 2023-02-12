@@ -20,8 +20,3 @@
   scale: 1.05;
 }
 
-.menuWrapper {
-  background-color: aqua;
-  /* color: ${({ price }) => (price ? "rgb(58, 44, 4)" : "red")}; */
-
-}
