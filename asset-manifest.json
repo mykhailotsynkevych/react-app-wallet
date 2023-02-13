@@ -1,7 +1,7 @@
 {
   "files": {
     "main.css": "/react-app-wallet/static/css/main.54d78e4d.css",
-    "main.js": "/react-app-wallet/static/js/main.a5935948.js",
+    "main.js": "/react-app-wallet/static/js/main.cf84841e.js",
     "static/media/sprite.svg": "/react-app-wallet/static/media/sprite.47bce9a41b1c29fc3b8f7380c2b51fb4.svg",
     "index.html": "/react-app-wallet/index.html",
     "static/media/return.svg": "/react-app-wallet/static/media/return.71c288a72e992b2f404802b9545bbeed.svg",
@@ -9,10 +9,10 @@
     "static/media/menu-burger.svg": "/react-app-wallet/static/media/menu-burger.9dd69ef40c2405b1a43b4909f78f8450.svg",
     "static/media/add.svg": "/react-app-wallet/static/media/add.7580885786ef6415dc335741331ec6b6.svg",
     "main.54d78e4d.css.map": "/react-app-wallet/static/css/main.54d78e4d.css.map",
-    "main.a5935948.js.map": "/react-app-wallet/static/js/main.a5935948.js.map"
+    "main.cf84841e.js.map": "/react-app-wallet/static/js/main.cf84841e.js.map"
   },
   "entrypoints": [
     "static/css/main.54d78e4d.css",
-    "static/js/main.a5935948.js"
+    "static/js/main.cf84841e.js"
   ]
 }
