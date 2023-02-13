@@ -8,9 +8,9 @@ position: absolute;
 box-shadow: 3px 0px 3px 0px rgb(0 0 0 / 40%);
 z-index: 1;
 transition: transform 0.5s linear;
-transform: translateX(0);
+transform: translateX(-100%);
 
-  ${({ isMenuOpen }) => isMenuOpen && " transform: translateX(-100%);"}
+  ${({ isOpen }) => isOpen && "transform: translateX(0)"}
 `;
 
 export {
