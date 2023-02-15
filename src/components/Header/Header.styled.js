@@ -16,6 +16,15 @@ const StyledMenuBurger = styled.section`
 background-color: inherit;
 width: 25px;
 margin: 12px;
+transition: transform 0.5s linear;
+
+:hover {
+  cursor: pointer;
+}
+
+${({ isOpen }) =>
+isOpen &&
+"transform: rotate(90deg)"}
 `;
 
 export { StyledMainTitle, StyledHeaderWrapper, StyledMenuBurger };
