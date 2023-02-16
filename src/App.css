@@ -11,3 +11,13 @@
   text-align: center;
 }
 
+.pageWrapper {
+  position: relative;
+  max-width: 400px;
+  margin-left: auto;
+  margin-right: auto;
+  overflow: hidden;
+  background-color: rgb(237, 233, 222);
+  box-shadow: 0px 8px 15px rgb(0 0 0 / 10%);
+}
+

@@ -6,7 +6,7 @@ import {
 const Menu = ({isMenuOpen}) => {
   return (
     <StyledMenuWrapper isOpen={isMenuOpen}>
-      <h1>Hello</h1>
+      <h2>Menu</h2>
     </StyledMenuWrapper>
   );
 };
