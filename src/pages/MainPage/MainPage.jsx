@@ -2,10 +2,10 @@ import TransactionForm from "../../components/TransactionForm/TransactionForm";
 import s from "./MainPage.module.css";
 import sprite from "../.././icons/sprite.svg";
 
-const MainPage = ({ handleTransactionHistoryPage }) => {
+const MainPage = ({ handleTransactionHistoryPage, handleCategorieListPage }) => {
   return (
     <>
-      <TransactionForm />
+      <TransactionForm handleCategorieListPage={handleCategorieListPage}/>
       <div className={s.btnTransactionWrapper}>
         <button
           className={s.btnTransaction}

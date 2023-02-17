@@ -13,7 +13,8 @@
 
 .pageWrapper {
   position: relative;
-  max-width: 400px;
+  width: 400px;
+  height: 442px;
   margin-left: auto;
   margin-right: auto;
   overflow: hidden;

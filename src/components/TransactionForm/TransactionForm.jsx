@@ -1,6 +1,6 @@
 import s from "./TransactionForm.module.css";
 
-const TransactionForm = () => {
+const TransactionForm = ({handleCategorieListPage}) => {
   return (
     <form
       name="transactionForm"
@@ -26,29 +26,29 @@ const TransactionForm = () => {
         <label>
           <input type="time" name="time" />
         </label>
-        
       </div>
 
-      <label>
-        Category
-        <select name="category">
-          <option value="Flat">Flat</option>
-          <option value="Food" defaultValue>
-            Food
-          </option>
-          <option value="Auto">Auto</option>
-        </select>
-      </label>
+      <div className={s.categoryWrapper}>
+        <p className={s.categoryTitle}>Category</p>
+        <button className={s.categoryBtn} onClick={() => handleCategorieListPage(true)}>
+          <div className={s.categoryBtnWrapper}>
+            <span>Food</span>
+            <span className={s.categoryBtnTriangle}>&#8227;</span>
+          </div>
+        </button>
+      </div>
 
       <label className={s.greybgc}>
         Sum
-        <input type="number" name="sum" step="1" min="0" defaultValue="0"/>
+        <input type="number" name="sum" step="1" min="0" defaultValue="0" />
       </label>
 
       <label>
         <textarea name="comment" rows="1" placeholder="Comment"></textarea>
       </label>
-      <button type="submit" className={s.formBtnSubmit}>Submit</button>
+      <button type="submit" className={s.formBtnSubmit}>
+        Submit
+      </button>
     </form>
   );
 };

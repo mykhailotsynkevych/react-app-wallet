@@ -6,6 +6,7 @@ import Header from "./components/Header/Header";
 import Menu from "./components/Menu/Menu";
 import MainPage from "./pages/MainPage/MainPage";
 import TransactionHistoryPage from "./pages/TransactionHistoryPage/TransactionHistoryPage";
+import CategoriesListPage from "./components/CategoriesList/CategoriesList";
 
 // Third - Other
 import "./App.css";
@@ -14,9 +15,11 @@ import returnArrow from "./icons/return.svg";
 
 class App extends Component {
   state = {
+    isMainPageOpen: true,
     isCategorieListPageOpen: false,
     isTransactionHistoryPageOpen: false,
     isMenuOpen: false,
+    headerTitle: "Wallet",
   };
 
   handleToggleOpeningMenu = () => {
@@ -26,29 +29,39 @@ class App extends Component {
   };
 
   handleTransactionHistoryPage = (bool) => {
-    this.setState({ isTransactionHistoryPageOpen: bool });
-    console.log(this.state.isTransactionHistoryPageOpen);
+    this.setState({
+      isMainPageOpen: false,
+      isTransactionHistoryPageOpen: bool,
+      headerTitle: "Transaction",
+    });
+  };
+
+  handleCategorieListPage = (bool) => {
+    this.setState({
+      isMainPageOpen: false,
+      isCategorieListPageOpen: bool,
+      headerTitle: "Categories",
+    });
   };
 
   render() {
-    const { isCategorieListPageOpen, isMenuOpen } = this.state;
+    const { isCategorieListPageOpen, isMenuOpen, headerTitle } = this.state;
     return (
       <div className="App">
         <div className="pageWrapper">
           <Header
-            title={isCategorieListPageOpen ? "Categories" : "Wallet"}
+            title={headerTitle}
             icon={isCategorieListPageOpen ? returnArrow : menuBurger}
             isMenuOpen={isMenuOpen}
             onClick={this.handleToggleOpeningMenu}
           />
           <Menu isMenuOpen={isMenuOpen} />
-          {this.state.isTransactionHistoryPageOpen ? (
-            <TransactionHistoryPage />
-          ) : (
-            <MainPage
+          {this.state.isMainPageOpen && <MainPage
               handleTransactionHistoryPage={this.handleTransactionHistoryPage}
-            />
-          )}
+              handleCategorieListPage={this.handleCategorieListPage}
+            />}
+          {this.state.isTransactionHistoryPageOpen && <TransactionHistoryPage />}
+          {this.state.isCategorieListPageOpen && <CategoriesListPage />}
         </div>
       </div>
     );

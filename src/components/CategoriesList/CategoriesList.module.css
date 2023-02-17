@@ -1,10 +1,14 @@
-/* .categoriesWrapper {
-
-} */
+.categoriesWrapper {
+display: flex;
+flex-direction: column;
+justify-content: space-between;
+}
 
 .categoriesList {
-  height: 50vh;
+display: flex;
+flex-direction: column;
 }
+
 .categoriesItem {
   font-size: 16px;
   display: flex;
@@ -23,13 +27,11 @@
     background-color: inherit;
     padding: 0px;
     width: 25px;
-    margin-left: 5px;
 }
 
 .addItemForm {
   display: flex;
   align-items: center;
-  padding-bottom: 5px;
 }
 
 .addItemInput {
@@ -38,6 +40,6 @@
   background-color: transparent;
   border: none;
   border-bottom: 1px solid grey;
-  margin-left: 15px;
+  padding-left: 10px;
 
 }
