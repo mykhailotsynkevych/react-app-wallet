@@ -28,6 +28,15 @@ class App extends Component {
     });
   };
 
+  handleToMainPage = () => {
+    this.setState({
+      isMainPageOpen: true,
+      isCategorieListPageOpen: false,
+      isTransactionHistoryPageOpen: false,
+      headerTitle: "Wallet",
+    });
+  };
+
   handleTransactionHistoryPage = (bool) => {
     this.setState({
       isMainPageOpen: false,
@@ -45,15 +54,15 @@ class App extends Component {
   };
 
   render() {
-    const { isCategorieListPageOpen, isMenuOpen, headerTitle } = this.state;
+    const { isMainPageOpen, isMenuOpen, headerTitle } = this.state;
     return (
       <div className="App">
         <div className="pageWrapper">
           <Header
             title={headerTitle}
-            icon={isCategorieListPageOpen ? returnArrow : menuBurger}
+            icon={isMainPageOpen ? menuBurger : returnArrow}
             isMenuOpen={isMenuOpen}
-            onClick={this.handleToggleOpeningMenu}
+            onClick={isMainPageOpen ? this.handleToggleOpeningMenu : this.handleToMainPage}
           />
           <Menu isMenuOpen={isMenuOpen} />
           {this.state.isMainPageOpen && <MainPage
