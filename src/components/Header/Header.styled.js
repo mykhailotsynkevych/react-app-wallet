@@ -5,17 +5,17 @@ const StyledMainTitle = styled.h1`
   text-align: center;
 `;
 
-const StyledHeaderWrapper = styled.section`
+const StyledHeaderWrapper = styled.header`
   display: flex;
   align-items: center;
   background-color: rgb(225, 132, 52);
   box-shadow: 0px 2px 2px rgb(0 0 0 / 10%);
 `;
 
-const StyledMenuBurger = styled.section`
+const StyledMenuBurger = styled.button`
 background-color: inherit;
-width: 25px;
-margin: 12px;
+width: 36px;
+margin: 5px;
 transition: transform 0.5s linear;
 
 :hover {

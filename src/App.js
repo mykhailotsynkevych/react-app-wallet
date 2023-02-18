@@ -15,11 +15,9 @@ import returnArrow from "./icons/return.svg";
 
 class App extends Component {
   state = {
-    isMainPageOpen: true,
-    isCategorieListPageOpen: false,
-    isTransactionHistoryPageOpen: false,
-    isMenuOpen: false,
+    activePage: "MainPage",
     headerTitle: "Wallet",
+    isMenuOpen: false,
   };
 
   handleToggleOpeningMenu = () => {
@@ -30,47 +28,49 @@ class App extends Component {
 
   handleToMainPage = () => {
     this.setState({
-      isMainPageOpen: true,
-      isCategorieListPageOpen: false,
-      isTransactionHistoryPageOpen: false,
+      activePage: "MainPage",
       headerTitle: "Wallet",
     });
   };
 
-  handleTransactionHistoryPage = (bool) => {
+  handleTransactionHistoryPage = (transactionArt) => {
     this.setState({
-      isMainPageOpen: false,
-      isTransactionHistoryPageOpen: bool,
-      headerTitle: "Transaction",
+      activePage: "TransactionPage",
+      headerTitle: transactionArt,
     });
   };
 
-  handleCategorieListPage = (bool) => {
+  handleCategoriesListPage = () => {
     this.setState({
-      isMainPageOpen: false,
-      isCategorieListPageOpen: bool,
+      activePage: "CategoriesListPage",
       headerTitle: "Categories",
     });
   };
 
   render() {
-    const { isMainPageOpen, isMenuOpen, headerTitle } = this.state;
+    const { activePage, isMenuOpen, headerTitle } = this.state;
     return (
       <div className="App">
         <div className="pageWrapper">
           <Header
             title={headerTitle}
-            icon={isMainPageOpen ? menuBurger : returnArrow}
+            icon={activePage === "MainPage" ? menuBurger : returnArrow}
             isMenuOpen={isMenuOpen}
-            onClick={isMainPageOpen ? this.handleToggleOpeningMenu : this.handleToMainPage}
+            onClick={
+              activePage === "MainPage"
+                ? this.handleToggleOpeningMenu
+                : this.handleToMainPage
+            }
           />
           <Menu isMenuOpen={isMenuOpen} />
-          {this.state.isMainPageOpen && <MainPage
+          {activePage === "MainPage" && (
+            <MainPage
               handleTransactionHistoryPage={this.handleTransactionHistoryPage}
-              handleCategorieListPage={this.handleCategorieListPage}
-            />}
-          {this.state.isTransactionHistoryPageOpen && <TransactionHistoryPage />}
-          {this.state.isCategorieListPageOpen && <CategoriesListPage />}
+              handleCategoriesListPage={this.handleCategoriesListPage}
+            />
+          )}
+          {activePage === "TransactionPage" && <TransactionHistoryPage />}
+          {activePage === "CategoriesListPage" && <CategoriesListPage />}
         </div>
       </div>
     );

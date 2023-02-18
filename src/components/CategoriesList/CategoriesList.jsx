@@ -4,7 +4,7 @@ import addIcon from "../../icons/add.svg";
 
 const CategoriesList = () => {
   return (
-    <div className={s.categoriesWrapper}>
+    <main className={s.categoriesWrapper}>
       <ul className={s.categoriesList}>
         <li className={s.categoriesItem}>
           <p>Food</p>
@@ -38,7 +38,7 @@ const CategoriesList = () => {
           <img src={addIcon} alt="icon Add"/>
         </button>
       </form>
-    </div>
+    </main>
   );
 };
 export default CategoriesList;

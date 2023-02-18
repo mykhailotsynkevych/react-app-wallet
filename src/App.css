@@ -1,6 +1,6 @@
 .App {
   margin: 0px;
-  padding: 10px 0px;
+  padding: 10px 0px 0px;
   background: linear-gradient(
     to bottom,
     #4bc0c8,
@@ -12,6 +12,8 @@
 }
 
 .pageWrapper {
+  display: flex;
+  flex-direction: column;
   position: relative;
   width: 400px;
   height: 442px;

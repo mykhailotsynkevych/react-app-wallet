@@ -3,9 +3,9 @@ import { Component } from "react";
 class TransactionHistoryPage extends Component {
   render() {
     return (
-      <div>
+      <main>
         <h2>TransactionHistoryPage</h2>
-      </div>
+      </main>
     );
   }
 }
