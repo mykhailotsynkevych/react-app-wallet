@@ -1,8 +1,9 @@
 import styled from "styled-components";
 
 const StyledMenuWrapper = styled.div`
+top: 36px;
   width: 40%;
-  height: 89.4%;
+  height: 91.8%;
   background-color: white;
   position: absolute;
 
