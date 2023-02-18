@@ -1,6 +1,6 @@
 import s from "./TransactionForm.module.css";
 
-const TransactionForm = ({handleCategorieListPage}) => {
+const TransactionForm = ({handleActivePage}) => {
   return (
     <form
       name="transactionForm"
@@ -30,7 +30,7 @@ const TransactionForm = ({handleCategorieListPage}) => {
 
       <div className={s.categoryWrapper}>
         <p className={s.categoryTitle}>Category</p>
-        <button className={s.categoryBtn} onClick={() => handleCategorieListPage(true)}>
+        <button className={s.categoryBtn} onClick={() => handleActivePage("CategoriesListPage","Categories")}>
           <div className={s.categoryBtnWrapper}>
             <span>Food</span>
             <span className={s.categoryBtnTriangle}>&#8227;</span>

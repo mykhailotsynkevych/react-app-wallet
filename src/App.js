@@ -26,24 +26,10 @@ class App extends Component {
     });
   };
 
-  handleToMainPage = () => {
+  handleActivePage = (activePage, headerTitle) => {
     this.setState({
-      activePage: "MainPage",
-      headerTitle: "Wallet",
-    });
-  };
-
-  handleTransactionHistoryPage = (transactionArt) => {
-    this.setState({
-      activePage: "TransactionPage",
-      headerTitle: transactionArt,
-    });
-  };
-
-  handleCategoriesListPage = () => {
-    this.setState({
-      activePage: "CategoriesListPage",
-      headerTitle: "Categories",
+      activePage,
+      headerTitle,
     });
   };
 
@@ -56,16 +42,16 @@ class App extends Component {
             title={headerTitle}
             icon={activePage === "MainPage" ? menuBurger : returnArrow}
             isMenuOpen={isMenuOpen}
-            onClick={
+            handleActivePage={
               activePage === "MainPage"
                 ? this.handleToggleOpeningMenu
-                : this.handleToMainPage
+                : this.handleActivePage
             }
           />
           <Menu isMenuOpen={isMenuOpen} />
           {activePage === "MainPage" && (
             <MainPage
-              handleTransactionHistoryPage={this.handleTransactionHistoryPage}
+            handleActivePage={this.handleActivePage}
               handleCategoriesListPage={this.handleCategoriesListPage}
             />
           )}
