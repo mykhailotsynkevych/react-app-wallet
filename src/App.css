@@ -1,6 +1,6 @@
 .App {
   margin: 0px;
-  padding: 10px 0px 0px;
+  padding: 10px;
   background: linear-gradient(
     to bottom,
     #4bc0c8,
@@ -16,7 +16,7 @@
   flex-direction: column;
   position: relative;
   width: 400px;
-  height: 429px;
+  min-height: 419px;
   margin-left: auto;
   margin-right: auto;
   overflow: hidden;

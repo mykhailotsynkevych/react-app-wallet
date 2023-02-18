@@ -1,10 +1,11 @@
 .btnTransactionWrapper {
 display: flex;
 justify-content: space-evenly;
-margin: 10px;
+margin: 7px;
 }
 
 .btnTransaction {
+  display: flex;
   padding: 0px;
   background-color: inherit;
   transition: scale 0.3s ease 0s;
