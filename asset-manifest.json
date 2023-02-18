@@ -1,18 +1,18 @@
 {
   "files": {
-    "main.css": "/react-app-wallet/static/css/main.3865a4fb.css",
-    "main.js": "/react-app-wallet/static/js/main.8a076849.js",
+    "main.css": "/react-app-wallet/static/css/main.ce4f9b2b.css",
+    "main.js": "/react-app-wallet/static/js/main.c3da4dbb.js",
     "static/media/sprite.svg": "/react-app-wallet/static/media/sprite.47bce9a41b1c29fc3b8f7380c2b51fb4.svg",
     "index.html": "/react-app-wallet/index.html",
     "static/media/return.svg": "/react-app-wallet/static/media/return.71c288a72e992b2f404802b9545bbeed.svg",
     "static/media/more.svg": "/react-app-wallet/static/media/more.19d85f860ee9db09c1acd61c73d1e9b6.svg",
     "static/media/menu-burger.svg": "/react-app-wallet/static/media/menu-burger.9dd69ef40c2405b1a43b4909f78f8450.svg",
     "static/media/add.svg": "/react-app-wallet/static/media/add.7580885786ef6415dc335741331ec6b6.svg",
-    "main.3865a4fb.css.map": "/react-app-wallet/static/css/main.3865a4fb.css.map",
-    "main.8a076849.js.map": "/react-app-wallet/static/js/main.8a076849.js.map"
+    "main.ce4f9b2b.css.map": "/react-app-wallet/static/css/main.ce4f9b2b.css.map",
+    "main.c3da4dbb.js.map": "/react-app-wallet/static/js/main.c3da4dbb.js.map"
   },
   "entrypoints": [
-    "static/css/main.3865a4fb.css",
-    "static/js/main.8a076849.js"
+    "static/css/main.ce4f9b2b.css",
+    "static/js/main.c3da4dbb.js"
   ]
 }
