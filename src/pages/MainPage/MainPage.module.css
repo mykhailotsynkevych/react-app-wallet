@@ -6,7 +6,6 @@ margin: 7px;
 
 .btnTransaction {
   display: flex;
-  padding: 0px;
   background-color: inherit;
   transition: scale 0.3s ease 0s;
 }

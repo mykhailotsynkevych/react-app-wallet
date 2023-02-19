@@ -12,28 +12,49 @@ textarea,
 select {
   background-color: transparent;
   border: none;
-  border-bottom: 1px solid rgb(117, 117, 117);
-  width: 100%;
-  font-size: 18px;
+  font-size: 20px;
 }
 
 label {
+  padding: 5px;
   display: flex;
   align-items: flex-start;
   flex-direction: column;
   color: rgb(117, 117, 117);
   font-size: 18px;
-  padding: 5px;
 }
 
-/* input {
-    border: none;
-} */
+.labelTitle {
+  align-self: flex-start;
+  padding: 5px;
+  color: rgb(117, 117, 117);
+  font-size: 18px;
+
+}
+
+.radioWrapper {
+  padding: 0px 0px 5px 5px;
+  display: flex;
+  justify-content: flex-start;
+  align-items: center;
+}
+
+.radioText {
+  padding: 0px;
+  margin: 0px 20px 0px 5px;
+  font-size: 20px;
+  color:  rgb(83, 82, 82);
+}
 
 .timeWrapper {
   display: flex;
   align-items: flex-end;
   background-color: rgb(234, 234, 234);
+}
+
+.dateText {
+  color: #3180ff;
+  font-weight: bold;
 }
 
 .categoryWrapper {
@@ -45,23 +66,28 @@ label {
     align-self: flex-start;
   color: rgb(117, 117, 117);
   font-size: 18px;
-  padding: 5px;
+  padding: 5px 5px 0px 5px;
 }
 
 .categoryBtn {
-  font-size: 18px;
+  padding-left: 7px;
+  font-size: 20px;
   background-color: inherit;
+  color:  rgb(83, 82, 82);
+  font-weight: bold;
 }
 
 .categoryBtnWrapper {
     display: flex;
     align-items: center;
     justify-content: space-between;
+    padding-right: 7px;
 }
 
 .categoryBtnTriangle {
     transform: rotate(90deg);
-    font-size: 22px;
+    font-size: 26px;
+    color:  rgb(113, 113, 113);
 }
 
 .greybgc {
@@ -84,3 +110,7 @@ label {
   scale: 1.05;
   background-color: rgb(242, 160, 89);
 }
+
+
+
+

@@ -20,6 +20,8 @@ a {
 
 button {
   border: none;
+  margin: 0px;
+  padding: 0px;
 }
 
 link {
@@ -37,7 +39,10 @@ h6,
 ul,
 ol,
 li,
-p {
+p,
+input,
+textarea,
+select {
   margin: 0;
   padding: 0;
   list-style-type: none; 

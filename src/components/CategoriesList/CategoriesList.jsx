@@ -34,7 +34,7 @@ const CategoriesList = () => {
           />
         </label>
 
-        <button type="submit" className={s.btnAdd}>
+        <button type="submit" className={s.btnAdd} onClick={(e)=>{e.preventDefault()}}>
           <img src={addIcon} alt="icon Add"/>
         </button>
       </form>

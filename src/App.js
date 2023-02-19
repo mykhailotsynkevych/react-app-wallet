@@ -52,7 +52,6 @@ class App extends Component {
           {activePage === "MainPage" && (
             <MainPage
             handleActivePage={this.handleActivePage}
-              handleCategoriesListPage={this.handleCategoriesListPage}
             />
           )}
           {activePage === "TransactionPage" && <TransactionHistoryPage />}
