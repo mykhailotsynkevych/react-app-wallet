@@ -35,6 +35,7 @@ class App extends Component {
 
   render() {
     const { activePage, isMenuOpen, headerTitle } = this.state;
+
     return (
       <div className="App">
         <div className="pageWrapper">

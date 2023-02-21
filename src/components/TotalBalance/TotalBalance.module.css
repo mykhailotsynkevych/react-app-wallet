@@ -1,0 +1,9 @@
+.totalBalanceWrapper {
+    margin: 15px 7px;
+    /* display: flex;
+    align-items: flex-end; */
+}
+
+.totalBalanceSumm {
+    margin-top: 10px;
+}

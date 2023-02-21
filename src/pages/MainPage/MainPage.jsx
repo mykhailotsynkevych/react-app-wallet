@@ -1,3 +1,4 @@
+import TotalBalance from "../../components/TotalBalance/TotalBalance";
 import TransactionForm from "../../components/TransactionForm/TransactionForm";
 import s from "./MainPage.module.css";
 import sprite from "../.././icons/sprite.svg";
@@ -5,6 +6,7 @@ import sprite from "../.././icons/sprite.svg";
 const MainPage = ({ handleActivePage }) => {
   return (
     <main>
+      <TotalBalance />
       <TransactionForm handleActivePage={handleActivePage}/>
       <div className={s.btnTransactionWrapper}>
         <button

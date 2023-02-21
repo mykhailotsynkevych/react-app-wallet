@@ -4,15 +4,16 @@ import s from "./TransactionForm.module.css";
 const curDate = new Date().toLocaleDateString().split(".").reverse().join("-");
 const curTime = new Date().toTimeString().slice(0, 5);
 
+
+
 const INITIAL_STATE = {
-  transaction: "Expense",
+  transaction: "expense",
   date: curDate,
   time: curTime,
   category: "Food",
   sum: 0,
   comment: "",
 };
-
 
 class TransactionForm extends Component {
   state = {
@@ -21,11 +22,13 @@ class TransactionForm extends Component {
 
   handleChange = (e) => {
     const { name, value } = e.target;
+    console.log(name, value);
     this.setState({ [name]: value });
   };
 
   render() {
     const { time, date, category, sum, comment } = this.state;
+
     return (
       <form
         name="transactionForm"
@@ -113,6 +116,7 @@ class TransactionForm extends Component {
 
         <label>
           <textarea
+            type="text"
             name="comment"
             rows="1"
             placeholder="Comment..."

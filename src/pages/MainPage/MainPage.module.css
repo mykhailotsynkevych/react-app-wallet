@@ -1,7 +1,7 @@
 .btnTransactionWrapper {
 display: flex;
 justify-content: space-evenly;
-margin: 7px;
+margin: 15px 7px;
 }
 
 .btnTransaction {
