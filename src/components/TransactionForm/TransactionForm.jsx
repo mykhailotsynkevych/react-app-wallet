@@ -1,17 +1,16 @@
 import { Component } from "react";
+import { nanoid } from "nanoid";
 import s from "./TransactionForm.module.css";
 
 const curDate = new Date().toLocaleDateString().split(".").reverse().join("-");
 const curTime = new Date().toTimeString().slice(0, 5);
-
-
 
 const INITIAL_STATE = {
   transaction: "expense",
   date: curDate,
   time: curTime,
   category: "Food",
-  sum: 0,
+  amount: 0,
   comment: "",
 };
 
@@ -22,15 +21,30 @@ class TransactionForm extends Component {
 
   handleChange = (e) => {
     const { name, value } = e.target;
-    console.log(name, value);
     this.setState({ [name]: value });
   };
 
+  handleSubmit = (e) => {
+    e.preventDefault();
+    if (this.state.amount === 0) {
+      return alert("Please enter the amount")
+    }
+    this.props.addTrasaction({ ...this.state, id: nanoid() });
+
+    this.resetForm();
+  };
+
+  resetForm = () => {
+    this.setState({ ...INITIAL_STATE });
+  };
+
   render() {
-    const { time, date, category, sum, comment } = this.state;
+    const { time, date, category, amount, comment } = this.state;
+    console.log(this.state)
 
     return (
       <form
+        onSubmit={this.handleSubmit}
         name="transactionForm"
         autoComplete="off"
         noValidate
@@ -103,13 +117,14 @@ class TransactionForm extends Component {
         </div>
 
         <label className={s.greybgc}>
-          Sum
+          Amount
           <input
             type="number"
-            name="sum"
+            name="amount"
             step="1"
             min="0"
-            defaultValue={sum}
+            defaultValue={amount === 0 && ""}
+            placeholder="0"
             onChange={this.handleChange}
           />
         </label>
