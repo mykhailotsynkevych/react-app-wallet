@@ -21,6 +21,7 @@ class TransactionForm extends Component {
 
   handleChange = (e) => {
     const { name, value } = e.target;
+
     this.setState({ [name]: value });
   };
 
@@ -30,6 +31,7 @@ class TransactionForm extends Component {
       return alert("Please enter the amount")
     }
     this.props.addTrasaction({ ...this.state, id: nanoid() });
+    
 
     this.resetForm();
   };
@@ -40,7 +42,6 @@ class TransactionForm extends Component {
 
   render() {
     const { time, date, category, amount, comment } = this.state;
-    console.log(this.state)
 
     return (
       <form
@@ -124,8 +125,12 @@ class TransactionForm extends Component {
             step="1"
             min="0"
             defaultValue={amount === 0 && ""}
+            // defaultValue={amount}
             placeholder="0"
-            onChange={this.handleChange}
+            onChange={(e) => {
+              const {value } = e.target;
+              this.setState({ amount: Number(value) });
+            }}
           />
         </label>
 

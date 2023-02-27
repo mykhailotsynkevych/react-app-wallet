@@ -17,7 +17,7 @@ class MainPage extends Component {
 
   render() {
     const { handleActivePage } = this.props;
-    console.log(this.state);
+
     return (
       <main>
         <TotalBalance />
