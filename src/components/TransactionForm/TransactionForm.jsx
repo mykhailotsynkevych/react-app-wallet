@@ -1,6 +1,6 @@
 import { Component } from "react";
 import { nanoid } from "nanoid";
-import s from "./TransactionForm.module.css";
+import s from "./TransactionForm.module.scss";
 
 const curDate = new Date().toLocaleDateString().split(".").reverse().join("-");
 const curTime = new Date().toTimeString().slice(0, 5);
@@ -28,10 +28,9 @@ class TransactionForm extends Component {
   handleSubmit = (e) => {
     e.preventDefault();
     if (this.state.amount === 0) {
-      return alert("Please enter the amount")
+      return alert("Please enter the amount");
     }
     this.props.addTrasaction({ ...this.state, id: nanoid() });
-    
 
     this.resetForm();
   };
@@ -55,25 +54,29 @@ class TransactionForm extends Component {
         <div className={s.radioWrapper}>
           <input
             id="formRadioExpense"
-            className={s.radioInput}
+            className={s.input}
             type="radio"
             name="transaction"
             value="expense"
             defaultChecked
             onChange={this.handleChange}
           />
-          <label className={s.radioText} htmlFor="formRadioExpense">
+          <label
+          className={`${s.radioLabel} ${s.radio}`}
+          htmlFor="formRadioExpense">
             Expense
           </label>
           <input
             id="formRadioIncome"
-            className={s.radioInput}
+            className={s.input}
             type="radio"
             name="transaction"
             value="income"
             onChange={this.handleChange}
           />
-          <label className={s.radioText} htmlFor="formRadioIncome">
+          <label
+          className={`${s.radioLabel} ${s.radio}`}
+          htmlFor="formRadioIncome">
             Income
           </label>
         </div>
@@ -128,7 +131,7 @@ class TransactionForm extends Component {
             // defaultValue={amount}
             placeholder="0"
             onChange={(e) => {
-              const {value } = e.target;
+              const { value } = e.target;
               this.setState({ amount: Number(value) });
             }}
           />
