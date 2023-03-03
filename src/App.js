@@ -10,14 +10,15 @@ import CategoriesListPage from "./components/CategoriesList/CategoriesList";
 
 // Third - Other
 import "./App.css";
-import menuBurger from "./icons/menu-burger.svg";
-import returnArrow from "./icons/return.svg";
+import menuBurger from "./assets/icons/menu-burger.svg";
+import returnArrow from "./assets//icons/return.svg";
 
 class App extends Component {
   state = {
     activePage: "MainPage",
     headerTitle: "Wallet",
     isMenuOpen: false,
+    transactionsList: [],
   };
 
   handleToggleOpeningMenu = () => {
@@ -26,15 +27,16 @@ class App extends Component {
     });
   };
 
-  handleActivePage = (activePage, headerTitle) => {
+  handleActivePage = (activePage, headerTitle, transactionsList) => {
     this.setState({
       activePage,
       headerTitle,
+      transactionsList,
     });
   };
 
   render() {
-    const { activePage, isMenuOpen, headerTitle } = this.state;
+    const { activePage, isMenuOpen, headerTitle, transactionsList } = this.state;
 
     return (
       <div className="App">
@@ -55,7 +57,7 @@ class App extends Component {
             handleActivePage={this.handleActivePage}
             />
           )}
-          {activePage === "TransactionPage" && <TransactionHistoryPage />}
+          {activePage === "TransactionPage" && <TransactionHistoryPage transactionsList={transactionsList}/>}
           {activePage === "CategoriesListPage" && <CategoriesListPage />}
         </div>
       </div>

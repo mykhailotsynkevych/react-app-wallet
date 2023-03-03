@@ -1,6 +1,6 @@
 import s from "./CategoriesList.module.css";
-import moreIcon from "../../icons/more.svg";
-import addIcon from "../../icons/add.svg";
+import moreIcon from "../../assets/icons/more.svg";
+import addIcon from "../../assets/icons/add.svg";
 
 const CategoriesList = () => {
   return (

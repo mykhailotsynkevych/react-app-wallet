@@ -3,7 +3,7 @@ import { Component } from "react";
 import TotalBalance from "../../components/TotalBalance/TotalBalance";
 import TransactionForm from "../../components/TransactionForm/TransactionForm";
 import s from "./MainPage.module.css";
-import sprite from "../.././icons/sprite.svg";
+import sprite from "../.././assets/icons/sprite.svg";
 
 class MainPage extends Component {
   state = {
@@ -17,7 +17,7 @@ class MainPage extends Component {
 
   render() {
     const { handleActivePage } = this.props;
-
+    const { transactionsList } = this.state;
     return (
       <main>
         <TotalBalance />
@@ -28,7 +28,7 @@ class MainPage extends Component {
         <div className={s.btnTransactionWrapper}>
           <button
             className={s.btnTransaction}
-            onClick={() => handleActivePage("TransactionPage", "Income")}
+            onClick={() => handleActivePage("TransactionPage", "Income", transactionsList)}
           >
             <svg width="70" height="70">
               <use href={sprite + "#icon-income"}></use>
@@ -36,7 +36,7 @@ class MainPage extends Component {
           </button>
           <button
             className={s.btnTransaction}
-            onClick={() => handleActivePage("TransactionPage", "Expense")}
+            onClick={() => handleActivePage("TransactionPage", "Expense", transactionsList)}
           >
             <svg width="70" height="70">
               <use href={`${sprite}#icon-expense`}></use>

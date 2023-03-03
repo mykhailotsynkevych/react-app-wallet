@@ -1,19 +1,4 @@
-@mixin visually-hidden {
-  position: absolute;
-  white-space: nowrap;
-  width: 1px;
-  height: 1px;
-  overflow: hidden;
-  border: 0;
-  padding: 0;
-  clip: rect(0 0 0 0);
-  clip-path: inset(50%);
-  margin: -1px;
-}
-
-@mixin border-radius {
-  border-radius: 3px;
-}
+@import "../../assets/styles/mixins.scss";
 
 .transactionForm {
   display: flex;
@@ -70,7 +55,7 @@ label {
     font-size: 20px;
     color:  rgb(83, 82, 82);
     padding: 5px 10px;
-    @include border-radius;
+    border-radius: 3px;
     
 
     &:active {

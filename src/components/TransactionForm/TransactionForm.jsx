@@ -22,7 +22,15 @@ class TransactionForm extends Component {
   handleChange = (e) => {
     const { name, value } = e.target;
 
-    this.setState({ [name]: value });
+    // if (name === 'amount') {
+    //   this.setState({ amount: Number(value) });
+    // } else {
+    //   this.setState({ [name]: value });
+    // }
+
+    return name === "amount"
+      ? this.setState({ amount: Number(value) })
+      : this.setState({ [name]: value });
   };
 
   handleSubmit = (e) => {
@@ -41,6 +49,7 @@ class TransactionForm extends Component {
 
   render() {
     const { time, date, category, amount, comment } = this.state;
+    // console.log(this.state);
 
     return (
       <form
@@ -62,8 +71,9 @@ class TransactionForm extends Component {
             onChange={this.handleChange}
           />
           <label
-          className={`${s.radioLabel} ${s.radio}`}
-          htmlFor="formRadioExpense">
+            className={`${s.radioLabel} ${s.radio}`}
+            htmlFor="formRadioExpense"
+          >
             Expense
           </label>
           <input
@@ -75,8 +85,9 @@ class TransactionForm extends Component {
             onChange={this.handleChange}
           />
           <label
-          className={`${s.radioLabel} ${s.radio}`}
-          htmlFor="formRadioIncome">
+            className={`${s.radioLabel} ${s.radio}`}
+            htmlFor="formRadioIncome"
+          >
             Income
           </label>
         </div>
@@ -130,10 +141,7 @@ class TransactionForm extends Component {
             defaultValue={amount === 0 && ""}
             // defaultValue={amount}
             placeholder="0"
-            onChange={(e) => {
-              const { value } = e.target;
-              this.setState({ amount: Number(value) });
-            }}
+            onChange={this.handleChange}
           />
         </label>
 
