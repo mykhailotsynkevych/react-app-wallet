@@ -1,44 +1,83 @@
+import { Component } from "react";
+import { nanoid } from "nanoid";
 import s from "./CategoriesList.module.css";
 import moreIcon from "../../assets/icons/more.svg";
 import addIcon from "../../assets/icons/add.svg";
 
-const CategoriesList = () => {
-  return (
-    <main className={s.categoriesWrapper}>
-      <ul className={s.categoriesList}>
-        <li className={s.categoriesItem}>
-          <p>Food</p>
-          <button type="button" className={s.btnMore}>
-            <img src={moreIcon} alt="icon More" />
-          </button>
-        </li>
-        <li className={s.categoriesItem}>
-          <p>Other</p>
-          <button type="button" className={s.btnMore}>
-            <img src={moreIcon} alt="icon More" />
-          </button>
-        </li>
-      </ul>
-      <form
-        name="add_category"
-        autoComplete="off"
-        noValidate
-        className={s.addItemForm}
-      >
-        <label>
-          <input
-            type="text"
-            name="category"
-            placeholder="New category..."
-            className={s.addItemInput}
-          />
-        </label>
+const INITIAL_CATEGORIES = [
+  { id: "1", name: "Food" },
+  { id: "2", name: "Car" },
+  { id: "3", name: "House" },
+];
 
-        <button type="submit" className={s.btnAdd} onClick={(e)=>{e.preventDefault()}}>
-          <img src={addIcon} alt="icon Add"/>
-        </button>
-      </form>
-    </main>
-  );
-};
+class CategoriesList extends Component {
+  state = {
+    categoriesList: INITIAL_CATEGORIES,
+    name: "",
+  };
+
+  addNewCategory = (newTransaction) => {
+    this.setState((prevState) => ({
+      categoriesList: [...prevState.categoriesList, newTransaction],
+    }));
+  };
+
+  handleChange = (e) => {
+    const { value } = e.target;
+    this.setState({ name: value });
+  };
+
+  handleSubmit = (e) => {
+    e.preventDefault();
+
+    if (this.state.name === "") {
+      return alert("Please enter category");
+    }
+
+    this.addNewCategory({ name: this.state.name, id: nanoid() });
+    this.setState({ name: "" });
+  };
+
+  render() {
+    return (
+      <main className={s.categoriesWrapper}>
+        <ul className={s.categoriesList}>
+          {this.state.categoriesList.map((categoryEl) => (
+            <li key={categoryEl.id} className={s.categoriesItem} onClick={()=> console.log(categoryEl.name)}>
+              <p>{categoryEl.name}</p>
+              <button type="button" className={s.btnMore}>
+                <img src={moreIcon} alt="icon More" />
+              </button>
+            </li>
+          ))}
+        </ul>
+        <form
+          onSubmit={this.handleSubmit}
+          name="add_category"
+          autoComplete="off"
+          noValidate
+          className={s.addItemForm}
+        >
+          <label>
+            <input
+              type="text"
+              name="category"
+              placeholder="New category..."
+              className={s.addItemInput}
+              defaultValue={this.state.name}
+              onChange={this.handleChange}
+            />
+          </label>
+
+          <button
+            type="submit"
+            className={s.btnAdd}
+          >
+            <img src={addIcon} alt="icon Add" />
+          </button>
+        </form>
+      </main>
+    );
+  }
+}
 export default CategoriesList;
