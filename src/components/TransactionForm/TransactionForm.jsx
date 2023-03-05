@@ -5,18 +5,27 @@ import s from "./TransactionForm.module.scss";
 const curDate = new Date().toLocaleDateString().split(".").reverse().join("-");
 const curTime = new Date().toTimeString().slice(0, 5);
 
-const INITIAL_STATE = {
-  transaction: "expense",
-  date: curDate,
-  time: curTime,
-  category: "Food",
-  amount: 0,
-  comment: "",
-};
+// const INITIAL_STATE = {
+//   transaction: "expense",
+//   date: curDate,
+//   time: curTime,
+//   category: "Food",
+//   amount: 0,
+//   comment: "",
+// };
 
 class TransactionForm extends Component {
+  INITIAL_STATE = {
+    transaction: "expense",
+    date: curDate,
+    time: curTime,
+    category: this.props.selectedCategory,
+    amount: 0,
+    comment: "",
+  };
+
   state = {
-    ...INITIAL_STATE,
+    ...this.INITIAL_STATE,
   };
 
   handleChange = (e) => {
@@ -44,12 +53,11 @@ class TransactionForm extends Component {
   };
 
   resetForm = () => {
-    this.setState({ ...INITIAL_STATE });
+    this.setState({ ...this.INITIAL_STATE });
   };
 
   render() {
-    const { time, date, category, amount, comment } = this.state;
-    // console.log(this.state);
+    const { time, date, amount, comment } = this.state;
 
     return (
       <form
@@ -119,13 +127,14 @@ class TransactionForm extends Component {
           <p className={s.categoryTitle}>Category</p>
           <button
             className={s.categoryBtn}
+            name="category"
             onClick={(e) => {
               e.preventDefault();
               this.props.handleActivePage("CategoriesListPage", "Categories");
             }}
           >
             <div className={s.categoryBtnWrapper}>
-              <span>{category}</span>
+              <span>{this.props.selectedCategory}</span>
               <span className={s.categoryBtnTriangle}>&#8227;</span>
             </div>
           </button>

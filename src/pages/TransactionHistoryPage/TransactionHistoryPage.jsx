@@ -9,13 +9,11 @@ class TransactionHistoryPage extends Component {
       <main>
         <ul>
           {this.props.transactionsList.map((transactionEl) => (
-            <li key={transactionEl.id} className={s.categoriesItem}>
-              <p>{transactionEl.date}</p>
-              <p>{transactionEl.time}</p>
-              <p>{transactionEl.category}</p>
-              <p>{transactionEl.amount}</p>
+            <li key={transactionEl.id} className={s.transactionEl}>
+              <p className={s.transactionElTimeCategory}>{transactionEl.date.split("-").reverse().join(".")} {transactionEl.time} <br /><span className={s.transactionElCategory}>{transactionEl.category}</span></p>
+              <p className={s.transactionElAmount}>{transactionEl.amount}</p>
               <button type="button" className={s.btnMore}>
-                <img src={moreIcon} alt="icon More" />
+                <img src={moreIcon} alt="icon More"/>
               </button>
             </li>
           ))}

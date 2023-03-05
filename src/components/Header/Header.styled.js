@@ -3,7 +3,7 @@ import styled from "styled-components";
 const StyledHeaderWrapper = styled.header`
   display: flex;
   align-items: center;
-  padding: 10px 7px;
+  padding: 10px;
   background-color: rgb(225, 132, 52);
   box-shadow: 0px 2px 2px rgb(0 0 0 / 10%);
 `;
@@ -19,7 +19,7 @@ background-color: inherit;
 width: 26px;
 transition: transform 0.5s linear;
 padding: 0px;
-margin-right: 10px;
+margin-right: 20px;
 
 :hover {
   cursor: pointer;

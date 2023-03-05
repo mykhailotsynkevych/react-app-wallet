@@ -19,6 +19,7 @@ class App extends Component {
     headerTitle: "Wallet",
     isMenuOpen: false,
     transactionsList: [],
+    selectedCategory: "Food",
   };
 
   handleToggleOpeningMenu = () => {
@@ -31,12 +32,29 @@ class App extends Component {
     this.setState({
       activePage,
       headerTitle,
-      transactionsList,
+      // transactionsList,
     });
   };
 
+  handleSelectCategory = (category) => {
+    this.setState({
+      selectedCategory: category,
+    });
+  };
+
+  addTrasaction = (newTransaction) => {
+    this.setState(prevState =>
+        ({ transactionsList: [...prevState.transactionsList, newTransaction] }));
+    };
+
   render() {
-    const { activePage, isMenuOpen, headerTitle, transactionsList } = this.state;
+    const {
+      activePage,
+      isMenuOpen,
+      headerTitle,
+      transactionsList,
+      selectedCategory,
+    } = this.state;
 
     return (
       <div className="App">
@@ -54,11 +72,21 @@ class App extends Component {
           <Menu isMenuOpen={isMenuOpen} />
           {activePage === "MainPage" && (
             <MainPage
-            handleActivePage={this.handleActivePage}
+              handleActivePage={this.handleActivePage}
+              addTrasaction={this.addTrasaction}
+              selectedCategory={selectedCategory}
+              transactionsList={transactionsList}
             />
           )}
-          {activePage === "TransactionPage" && <TransactionHistoryPage transactionsList={transactionsList}/>}
-          {activePage === "CategoriesListPage" && <CategoriesListPage />}
+          {activePage === "TransactionPage" && (
+            <TransactionHistoryPage transactionsList={transactionsList} />
+          )}
+          {activePage === "CategoriesListPage" && (
+            <CategoriesListPage
+              handleActivePage={this.handleActivePage}
+              handleSelectCategory={this.handleSelectCategory}
+            />
+          )}
         </div>
       </div>
     );

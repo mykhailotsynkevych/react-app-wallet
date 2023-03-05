@@ -6,24 +6,22 @@ import s from "./MainPage.module.css";
 import sprite from "../.././assets/icons/sprite.svg";
 
 class MainPage extends Component {
-  state = {
-    transactionsList: [],
-  };
+  // state = {
+  //   transactionsList: [],
+  // };
 
-  addTrasaction = (newTransaction) => {
-  this.setState(prevState =>
-      ({ transactionsList: [...prevState.transactionsList, newTransaction] }));
-  };
+
 
   render() {
-    const { handleActivePage } = this.props;
-    const { transactionsList } = this.state;
+    const { handleActivePage,selectedCategory,transactionsList} = this.props;
+ 
     return (
       <main>
         <TotalBalance />
         <TransactionForm
           handleActivePage={handleActivePage}
-          addTrasaction={this.addTrasaction}
+          selectedCategory={selectedCategory}
+          addTrasaction={this.props.addTrasaction}
         />
         <div className={s.btnTransactionWrapper}>
           <button

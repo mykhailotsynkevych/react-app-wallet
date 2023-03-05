@@ -1,13 +1,32 @@
-.categoriesItem {
+.transactionEl {
     font-size: 16px;
     display: flex;
     justify-content: space-between;
     border-bottom: 1px solid gray;
-    padding: 5px 0px 5px 15px;
+    padding: 5px 5px 5px 15px;
+    align-items: center;
+  }
+
+  .transactionElTimeCategory {
+    text-align: left;
+
+  }
+  
+  .transactionElCategory {
+    display: flex;
+    margin-top: 5px;
+    color: rgb(128, 128, 128);
+  }
+
+  .transactionElAmount {
+    margin-left: auto;
+    margin-right: 15px;
+    font-size: 24px;
+    color: #3180ff;
   }
 
   .btnMore {
     background-color: inherit;
-    width: 20px;
+    width: 22px;
     padding: 0px;
   }

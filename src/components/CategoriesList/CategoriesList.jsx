@@ -43,7 +43,14 @@ class CategoriesList extends Component {
       <main className={s.categoriesWrapper}>
         <ul className={s.categoriesList}>
           {this.state.categoriesList.map((categoryEl) => (
-            <li key={categoryEl.id} className={s.categoriesItem} onClick={()=> console.log(categoryEl.name)}>
+            <li
+              key={categoryEl.id}
+              className={s.categoriesItem}
+              onClick={() => {
+                this.props.handleSelectCategory(categoryEl.name);
+                this.props.handleActivePage("MainPage", "Wallet");
+              }}
+            >
               <p>{categoryEl.name}</p>
               <button type="button" className={s.btnMore}>
                 <img src={moreIcon} alt="icon More" />
@@ -69,10 +76,7 @@ class CategoriesList extends Component {
             />
           </label>
 
-          <button
-            type="submit"
-            className={s.btnAdd}
-          >
+          <button type="submit" className={s.btnAdd}>
             <img src={addIcon} alt="icon Add" />
           </button>
         </form>
