@@ -9,7 +9,10 @@
 
   .transactionElTimeCategory {
     text-align: left;
+  }
 
+  .transactionElDate {
+    margin-right: 15px;
   }
   
   .transactionElCategory {

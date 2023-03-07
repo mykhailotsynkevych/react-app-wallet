@@ -4,7 +4,7 @@ const StyledHeaderWrapper = styled.header`
   display: flex;
   align-items: center;
   padding: 10px;
-  background-color: rgb(225, 132, 52);
+  background-color: var(--main-color);
   box-shadow: 0px 2px 2px rgb(0 0 0 / 10%);
 `;
 

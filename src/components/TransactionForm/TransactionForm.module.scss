@@ -35,8 +35,8 @@ label {
   @include visually-hidden;
 
   &:checked + .radioLabel.radio {
-    color: rgb(225, 132, 52);
-    border: 1px solid rgb(225, 132, 52);
+    color: var(--main-color);
+    border: 1px solid var(--main-color);
     box-sizing: content-box;
   }
 }
@@ -79,7 +79,8 @@ label {
 .timeWrapper {
   display: flex;
   align-items: flex-end;
-  background-color: rgb(234, 234, 234);
+  // background-color: rgb(234, 234, 234);
+  background-color: var(--secondary-color);
 }
 
 .dateText {
@@ -121,7 +122,7 @@ label {
 }
 
 .greybgc {
-  background-color: rgb(234, 234, 234);
+  background-color: var(--secondary-color);
 }
 
 .formBtnSubmit {

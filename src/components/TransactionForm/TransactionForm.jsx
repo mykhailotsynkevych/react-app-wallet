@@ -1,9 +1,14 @@
 import { Component } from "react";
+import moment from 'moment';
 import { nanoid } from "nanoid";
 import s from "./TransactionForm.module.scss";
 
-const curDate = new Date().toLocaleDateString().split(".").reverse().join("-");
-const curTime = new Date().toTimeString().slice(0, 5);
+// const curDate = new Date().toLocaleDateString().split(".").reverse().join("-");
+const curDate = moment().format("YYYY-MM-DD");
+// console.log(curDate)
+
+// const curTime = new Date().toTimeString().slice(0, 5);
+const curTime = moment().format("HH:mm");
 
 // const INITIAL_STATE = {
 //   transaction: "expense",

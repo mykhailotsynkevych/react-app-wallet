@@ -43,9 +43,10 @@ class App extends Component {
   };
 
   addTrasaction = (newTransaction) => {
-    this.setState(prevState =>
-        ({ transactionsList: [...prevState.transactionsList, newTransaction] }));
-    };
+    this.setState((prevState) => ({
+      transactionsList: [...prevState.transactionsList, newTransaction],
+    }));
+  };
 
   render() {
     const {
