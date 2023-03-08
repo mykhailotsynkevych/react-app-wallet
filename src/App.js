@@ -28,11 +28,10 @@ class App extends Component {
     });
   };
 
-  handleActivePage = (activePage, headerTitle, transactionsList) => {
+  handleActivePage = (activePage, headerTitle) => {
     this.setState({
       activePage,
       headerTitle,
-      // transactionsList,
     });
   };
 
@@ -57,6 +56,10 @@ class App extends Component {
       selectedCategory,
     } = this.state;
 
+    const filteredByTransactionArt = transactionsList.filter(transactionsEl =>
+      transactionsEl.transaction.includes(headerTitle)
+    );
+
     return (
       <div className="App">
         <div className="pageWrapper">
@@ -80,7 +83,7 @@ class App extends Component {
             />
           )}
           {activePage === "TransactionPage" && (
-            <TransactionHistoryPage transactionsList={transactionsList} />
+            <TransactionHistoryPage transactionsList={filteredByTransactionArt} />
           )}
           {activePage === "CategoriesListPage" && (
             <CategoriesListPage

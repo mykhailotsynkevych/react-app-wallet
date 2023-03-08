@@ -13,7 +13,7 @@ class MainPage extends Component {
 
 
   render() {
-    const { handleActivePage,selectedCategory,transactionsList} = this.props;
+    const { handleActivePage,selectedCategory} = this.props;
  
     return (
       <main>
@@ -26,7 +26,7 @@ class MainPage extends Component {
         <div className={s.btnTransactionWrapper}>
           <button
             className={s.btnTransaction}
-            onClick={() => handleActivePage("TransactionPage", "Income", transactionsList)}
+            onClick={() => handleActivePage("TransactionPage", "Income")}
           >
             <svg width="70" height="70">
               <use href={sprite + "#icon-income"}></use>
@@ -34,7 +34,7 @@ class MainPage extends Component {
           </button>
           <button
             className={s.btnTransaction}
-            onClick={() => handleActivePage("TransactionPage", "Expense", transactionsList)}
+            onClick={() => handleActivePage("TransactionPage", "Expense")}
           >
             <svg width="70" height="70">
               <use href={`${sprite}#icon-expense`}></use>

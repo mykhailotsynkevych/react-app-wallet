@@ -21,7 +21,7 @@ const curTime = moment().format("HH:mm");
 
 class TransactionForm extends Component {
   INITIAL_STATE = {
-    transaction: "expense",
+    transaction: "Expense",
     date: curDate,
     time: curTime,
     category: this.props.selectedCategory,
@@ -79,7 +79,7 @@ class TransactionForm extends Component {
             className={s.input}
             type="radio"
             name="transaction"
-            value="expense"
+            value="Expense"
             defaultChecked
             onChange={this.handleChange}
           />
@@ -94,7 +94,7 @@ class TransactionForm extends Component {
             className={s.input}
             type="radio"
             name="transaction"
-            value="income"
+            value="Income"
             onChange={this.handleChange}
           />
           <label
