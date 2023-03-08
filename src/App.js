@@ -19,6 +19,7 @@ class App extends Component {
     headerTitle: "Wallet",
     isMenuOpen: false,
     transactionsList: [],
+    selectedTransaction: "Expense",
     selectedCategory: "Food",
   };
 
@@ -41,6 +42,13 @@ class App extends Component {
     });
   };
 
+  handleSelectTransation = (transaction) => {
+    this.setState({
+      selectedTransaction: transaction,
+      selectedCategory: transaction === "Expense" ? "Food" : "Work",
+    });
+  };
+
   addTrasaction = (newTransaction) => {
     this.setState((prevState) => ({
       transactionsList: [...prevState.transactionsList, newTransaction],
@@ -54,6 +62,7 @@ class App extends Component {
       headerTitle,
       transactionsList,
       selectedCategory,
+      selectedTransaction,
     } = this.state;
 
     const filteredByTransactionArt = transactionsList.filter(transactionsEl =>
@@ -78,7 +87,9 @@ class App extends Component {
             <MainPage
               handleActivePage={this.handleActivePage}
               addTrasaction={this.addTrasaction}
+              handleSelectTransation={this.handleSelectTransation}
               selectedCategory={selectedCategory}
+              selectedTransaction={selectedTransaction}
               transactionsList={transactionsList}
             />
           )}
@@ -89,6 +100,7 @@ class App extends Component {
             <CategoriesListPage
               handleActivePage={this.handleActivePage}
               handleSelectCategory={this.handleSelectCategory}
+              selectedTransaction={selectedTransaction}
             />
           )}
         </div>

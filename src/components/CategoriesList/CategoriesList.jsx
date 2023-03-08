@@ -4,17 +4,23 @@ import s from "./CategoriesList.module.css";
 import moreIcon from "../../assets/icons/more.svg";
 import addIcon from "../../assets/icons/add.svg";
 
-const INITIAL_CATEGORIES = [
+const INITIAL_EXPENSE_CATEGORIES = [
   { id: "1", name: "Food" },
   { id: "2", name: "Car" },
   { id: "3", name: "House" },
 ];
 
+const INITIAL_INCOME_CATEGORIES = [
+  { id: "1", name: "Work" },
+  { id: "2", name: "Other" },
+];
+
 class CategoriesList extends Component {
   state = {
-    categoriesList: INITIAL_CATEGORIES,
+    categoriesList: this.props.selectedTransaction === "Expense" ? INITIAL_EXPENSE_CATEGORIES : INITIAL_INCOME_CATEGORIES,
     name: "",
   };
+
 
   addNewCategory = (newTransaction) => {
     this.setState((prevState) => ({
@@ -39,6 +45,7 @@ class CategoriesList extends Component {
   };
 
   render() {
+    console.log(this.state.categoriesList)
     return (
       <main className={s.categoriesWrapper}>
         <ul className={s.categoriesList}>

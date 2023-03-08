@@ -7,13 +7,14 @@ import sprite from "../.././assets/icons/sprite.svg";
 
 class MainPage extends Component {
   // state = {
-  //   transactionsList: [],
+  //   selectedTransaction: "Expense",
+  //   selectedCategory: "Food",
   // };
 
 
 
   render() {
-    const { handleActivePage,selectedCategory} = this.props;
+    const { handleActivePage, handleSelectTransation, selectedCategory, selectedTransaction} = this.props;
  
     return (
       <main>
@@ -21,7 +22,9 @@ class MainPage extends Component {
         <TransactionForm
           handleActivePage={handleActivePage}
           selectedCategory={selectedCategory}
+          selectedTransaction={selectedTransaction}
           addTrasaction={this.props.addTrasaction}
+          handleSelectTransation={handleSelectTransation}
         />
         <div className={s.btnTransactionWrapper}>
           <button

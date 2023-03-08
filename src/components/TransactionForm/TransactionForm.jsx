@@ -1,27 +1,17 @@
 import { Component } from "react";
-import moment from 'moment';
+import moment from "moment";
 import { nanoid } from "nanoid";
 import s from "./TransactionForm.module.scss";
 
 // const curDate = new Date().toLocaleDateString().split(".").reverse().join("-");
 const curDate = moment().format("YYYY-MM-DD");
-// console.log(curDate)
 
 // const curTime = new Date().toTimeString().slice(0, 5);
 const curTime = moment().format("HH:mm");
 
-// const INITIAL_STATE = {
-//   transaction: "expense",
-//   date: curDate,
-//   time: curTime,
-//   category: "Food",
-//   amount: 0,
-//   comment: "",
-// };
-
 class TransactionForm extends Component {
   INITIAL_STATE = {
-    transaction: "Expense",
+    transaction: this.props.selectedTransaction,
     date: curDate,
     time: curTime,
     category: this.props.selectedCategory,
@@ -42,6 +32,11 @@ class TransactionForm extends Component {
     //   this.setState({ [name]: value });
     // }
 
+    if (name === "transaction") {
+      // console.log(value);
+      this.props.handleSelectTransation(value);
+    }
+
     return name === "amount"
       ? this.setState({ amount: Number(value) })
       : this.setState({ [name]: value });
@@ -53,6 +48,7 @@ class TransactionForm extends Component {
       return alert("Please enter the amount");
     }
     this.props.addTrasaction({ ...this.state, id: nanoid() });
+    this.props.handleSelectTransation("Expense");
 
     this.resetForm();
   };
@@ -80,7 +76,7 @@ class TransactionForm extends Component {
             type="radio"
             name="transaction"
             value="Expense"
-            defaultChecked
+            defaultChecked={this.props.selectedTransaction === "Expense"}
             onChange={this.handleChange}
           />
           <label
@@ -95,6 +91,7 @@ class TransactionForm extends Component {
             type="radio"
             name="transaction"
             value="Income"
+            defaultChecked={this.props.selectedTransaction === "Income"}
             onChange={this.handleChange}
           />
           <label
