@@ -6,21 +6,33 @@ import Header from "./components/Header/Header";
 import Menu from "./components/Menu/Menu";
 import MainPage from "./pages/MainPage/MainPage";
 import TransactionHistoryPage from "./pages/TransactionHistoryPage/TransactionHistoryPage";
-import CategoriesListPage from "./components/CategoriesList/CategoriesList";
+import CategoriesListPage from "./pages/CategoriesListPage/CategoriesListPage";
 
 // Third - Other
 import "./App.css";
 import menuBurger from "./assets/icons/menu-burger.svg";
 import returnArrow from "./assets//icons/return.svg";
 
+const INITIAL_CATEGORIES = [
+  { id: "1", transaction: "Expense", name: "Food" },
+  { id: "2", transaction: "Expense", name: "Car" },
+  { id: "3", transaction: "Expense", name: "House" },
+  { id: "4", transaction: "Income", name: "Work" },
+  { id: "5", transaction: "Income", name: "Other" },
+];
+
 class App extends Component {
   state = {
-    activePage: "MainPage",
     headerTitle: "Wallet",
+    activePage: "MainPage",
+
     isMenuOpen: false,
-    transactionsList: [],
+
     selectedTransaction: "Expense",
+    transactionsList: [],
+
     selectedCategory: "Food",
+    categoriesList: [...INITIAL_CATEGORIES],
   };
 
   handleToggleOpeningMenu = () => {
@@ -49,24 +61,38 @@ class App extends Component {
     });
   };
 
-  addTrasaction = (newTransaction) => {
+  addTransaction = (newTransaction) => {
     this.setState((prevState) => ({
       transactionsList: [...prevState.transactionsList, newTransaction],
     }));
   };
 
+  addNewCategory = (newCategory) => {
+    this.setState((prevState) => ({
+      categoriesList: [...prevState.categoriesList, newCategory],
+    }));
+  };
+
   render() {
     const {
-      activePage,
       isMenuOpen,
+
       headerTitle,
-      transactionsList,
+      activePage,
+
       selectedCategory,
+      categoriesList,
+
       selectedTransaction,
+      transactionsList,
     } = this.state;
 
-    const filteredByTransactionArt = transactionsList.filter(transactionsEl =>
+    const filteredByTransactionArt = transactionsList.filter((transactionsEl) =>
       transactionsEl.transaction.includes(headerTitle)
+    );
+
+    const filteredCategoriesByTransactionArt = categoriesList.filter(
+      (categoriesEl) => categoriesEl.transaction.includes(selectedTransaction)
     );
 
     return (
@@ -86,7 +112,7 @@ class App extends Component {
           {activePage === "MainPage" && (
             <MainPage
               handleActivePage={this.handleActivePage}
-              addTrasaction={this.addTrasaction}
+              addTrasaction={this.addTransaction}
               handleSelectTransation={this.handleSelectTransation}
               selectedCategory={selectedCategory}
               selectedTransaction={selectedTransaction}
@@ -94,13 +120,17 @@ class App extends Component {
             />
           )}
           {activePage === "TransactionPage" && (
-            <TransactionHistoryPage transactionsList={filteredByTransactionArt} />
+            <TransactionHistoryPage
+              transactionsList={filteredByTransactionArt}
+            />
           )}
           {activePage === "CategoriesListPage" && (
             <CategoriesListPage
               handleActivePage={this.handleActivePage}
               handleSelectCategory={this.handleSelectCategory}
               selectedTransaction={selectedTransaction}
+              addNewCategory={this.addNewCategory}
+              categoriesList={filteredCategoriesByTransactionArt}
             />
           )}
         </div>
