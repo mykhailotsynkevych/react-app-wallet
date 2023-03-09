@@ -17,6 +17,7 @@ const INITIAL_CATEGORIES = [
   { id: "1", transaction: "Expense", name: "Food" },
   { id: "2", transaction: "Expense", name: "Car" },
   { id: "3", transaction: "Expense", name: "House" },
+  
   { id: "4", transaction: "Income", name: "Work" },
   { id: "5", transaction: "Income", name: "Other" },
 ];
