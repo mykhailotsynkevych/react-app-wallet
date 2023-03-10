@@ -23,6 +23,12 @@ class TransactionForm extends Component {
     ...this.INITIAL_STATE,
   };
 
+  componentDidUpdate(prevProps, prevState) {
+    if (this.state === this.INITIAL_STATE) {
+      this.setState({ amount: 0})
+    }
+  }
+
   handleChange = (e) => {
     const { name, value } = e.target;
 

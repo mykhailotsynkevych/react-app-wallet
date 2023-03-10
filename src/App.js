@@ -17,7 +17,7 @@ const INITIAL_CATEGORIES = [
   { id: "1", transaction: "Expense", name: "Food" },
   { id: "2", transaction: "Expense", name: "Car" },
   { id: "3", transaction: "Expense", name: "House" },
-  
+
   { id: "4", transaction: "Income", name: "Work" },
   { id: "5", transaction: "Income", name: "Other" },
 ];
@@ -35,6 +35,25 @@ class App extends Component {
     selectedCategory: "Food",
     categoriesList: [...INITIAL_CATEGORIES],
   };
+
+  componentDidMount() {
+    const parsedtransactionsList = JSON.parse(
+      localStorage.getItem("transactionsList")
+    );
+
+    if (parsedtransactionsList) {
+      this.setState({ transactionsList: parsedtransactionsList });
+    }
+  }
+
+  componentDidUpdate(prevProps, prevState) {
+    if (this.state.transactionsList !== prevState.transactionsList) {
+      localStorage.setItem(
+        "transactionsList",
+        JSON.stringify(this.state.transactionsList)
+      );
+    }
+  }
 
   handleToggleOpeningMenu = () => {
     this.setState((prevState) => {
