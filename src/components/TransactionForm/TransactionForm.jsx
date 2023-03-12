@@ -53,8 +53,8 @@ class TransactionForm extends Component {
     if (this.state.amount === 0) {
       return alert("Please enter the amount");
     }
-    this.props.addTrasaction({ ...this.state, id: nanoid() });
     this.props.handleSelectTransation("Expense");
+    this.props.addTrasaction({ ...this.state, id: nanoid() });
 
     this.resetForm();
   };

@@ -1,35 +1,43 @@
 .transactionEl {
-    font-size: 16px;
-    display: flex;
-    justify-content: space-between;
-    border-bottom: 1px solid gray;
-    padding: 5px 5px 5px 15px;
-    align-items: center;
-  }
+  font-size: 16px;
+  display: flex;
+  justify-content: space-between;
+  border-bottom: 1px solid gray;
+  padding: 5px 5px 5px 15px;
+  align-items: center;
+}
 
-  .transactionElTimeCategory {
-    text-align: left;
-  }
+.transactionElTimeCategory {
+  text-align: left;
+}
 
-  .transactionElDate {
-    margin-right: 15px;
-  }
-  
-  .transactionElCategory {
-    display: flex;
-    margin-top: 5px;
-    color: rgb(128, 128, 128);
-  }
+.transactionElDate {
+  margin-right: 15px;
+}
 
-  .transactionElAmount {
-    margin-left: auto;
-    margin-right: 15px;
-    font-size: 24px;
-    color: #3180ff;
-  }
+.transactionElCategory {
+  margin-right: 40px;
+  margin-top: 5px;
+  color: rgb(128, 128, 128);
+}
 
-  .btnMore {
-    background-color: inherit;
-    width: 22px;
-    padding: 0px;
-  }
+.transactionElAmount {
+  margin-left: auto;
+  margin-right: 15px;
+  font-size: 24px;
+
+}
+
+.expense {
+  color: #cd0000;
+}
+
+.income {
+  color: #00b300;
+}
+
+.btnMore {
+  background-color: inherit;
+  width: 22px;
+  padding: 0px;
+}
