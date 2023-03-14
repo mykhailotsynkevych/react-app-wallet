@@ -15,7 +15,7 @@ class TransactionForm extends Component {
     date: curDate,
     time: curTime,
     category: this.props.selectedCategory,
-    amount: 0,
+    amount: '',
     comment: "",
   };
 
@@ -50,7 +50,7 @@ class TransactionForm extends Component {
 
   handleSubmit = (e) => {
     e.preventDefault();
-    if (this.state.amount === 0) {
+    if (this.state.amount === '') {
       return alert("Please enter the amount");
     }
     this.props.handleSelectTransation("Expense");
@@ -155,9 +155,8 @@ class TransactionForm extends Component {
             name="amount"
             step="1"
             min="0"
-            defaultValue={amount === 0 && ""}
-            // defaultValue={amount}
             placeholder="0"
+            value={amount}
             onChange={this.handleChange}
           />
         </label>
