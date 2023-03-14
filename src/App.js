@@ -9,6 +9,7 @@ import TransactionHistoryPage from "./pages/TransactionHistoryPage/TransactionHi
 import CategoriesListPage from "./pages/CategoriesListPage/CategoriesListPage";
 
 // Third - Other
+import LSapi from "./utils/api/LSapi";
 import "./App.css";
 import menuBurger from "./assets/icons/menu-burger.svg";
 import returnArrow from "./assets//icons/return.svg";
@@ -37,20 +38,37 @@ class App extends Component {
   };
 
   componentDidMount() {
-    const parsedtransactionsList = JSON.parse(
-      localStorage.getItem("transactionsList")
+    const getCategoriesListFromLS = LSapi.getDataFromLS(
+      LSapi.keys.categoriesList,
+      this.state.categoriesList
     );
 
-    if (parsedtransactionsList) {
-      this.setState({ transactionsList: parsedtransactionsList });
+    if (getCategoriesListFromLS) {
+      this.setState({ categoriesList: getCategoriesListFromLS });
+    }
+
+    const getTransactionsListFromLS = LSapi.getDataFromLS(
+      LSapi.keys.transactionsList,
+      this.state.transactionsList
+    );
+
+    if (getTransactionsListFromLS) {
+      this.setState({ transactionsList: getTransactionsListFromLS });
     }
   }
 
   componentDidUpdate(prevProps, prevState) {
     if (this.state.transactionsList !== prevState.transactionsList) {
-      localStorage.setItem(
-        "transactionsList",
-        JSON.stringify(this.state.transactionsList)
+      LSapi.setDataToLS(
+        LSapi.keys.transactionsList,
+        this.state.transactionsList
+      );
+    }
+
+    if (this.state.categoriesList !== prevState.categoriesList) {
+      LSapi.setDataToLS(
+        LSapi.keys.categoriesList,
+        this.state.categoriesList
       );
     }
   }
