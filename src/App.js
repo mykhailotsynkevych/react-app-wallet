@@ -34,13 +34,13 @@ class App extends Component {
     transactionsList: [],
 
     selectedCategory: "Food",
-    categoriesList: [...INITIAL_CATEGORIES],
+    categoriesList: [],
   };
 
   componentDidMount() {
     const getCategoriesListFromLS = LSapi.getDataFromLS(
       LSapi.keys.categoriesList,
-      this.state.categoriesList
+      INITIAL_CATEGORIES
     );
 
     if (getCategoriesListFromLS) {

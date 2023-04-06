@@ -11,6 +11,12 @@ class CategoriesList extends Component {
     name: "",
   };
 
+//   static getDerivedStateFromProps(nextProps, prevState) {
+// console.log("nextProps", nextProps)
+// console.log("prevState", prevState)
+//     return null;
+//   }
+
   handleChange = (e) => {
     const { value } = e.target;
     this.setState({ name: value });
@@ -25,7 +31,7 @@ class CategoriesList extends Component {
       return alert("Please enter category");
     }
 
-    addNewCategory({ name: this.state.name, transaction: selectedTransaction, id: nanoid() });
+    addNewCategory({ id: nanoid(), transaction: selectedTransaction, name: this.state.name });
     this.setState({ name: "" });
   };
 
@@ -58,7 +64,7 @@ class CategoriesList extends Component {
           noValidate
           className={s.addItemForm}
         >
-          <label>
+          <label className={s.addItemLabel}>
             <input
               type="text"
               name="category"
