@@ -15,12 +15,12 @@ import menuBurger from "./assets/icons/menu-burger.svg";
 import returnArrow from "./assets//icons/return.svg";
 
 const INITIAL_CATEGORIES = [
-  { id: "1", transaction: "Expense", name: "Food" },
-  { id: "2", transaction: "Expense", name: "Car" },
-  { id: "3", transaction: "Expense", name: "House" },
+  { id: "1", transactionArt: "Expense", nameCategory: "Food" },
+  { id: "2", transactionArt: "Expense", nameCategory: "Car" },
+  { id: "3", transactionArt: "Expense", nameCategory: "House" },
 
-  { id: "4", transaction: "Income", name: "Work" },
-  { id: "5", transaction: "Income", name: "Other" },
+  { id: "4", transactionArt: "Income", nameCategory: "Work" },
+  { id: "5", transactionArt: "Income", nameCategory: "Other" },
 ];
 
 class App extends Component {
@@ -126,11 +126,11 @@ class App extends Component {
     } = this.state;
 
     const filteredByTransactionArt = transactionsList.filter((transactionsEl) =>
-      transactionsEl.transaction.includes(headerTitle)
+      transactionsEl.transaction.includes(selectedTransaction)
     );
 
     const filteredCategoriesByTransactionArt = categoriesList.filter(
-      (categoriesEl) => categoriesEl.transaction.includes(selectedTransaction)
+      (categoriesEl) => categoriesEl.transactionArt.includes(selectedTransaction)
     );
 
     return (

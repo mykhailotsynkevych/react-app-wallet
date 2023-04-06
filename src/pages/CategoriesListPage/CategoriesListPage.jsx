@@ -8,18 +8,12 @@ import addIcon from "../../assets/icons/add.svg";
 
 class CategoriesList extends Component {
   state = {
-    name: "",
+    nameCategory: "",
   };
-
-//   static getDerivedStateFromProps(nextProps, prevState) {
-// console.log("nextProps", nextProps)
-// console.log("prevState", prevState)
-//     return null;
-//   }
 
   handleChange = (e) => {
     const { value } = e.target;
-    this.setState({ name: value });
+    this.setState({ nameCategory: value });
   };
 
   handleSubmit = (e) => {
@@ -27,16 +21,16 @@ class CategoriesList extends Component {
 
     const {addNewCategory, selectedTransaction} = this.props;
 
-    if (this.state.name === "") {
+    if (this.state.namenameCategory === "") {
       return alert("Please enter category");
     }
 
-    addNewCategory({ id: nanoid(), transaction: selectedTransaction, name: this.state.name });
-    this.setState({ name: "" });
+    addNewCategory({ id: nanoid(), transactionArt: selectedTransaction, nameCategory: this.state.nameCategory });
+    this.setState({ nameCategory: "" });
   };
 
   render() {
-    const { name } = this.state;
+    const { nameCategory } = this.state;
 
     return (
       <main className={s.categoriesWrapper}>
@@ -46,11 +40,11 @@ class CategoriesList extends Component {
               key={categoryEl.id}
               className={s.categoriesItem}
               onClick={() => {
-                this.props.handleSelectCategory(categoryEl.name);
+                this.props.handleSelectCategory(categoryEl.nameCategory);
                 this.props.handleActivePage("MainPage", "Wallet");
               }}
             >
-              <p>{categoryEl.name}</p>
+              <p>{categoryEl.nameCategory}</p>
               <button type="button" className={s.btnMore}>
                 <img src={moreIcon} alt="icon More" />
               </button>
@@ -70,7 +64,7 @@ class CategoriesList extends Component {
               name="category"
               placeholder="New category..."
               className={s.addItemInput}
-              value={name}
+              value={nameCategory}
               onChange={this.handleChange}
             />
           </label>
