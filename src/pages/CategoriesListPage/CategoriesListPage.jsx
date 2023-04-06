@@ -30,6 +30,7 @@ class CategoriesList extends Component {
   };
 
   render() {
+    const { name } = this.state;
 
     return (
       <main className={s.categoriesWrapper}>
@@ -63,7 +64,7 @@ class CategoriesList extends Component {
               name="category"
               placeholder="New category..."
               className={s.addItemInput}
-              defaultValue={this.state.name}
+              value={name}
               onChange={this.handleChange}
             />
           </label>

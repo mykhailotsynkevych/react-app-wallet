@@ -1,5 +1,5 @@
 .App {
-  padding-top: 8px;
+  padding: 8px 5px 0px;
   background: linear-gradient(
     to bottom,
     #4bc0c8,
@@ -14,7 +14,8 @@
   display: flex;
   flex-direction: column;
   position: relative;
-  width: 400px;
+  border-radius: 3px;
+  max-width: 400px;
   min-height: 547px;
   margin-left: auto;
   margin-right: auto;
