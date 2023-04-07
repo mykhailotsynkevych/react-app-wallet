@@ -1,80 +1,81 @@
-import { Component } from "react";
+import { useState } from "react";
 import { nanoid } from "nanoid";
 import s from "./CategoriesListPage.module.css";
 import moreIcon from "../../assets/icons/more.svg";
 import addIcon from "../../assets/icons/add.svg";
 
+const CategoriesList = ({
+  handleActivePage,
+  handleSelectCategory,
+  selectedTransaction,
+  addNewCategory,
+  categoriesList,
+}) => {
+  const [nameCategory, setNameCategory] = useState("");
 
-
-class CategoriesList extends Component {
-  state = {
-    nameCategory: "",
-  };
-
-  handleChange = (e) => {
+  const handleChange = (e) => {
     const { value } = e.target;
-    this.setState({ nameCategory: value });
+    setNameCategory(value);
   };
 
-  handleSubmit = (e) => {
+  const handleSubmit = (e) => {
     e.preventDefault();
 
-    const {addNewCategory, selectedTransaction} = this.props;
-
-    if (this.state.namenameCategory === "") {
+    if (nameCategory === "") {
       return alert("Please enter category");
     }
 
-    addNewCategory({ id: nanoid(), transactionArt: selectedTransaction, nameCategory: this.state.nameCategory });
-    this.setState({ nameCategory: "" });
+    addNewCategory({
+      id: nanoid(),
+      transactionArt: selectedTransaction,
+      nameCategory,
+    });
+    setNameCategory("");
   };
 
-  render() {
-    const { nameCategory } = this.state;
+  return (
+    <main className={s.categoriesWrapper}>
+      <ul className={s.categoriesList}>
+        {categoriesList.map((categoryEl) => (
+          <li
+            key={categoryEl.id}
+            className={s.categoriesItem}
+            onClick={() => {
+              handleSelectCategory(categoryEl.nameCategory);
+              handleActivePage("MainPage", "Wallet");
+            }}
+          >
+            <p>{categoryEl.nameCategory}</p>
+            <button type="button" className={s.btnMore}>
+              <img src={moreIcon} alt="icon More" />
+            </button>
+          </li>
+        ))}
+      </ul>
+      <form
+        onSubmit={handleSubmit}
+        name="add_category"
+        autoComplete="off"
+        noValidate
+        className={s.addItemForm}
+      >
+        <label className={s.addItemLabel}>
+          <input
+            type="text"
+            name="category"
+            placeholder="New category..."
+            className={s.addItemInput}
+            value={nameCategory}
+            onChange={handleChange}
+          />
+        </label>
 
-    return (
-      <main className={s.categoriesWrapper}>
-        <ul className={s.categoriesList}>
-          {this.props.categoriesList.map((categoryEl) => (
-            <li
-              key={categoryEl.id}
-              className={s.categoriesItem}
-              onClick={() => {
-                this.props.handleSelectCategory(categoryEl.nameCategory);
-                this.props.handleActivePage("MainPage", "Wallet");
-              }}
-            >
-              <p>{categoryEl.nameCategory}</p>
-              <button type="button" className={s.btnMore}>
-                <img src={moreIcon} alt="icon More" />
-              </button>
-            </li>
-          ))}
-        </ul>
-        <form
-          onSubmit={this.handleSubmit}
-          name="add_category"
-          autoComplete="off"
-          noValidate
-          className={s.addItemForm}
-        >
-          <label className={s.addItemLabel}>
-            <input
-              type="text"
-              name="category"
-              placeholder="New category..."
-              className={s.addItemInput}
-              value={nameCategory}
-              onChange={this.handleChange}
-            />
-          </label>
+        <button type="submit" className={s.btnAdd}>
+          <img src={addIcon} alt="icon Add" />
+        </button>
+      </form>
+    </main>
+  );
+};
 
-          <button type="submit" className={s.btnAdd}>
-            <img src={addIcon} alt="icon Add" />
-          </button>
-        </form>
-      </main>
-    );
-  }
-}
 export default CategoriesList;
