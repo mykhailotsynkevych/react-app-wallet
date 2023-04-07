@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import moment from "moment";
 import { nanoid } from "nanoid";
 import s from "./TransactionForm.module.scss";
@@ -17,6 +17,10 @@ const TransactionForm = (props) => {
   const [amount, setAmount] = useState("");
   const [comment, setComment] = useState("");
 
+  useEffect(() => {
+    setCategory(props.selectedCategory)
+    setTransaction(props.selectedTransaction)
+  }, [props.selectedCategory, props.selectedTransaction]);
 
   const handleChange = (e) => {
     const { name, value } = e.target;
@@ -93,7 +97,7 @@ const TransactionForm = (props) => {
           type="radio"
           name="transaction"
           value="Expense"
-          defaultChecked={transaction === "Expense"}
+          checked={props.selectedTransaction === "Expense"}
           onChange={handleChange}
         />
         <label
@@ -108,7 +112,7 @@ const TransactionForm = (props) => {
           type="radio"
           name="transaction"
           value="Income"
-          defaultChecked={transaction === "Income"}
+          checked={props.selectedTransaction === "Income"}
           onChange={handleChange}
         />
         <label

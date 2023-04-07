@@ -33,12 +33,13 @@ const App = () => {
   const [selectedCategory, setSelectedCategory] = useState("Food");
   const [categoriesList, setCategoriesList] = useState([]);
 
+
+
   useEffect(() => {
     const getCategoriesListFromLS = LSapi.getDataFromLS(
       LSapi.keys.categoriesList,
       INITIAL_CATEGORIES
     );
-
   
     if (getCategoriesListFromLS) {
       setCategoriesList(getCategoriesListFromLS)
@@ -72,16 +73,15 @@ const App = () => {
   // }
 
   // useEffect(() => {
-  //   console.log(categoriesList);
   //   LSapi.setDataToLS(
   //     LSapi.keys.transactionsList,
   //     transactionsList
   //   );
-  //   LSapi.setDataToLS(
-  //     LSapi.keys.categoriesList,
-  //     categoriesList
-  //   );
-  // }, [transactionsList, categoriesList]);
+  //   // LSapi.setDataToLS(
+  //   //   LSapi.keys.categoriesList,
+  //   //   categoriesList
+  //   // );
+  // }, [categoriesList]);
 
 
   const handleActivePage = (
@@ -97,7 +97,7 @@ const App = () => {
     setSelectedCategory(transaction === "Expense" ? "Food" : "Work");
   };
   
-  const handleSelectCategory = (category = "Food") => {
+  const handleSelectCategory = (category) => {
     setSelectedCategory(category);
   };
 
@@ -111,7 +111,7 @@ const App = () => {
   };
 
   const filteredByTransactionArt = transactionsList.filter((transactionsEl) =>
-    transactionsEl.transaction.includes(selectedTransaction)
+    transactionsEl.transaction.includes(headerTitle)
   );
 
 
