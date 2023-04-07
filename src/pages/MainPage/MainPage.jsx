@@ -9,10 +9,10 @@ const MainPage = (props) => {
       <TotalBalance />
       <TransactionForm
         handleActivePage={props.handleActivePage}
-        selectedCategory={props.selectedCategory}
-        selectedTransaction={props.selectedTransaction}
-        addTrasaction={props.addTrasaction}
         handleSelectTransation={props.handleSelectTransation}
+        selectedTransaction={props.selectedTransaction}
+        selectedCategory={props.selectedCategory}
+        addTrasaction={props.addTrasaction}
       />
       <div className={s.btnTransactionWrapper}>
         <button

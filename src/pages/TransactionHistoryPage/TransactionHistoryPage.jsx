@@ -4,6 +4,7 @@ import s from "./TransactionHistoryPage.module.css";
 import moreIcon from "../../assets/icons/more.svg";
 
 const TransactionHistoryPage = (props) => {
+  console.log(props)
     return (
       <main>
         <ul>

@@ -17,12 +17,14 @@ const TransactionForm = (props) => {
   const [amount, setAmount] = useState("");
   const [comment, setComment] = useState("");
 
+
   const handleChange = (e) => {
     const { name, value } = e.target;
 
     switch (name) {
       case "transaction":
-        props.handleSelectTransation(value);
+        setTransaction(value);
+        props.handleSelectTransation(value)
         break;
       case "date":
         setDate(value);
@@ -32,6 +34,7 @@ const TransactionForm = (props) => {
         break;
       case "category":
         setCategory(value);
+        props.selectedCategory(value);
         break;
       case "amount":
         setAmount(Number(value));
@@ -51,7 +54,6 @@ const TransactionForm = (props) => {
     if (amount === "") {
       return alert("Please enter the amount");
     }
-    props.handleSelectTransation("Expense");
     props.addTrasaction({
       id: nanoid(),
       transaction,
@@ -62,11 +64,12 @@ const TransactionForm = (props) => {
       comment,
     });
 
+    props.handleSelectTransation();
     resetForm();
   };
 
   const resetForm = () => {
-    setTransaction(props.selectedTransaction);
+    setTransaction("Expense")
     setDate(curDate);
     setTime(curTime);
     setCategory(props.selectedCategory);
@@ -90,7 +93,7 @@ const TransactionForm = (props) => {
           type="radio"
           name="transaction"
           value="Expense"
-          defaultChecked={props.selectedTransaction === "Expense"}
+          defaultChecked={transaction === "Expense"}
           onChange={handleChange}
         />
         <label
@@ -105,7 +108,7 @@ const TransactionForm = (props) => {
           type="radio"
           name="transaction"
           value="Income"
-          defaultChecked={props.selectedTransaction === "Income"}
+          defaultChecked={transaction === "Income"}
           onChange={handleChange}
         />
         <label
@@ -183,6 +186,7 @@ const TransactionForm = (props) => {
         Submit
       </button>
     </form>
+    
   );
 };
 

@@ -1,5 +1,5 @@
 // First  - Bibliothek
-import { useState } from "react";
+import { useState, useEffect } from "react";
 
 // Second - Components
 import Header from "./components/Header/Header";
@@ -10,19 +10,19 @@ import CategoriesListPage from "./pages/CategoriesListPage/CategoriesListPage";
 
 // Third - Other
 import "./App.css";
-// import LSapi from "./utils/api/LSapi";
+import LSapi from "./utils/api/LSapi";
 import { useToggle } from "./utils/hooks/useToggle";
 import returnArrow from "./assets//icons/return.svg";
 import menuBurger from "./assets/icons/menu-burger.svg";
 
-// const INITIAL_CATEGORIES = [
-//   { id: "1", transactionArt: "Expense", nameCategory: "Food" },
-//   { id: "2", transactionArt: "Expense", nameCategory: "Car" },
-//   { id: "3", transactionArt: "Expense", nameCategory: "House" },
+const INITIAL_CATEGORIES = [
+  { id: "1", transactionArt: "Expense", nameCategory: "Food" },
+  { id: "2", transactionArt: "Expense", nameCategory: "Car" },
+  { id: "3", transactionArt: "Expense", nameCategory: "House" },
 
-//   { id: "4", transactionArt: "Income", nameCategory: "Work" },
-//   { id: "5", transactionArt: "Income", nameCategory: "Other" },
-// ];
+  { id: "4", transactionArt: "Income", nameCategory: "Work" },
+  { id: "5", transactionArt: "Income", nameCategory: "Other" },
+];
 
 const App = () => {
   const [headerTitle, setHeaderTitle] = useState("Wallet");
@@ -33,25 +33,27 @@ const App = () => {
   const [selectedCategory, setSelectedCategory] = useState("Food");
   const [categoriesList, setCategoriesList] = useState([]);
 
-  // componentDidMount() {
-  //   const getCategoriesListFromLS = LSapi.getDataFromLS(
-  //     LSapi.keys.categoriesList,
-  //     INITIAL_CATEGORIES
-  //   );
+  useEffect(() => {
+    const getCategoriesListFromLS = LSapi.getDataFromLS(
+      LSapi.keys.categoriesList,
+      INITIAL_CATEGORIES
+    );
 
-  //   if (getCategoriesListFromLS) {
-  //     this.setState({ categoriesList: getCategoriesListFromLS });
-  //   }
+  
+    if (getCategoriesListFromLS) {
+      setCategoriesList(getCategoriesListFromLS)
+    }
 
-  //   const getTransactionsListFromLS = LSapi.getDataFromLS(
-  //     LSapi.keys.transactionsList,
-  //     this.state.transactionsList
-  //   );
+    // const getTransactionsListFromLS = LSapi.getDataFromLS(
+    //   LSapi.keys.transactionsList,
+    //   transactionsList
+    // );
 
-  //   if (getTransactionsListFromLS) {
-  //     this.setState({ transactionsList: getTransactionsListFromLS });
-  //   }
-  // }
+    // if (getTransactionsListFromLS) {
+    //   setTransactionsList(getTransactionsListFromLS)
+    // }
+  }, []);
+
 
   // componentDidUpdate(prevProps, prevState) {
   //   if (this.state.transactionsList !== prevState.transactionsList) {
@@ -69,37 +71,50 @@ const App = () => {
   //   }
   // }
 
-  // const handleToggleOpeningMenu = () => {
-  //   this.setState((prevState) => {
-  //     return { isMenuOpen: !prevState.isMenuOpen };
-  //   });
-  // };
+  // useEffect(() => {
+  //   console.log(categoriesList);
+  //   LSapi.setDataToLS(
+  //     LSapi.keys.transactionsList,
+  //     transactionsList
+  //   );
+  //   LSapi.setDataToLS(
+  //     LSapi.keys.categoriesList,
+  //     categoriesList
+  //   );
+  // }, [transactionsList, categoriesList]);
 
-  const handleActivePage = (activePage="MainPage", headerTitle="Wallet") => {
+
+  const handleActivePage = (
+    activePage = "MainPage",
+    headerTitle = "Wallet"
+  ) => {
     setHeaderTitle(headerTitle);
     setActivePage(activePage);
   };
-
-  const handleSelectCategory = (category) => {
-    setSelectedCategory(category);
-  };
-
-  const handleSelectTransation = (transaction) => {
+  
+  const handleSelectTransation = (transaction = "Expense") => {
     setSelectedTransaction(transaction);
     setSelectedCategory(transaction === "Expense" ? "Food" : "Work");
   };
+  
+  const handleSelectCategory = (category = "Food") => {
+    setSelectedCategory(category);
+  };
+
 
   const addTransaction = (newTransaction) => {
-    setTransactionsList([...newTransaction]);
+    transactionsList.push(newTransaction);
   };
 
   const addNewCategory = (newCategory) => {
-    setCategoriesList([...newCategory]);
+    categoriesList.push(newCategory);
   };
 
   const filteredByTransactionArt = transactionsList.filter((transactionsEl) =>
     transactionsEl.transaction.includes(selectedTransaction)
   );
+
+
 
   const filteredCategoriesByTransactionArt = categoriesList.filter(
     (categoriesEl) => categoriesEl.transactionArt.includes(selectedTransaction)
@@ -113,20 +128,18 @@ const App = () => {
           icon={activePage === "MainPage" ? menuBurger : returnArrow}
           isOpen={isOpen}
           handleActivePage={
-            activePage === "MainPage"
-              ? toggle
-              : handleActivePage
+            activePage === "MainPage" ? toggle : handleActivePage
           }
         />
-        <Menu isOpen={isOpen}/>
+        <Menu isOpen={isOpen} />
         {activePage === "MainPage" && (
           <MainPage
             handleActivePage={handleActivePage}
             addTrasaction={addTransaction}
             handleSelectTransation={handleSelectTransation}
-            selectedCategory={selectedCategory}
             selectedTransaction={selectedTransaction}
-            transactionsList={transactionsList}
+            selectedCategory={selectedCategory}
+            transactionsList={filteredByTransactionArt}
           />
         )}
         {activePage === "TransactionPage" && (
@@ -135,8 +148,8 @@ const App = () => {
         {activePage === "CategoriesListPage" && (
           <CategoriesListPage
             handleActivePage={handleActivePage}
-            handleSelectCategory={handleSelectCategory}
             selectedTransaction={selectedTransaction}
+            handleSelectCategory={handleSelectCategory}
             addNewCategory={addNewCategory}
             categoriesList={filteredCategoriesByTransactionArt}
           />
