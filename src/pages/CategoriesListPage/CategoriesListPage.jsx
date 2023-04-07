@@ -4,13 +4,7 @@ import s from "./CategoriesListPage.module.css";
 import moreIcon from "../../assets/icons/more.svg";
 import addIcon from "../../assets/icons/add.svg";
 
-const CategoriesList = ({
-  handleActivePage,
-  handleSelectCategory,
-  selectedTransaction,
-  addNewCategory,
-  categoriesList,
-}) => {
+const CategoriesList = (props) => {
   const [nameCategory, setNameCategory] = useState("");
 
   const handleChange = (e) => {
@@ -25,9 +19,9 @@ const CategoriesList = ({
       return alert("Please enter category");
     }
 
-    addNewCategory({
+    props.addNewCategory({
       id: nanoid(),
-      transactionArt: selectedTransaction,
+      transactionArt: props.selectedTransaction,
       nameCategory,
     });
     setNameCategory("");
@@ -36,13 +30,13 @@ const CategoriesList = ({
   return (
     <main className={s.categoriesWrapper}>
       <ul className={s.categoriesList}>
-        {categoriesList.map((categoryEl) => (
+        {props.categoriesList.map((categoryEl) => (
           <li
             key={categoryEl.id}
             className={s.categoriesItem}
             onClick={() => {
-              handleSelectCategory(categoryEl.nameCategory);
-              handleActivePage("MainPage", "Wallet");
+              props.handleSelectCategory(categoryEl.nameCategory);
+              props.handleActivePage("MainPage", "Wallet");
             }}
           >
             <p>{categoryEl.nameCategory}</p>

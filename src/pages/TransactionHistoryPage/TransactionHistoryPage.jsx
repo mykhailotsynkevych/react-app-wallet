@@ -1,15 +1,13 @@
-import { Component } from "react";
 import moment from "moment";
 import s from "./TransactionHistoryPage.module.css";
 
 import moreIcon from "../../assets/icons/more.svg";
 
-class TransactionHistoryPage extends Component {
-  render() {
+const TransactionHistoryPage = (props) => {
     return (
       <main>
         <ul>
-          {this.props.transactionsList.map((transactionEl) => (
+          {props.transactionsList.map((transactionEl) => (
             <li key={transactionEl.id} className={s.transactionEl}>
               <p className={s.transactionElTimeCategory}>
                 {/* {transactionEl.date.split("-").reverse().join(".")} */}
@@ -40,5 +38,5 @@ class TransactionHistoryPage extends Component {
       </main>
     );
   }
-}
+
 export default TransactionHistoryPage;
