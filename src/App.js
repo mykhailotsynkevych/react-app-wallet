@@ -40,6 +40,7 @@ const App = () => {
     );
 
     if (getCategoriesListFromLS) {
+      console.log('CDM')
       setCategoriesList(getCategoriesListFromLS);
     }
 
@@ -71,14 +72,15 @@ const App = () => {
 
   useEffect(() => {
     if (categoriesList.length !== 0) {
-      console.log(categoriesList)
+
       LSapi.setDataToLS(LSapi.keys.categoriesList, categoriesList);
     }
 
     if (transactionsList.length !== 0) {
+      console.log(transactionsList)
       LSapi.setDataToLS(LSapi.keys.transactionsList, transactionsList);
     }
-  }, [categoriesList, transactionsList]);
+  }, [categoriesList.length, transactionsList.length]);
 
   const handleActivePage = (
     activePage = "MainPage",
@@ -98,7 +100,7 @@ const App = () => {
   };
 
   const addTransaction = (newTransaction) => {
-    setTransactionsList(transactionsList.push(newTransaction));
+    transactionsList.push(newTransaction);
   };
 
   const addNewCategory = (newCategory) => {
