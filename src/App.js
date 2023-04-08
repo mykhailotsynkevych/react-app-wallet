@@ -64,7 +64,7 @@ const App = () => {
       console.log(transactionsList)
       LSapi.setDataToLS(LSapi.keys.transactionsList, transactionsList);
     }
-  }, [categoriesList.length, transactionsList.length]);
+  }, [categoriesList, transactionsList]);
 
   const handleActivePage = (
     activePage = "MainPage",
