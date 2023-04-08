@@ -54,22 +54,6 @@ const App = () => {
     }
   }, []);
 
-  // componentDidUpdate(prevProps, prevState) {
-  //   if (this.state.transactionsList !== prevState.transactionsList) {
-  //     LSapi.setDataToLS(
-  //       LSapi.keys.transactionsList,
-  //       this.state.transactionsList
-  //     );
-  //   }
-
-  //   if (this.state.categoriesList !== prevState.categoriesList) {
-  //     LSapi.setDataToLS(
-  //       LSapi.keys.categoriesList,
-  //       this.state.categoriesList
-  //     );
-  //   }
-  // }
-
   useEffect(() => {
     if (categoriesList.length !== 0) {
 
@@ -100,14 +84,15 @@ const App = () => {
   };
 
   const addTransaction = (newTransaction) => {
+    setTransactionsList(prevTransactionsList => [...prevTransactionsList, newTransaction])
     transactionsList.push(newTransaction);
   };
 
   const addNewCategory = (newCategory) => {
-    categoriesList.push(newCategory);
+    setCategoriesList(prevCategoryList => [...prevCategoryList, newCategory])
   };
 
-  const filteredByTransactionArt = transactionsList.length !== 0 && transactionsList.filter((transactionsEl) =>
+  const filteredByTransactionArt = transactionsList.filter((transactionsEl) =>
     transactionsEl.transaction.includes(headerTitle)
   );
 
