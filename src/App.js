@@ -33,28 +33,25 @@ const App = () => {
   const [selectedCategory, setSelectedCategory] = useState("Food");
   const [categoriesList, setCategoriesList] = useState([]);
 
-
-
   useEffect(() => {
     const getCategoriesListFromLS = LSapi.getDataFromLS(
       LSapi.keys.categoriesList,
       INITIAL_CATEGORIES
     );
-  
+
     if (getCategoriesListFromLS) {
-      setCategoriesList(getCategoriesListFromLS)
+      setCategoriesList(getCategoriesListFromLS);
     }
 
-    // const getTransactionsListFromLS = LSapi.getDataFromLS(
-    //   LSapi.keys.transactionsList,
-    //   transactionsList
-    // );
+    const getTransactionsListFromLS = LSapi.getDataFromLS(
+      LSapi.keys.transactionsList,
+      transactionsList
+    );
 
-    // if (getTransactionsListFromLS) {
-    //   setTransactionsList(getTransactionsListFromLS)
-    // }
+    if (getTransactionsListFromLS) {
+      setTransactionsList(getTransactionsListFromLS);
+    }
   }, []);
-
 
   // componentDidUpdate(prevProps, prevState) {
   //   if (this.state.transactionsList !== prevState.transactionsList) {
@@ -72,17 +69,16 @@ const App = () => {
   //   }
   // }
 
-  // useEffect(() => {
-  //   LSapi.setDataToLS(
-  //     LSapi.keys.transactionsList,
-  //     transactionsList
-  //   );
-  //   // LSapi.setDataToLS(
-  //   //   LSapi.keys.categoriesList,
-  //   //   categoriesList
-  //   // );
-  // }, [categoriesList]);
+  useEffect(() => {
+    if (categoriesList.length !== 0) {
+      console.log(categoriesList)
+      LSapi.setDataToLS(LSapi.keys.categoriesList, categoriesList);
+    }
 
+    if (transactionsList.length !== 0) {
+      LSapi.setDataToLS(LSapi.keys.transactionsList, transactionsList);
+    }
+  }, [categoriesList, transactionsList]);
 
   const handleActivePage = (
     activePage = "MainPage",
@@ -91,30 +87,27 @@ const App = () => {
     setHeaderTitle(headerTitle);
     setActivePage(activePage);
   };
-  
+
   const handleSelectTransation = (transaction = "Expense") => {
     setSelectedTransaction(transaction);
     setSelectedCategory(transaction === "Expense" ? "Food" : "Work");
   };
-  
+
   const handleSelectCategory = (category) => {
     setSelectedCategory(category);
   };
 
-
   const addTransaction = (newTransaction) => {
-    transactionsList.push(newTransaction);
+    setTransactionsList(transactionsList.push(newTransaction));
   };
 
   const addNewCategory = (newCategory) => {
     categoriesList.push(newCategory);
   };
 
-  const filteredByTransactionArt = transactionsList.filter((transactionsEl) =>
+  const filteredByTransactionArt = transactionsList.length !== 0 && transactionsList.filter((transactionsEl) =>
     transactionsEl.transaction.includes(headerTitle)
   );
-
-
 
   const filteredCategoriesByTransactionArt = categoriesList.filter(
     (categoriesEl) => categoriesEl.transactionArt.includes(selectedTransaction)
