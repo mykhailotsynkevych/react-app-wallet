@@ -33,14 +33,18 @@ isOpen &&
 const StyledIconFind = styled.button`
 background-color: inherit;
 width: 26px;
-transition: transform 0.5s linear;
 padding: 0px;
 margin-left: auto;
 margin-right: 10px;
+transition: transform 0.2s linear;
 
 :hover {
 cursor: pointer;
-}`;
+}
+
+${({ isOpen }) =>
+isOpen &&
+"transform: rotate(90deg); width: 30px"}`;
 
 const StyledIconUser = styled.button`
 background-color: inherit;

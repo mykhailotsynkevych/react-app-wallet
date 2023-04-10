@@ -29,39 +29,20 @@ const App = () => {
   const [activePage, setActivePage] = useState("MainPage");
   const { isOpen, toggle } = useToggle(false);
   const [selectedTransaction, setSelectedTransaction] = useState("Expense");
-  const [transactionsList, setTransactionsList] = useState([]);
+  const [transactionsList, setTransactionsList] = useState(
+    LSapi.getDataFromLS(LSapi.keys.transactionsList, [])
+  );
   const [selectedCategory, setSelectedCategory] = useState("Food");
-  const [categoriesList, setCategoriesList] = useState([]);
+  const [categoriesList, setCategoriesList] = useState(
+    LSapi.getDataFromLS(LSapi.keys.categoriesList, INITIAL_CATEGORIES)
+  );
 
   useEffect(() => {
-    const getCategoriesListFromLS = LSapi.getDataFromLS(
-      LSapi.keys.categoriesList,
-      INITIAL_CATEGORIES
-    );
-
-    if (getCategoriesListFromLS) {
-      console.log('CDM')
-      setCategoriesList(getCategoriesListFromLS);
-    }
-
-    const getTransactionsListFromLS = LSapi.getDataFromLS(
-      LSapi.keys.transactionsList,
-      transactionsList
-    );
-
-    if (getTransactionsListFromLS) {
-      setTransactionsList(getTransactionsListFromLS);
-    }
-  }, []);
-
-  useEffect(() => {
-    if (categoriesList.length !== 0) {
-
+    if (categoriesList.length) {
       LSapi.setDataToLS(LSapi.keys.categoriesList, categoriesList);
     }
 
-    if (transactionsList.length !== 0) {
-      console.log(transactionsList)
+    if (transactionsList.length) {
       LSapi.setDataToLS(LSapi.keys.transactionsList, transactionsList);
     }
   }, [categoriesList, transactionsList]);
@@ -84,12 +65,15 @@ const App = () => {
   };
 
   const addTransaction = (newTransaction) => {
-    setTransactionsList(prevTransactionsList => [...prevTransactionsList, newTransaction])
+    setTransactionsList((prevTransactionsList) => [
+      ...prevTransactionsList,
+      newTransaction,
+    ]);
     transactionsList.push(newTransaction);
   };
 
   const addNewCategory = (newCategory) => {
-    setCategoriesList(prevCategoryList => [...prevCategoryList, newCategory])
+    setCategoriesList((prevCategoryList) => [...prevCategoryList, newCategory]);
   };
 
   const filteredByTransactionArt = transactionsList.filter((transactionsEl) =>
