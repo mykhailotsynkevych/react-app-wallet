@@ -30,11 +30,11 @@ const App = () => {
   const { isOpen, toggle } = useToggle(false);
   const [selectedTransaction, setSelectedTransaction] = useState("Expense");
   const [transactionsList, setTransactionsList] = useState(
-    LSapi.getDataFromLS(LSapi.keys.transactionsList, [])
+    () => LSapi.getDataFromLS(LSapi.keys.transactionsList, [])
   );
   const [selectedCategory, setSelectedCategory] = useState("Food");
   const [categoriesList, setCategoriesList] = useState(
-    LSapi.getDataFromLS(LSapi.keys.categoriesList, INITIAL_CATEGORIES)
+    () => LSapi.getDataFromLS(LSapi.keys.categoriesList, INITIAL_CATEGORIES)
   );
 
   useEffect(() => {

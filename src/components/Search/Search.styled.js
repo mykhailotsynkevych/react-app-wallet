@@ -13,12 +13,15 @@ const StyledSearchForm = styled.form`
 
   z-index: 1;
   transition: transform 0.2s linear;
-  transform: translateX(120%);
+  transform: translateX(90%);
+
+
 
   ${({ isOpen }) =>
     isOpen &&
     `transform: translateX(75%); box-shadow: 3px 0px 3px 0px rgb(0 0 0 / 40%);
-    visibility: visible;`}
+    visibility: visible;
+    `}
 `;
 
 const StyledSearchLabel = styled.label`
