@@ -47,7 +47,7 @@ const TransactionForm = (props) => {
         setComment(value);
         break;
       default:
-        console.log("default");
+        return;
     }
   };
 
