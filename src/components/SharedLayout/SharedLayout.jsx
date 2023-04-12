@@ -1,17 +1,19 @@
+import { Outlet } from "react-router-dom";
 import {
   StyledMainTitle,
   StyledHeaderWrapper,
   StyledMenuBurger,
   StyledIconUser,
   StyledIconFind,
-} from "./Header.styled";
+} from "./SharedLayout.styled";
 import userIcon from "../../assets/icons/user.svg";
 import findIcon from "../../assets/icons/find.svg";
 import closeIcon from "../../assets/icons/close.svg";
 import { useToggle } from "../../utils/hooks/useToggle";
 import Search from "../Search/Search";
 
-const Header = (props) => {
+
+const SharedLayout = (props) => {
   const { isOpen, toggle } = useToggle(false);
   return (
     <>
@@ -37,8 +39,10 @@ const Header = (props) => {
       <StyledIconUser>
         <img src={userIcon} alt="userIcon"/>
       </StyledIconUser>
+      <Outlet />
     </StyledHeaderWrapper>
     </>
   );
 };
-export default Header;
+
+export default SharedLayout;
