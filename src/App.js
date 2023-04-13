@@ -15,9 +15,9 @@ const App = () => {
     <div className="App">
       <div className="pageWrapper">
         <Routes>
-            <Route index element={<MainPage />} />
-            <Route path="transactions" element={<Transactions />} />
-            <Route path="categories" element={<Categories />} />
+            <Route path="/" element={<MainPage />} />
+            <Route path="/transactions" element={<Transactions />} />
+            <Route path="/categories" element={<Categories />} />
             <Route path="*" element={<MainPage />} />
         </Routes>
       </div>

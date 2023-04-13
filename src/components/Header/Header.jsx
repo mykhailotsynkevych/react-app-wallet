@@ -13,7 +13,7 @@ import { useToggle } from "../../utils/hooks/useToggle";
 import Search from "../Search/Search";
 
 
-const SharedLayout = (props) => {
+const Header = (props) => {
   const { isOpen, toggle } = useToggle(false);
   return (
     <>
@@ -23,7 +23,7 @@ const SharedLayout = (props) => {
         type="button"
         isOpen={props.isOpen}
         onClick={() => {
-          props.handleActivePage();
+          props.handleTitle();
         }}
       >
         <img src={props.icon} alt="icon" />
@@ -45,4 +45,4 @@ const SharedLayout = (props) => {
   );
 };
 
-export default SharedLayout;
+export default Header;

@@ -1,10 +1,11 @@
 import { useState, useEffect } from "react";
+import { Link } from "react-router-dom";
 import TotalBalance from "../../components/TotalBalance/TotalBalance";
 import TransactionForm from "../../components/TransactionForm/TransactionForm";
 import s from "./MainPage.module.css";
 import sprite from "../.././assets/icons/sprite.svg";
 import TransactionHistoryPage from "../TransactionHistoryPage/TransactionHistoryPage";
-import CategoriesListPage from "../CategoriesListPage/CategoriesListPage";
+import Categories from "../CategoriesListPage/CategoriesListPage";
 import Header from "../../components/Header/Header";
 import Menu from "../../components/Menu/Menu";
 import LSapi from "../../utils/api/LSapi";
@@ -23,7 +24,7 @@ const INITIAL_CATEGORIES = [
 
 const MainPage = () => {
   const [headerTitle, setHeaderTitle] = useState("Wallet");
-  const [activePage, setActivePage] = useState("MainPage");
+  // const [activePage, setActivePage] = useState("MainPage");
   const { isOpen, toggle } = useToggle(false);
   const [selectedTransaction, setSelectedTransaction] = useState("Expense");
   const [transactionsList, setTransactionsList] = useState(() =>
@@ -44,12 +45,10 @@ const MainPage = () => {
     }
   }, [categoriesList, transactionsList]);
 
-  const handleActivePage = (
-    activePage = "MainPage",
+  const handleTitle = (
     headerTitle = "Wallet"
   ) => {
     setHeaderTitle(headerTitle);
-    setActivePage(activePage);
   };
 
   const handleSelectTransation = (transaction = "Expense") => {
@@ -85,15 +84,15 @@ const MainPage = () => {
     <>
       <Header
         title={headerTitle}
-        icon={activePage === "MainPage" ? menuBurger : returnArrow}
+        icon={headerTitle === "Wallet" ? menuBurger : returnArrow}
         isOpen={isOpen}
-        handleActivePage={activePage === "MainPage" ? toggle : handleActivePage}
+        handleTitle={headerTitle === "Wallet" ? toggle : handleTitle}
       />
       <Menu isOpen={isOpen} />
       <main>
         <TotalBalance />
         <TransactionForm
-          handleActivePage={handleActivePage}
+          handleTitle={handleTitle}
           handleSelectTransation={handleSelectTransation}
           selectedTransaction={selectedTransaction}
           selectedCategory={selectedCategory}
@@ -102,34 +101,34 @@ const MainPage = () => {
         <div className={s.btnTransactionWrapper}>
           <button
             className={s.btnTransaction}
-            onClick={() => handleActivePage("TransactionPage", "Income")}
+            onClick={() => handleTitle("Income")}
           >
             <svg width="70" height="70">
               <use href={sprite + "#icon-income"}></use>
             </svg>
           </button>
+          <Link to="/transactions">
           <button
             className={s.btnTransaction}
-            onClick={() => handleActivePage("TransactionPage", "Expense")}
+            onClick={() => handleTitle("Expense")}
           >
             <svg width="70" height="70">
               <use href={`${sprite}#icon-expense`}></use>
             </svg>
           </button>
+          </Link>
         </div>
       </main>
-      {activePage === "TransactionPage" && (
-        <TransactionHistoryPage transactionsList={filteredByTransactionArt} />
-      )}
-      {activePage === "CategoriesListPage" && (
-        <CategoriesListPage
-          handleActivePage={handleActivePage}
-          selectedTransaction={selectedTransaction}
-          handleSelectCategory={handleSelectCategory}
-          addNewCategory={addNewCategory}
-          categoriesList={filteredCategoriesByTransactionArt}
-        />
-      )}
+        <TransactionHistoryPage transactionsList={transactionsList} />
+        <Link to="categories">
+          <Categories
+            // handleActivePage={handleActivePage}
+            selectedTransaction={selectedTransaction}
+            handleSelectCategory={handleSelectCategory}
+            addNewCategory={addNewCategory}
+            categoriesList={filteredCategoriesByTransactionArt}
+          />
+        </Link>
     </>
   );
 };
