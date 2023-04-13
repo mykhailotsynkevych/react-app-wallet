@@ -1,7 +1,6 @@
 import { useState } from "react";
 import { nanoid } from "nanoid";
 import s from "./CategoriesListPage.module.css";
-import moreIcon from "../../assets/icons/more.svg";
 import CategoriesList from "../../components/CategoriesList/CategoriesList";
 import addIcon from "../../assets/icons/add.svg";
 

@@ -4,18 +4,12 @@ import TotalBalance from "../../components/TotalBalance/TotalBalance";
 import TransactionForm from "../../components/TransactionForm/TransactionForm";
 import s from "./MainPage.module.css";
 import sprite from "../.././assets/icons/sprite.svg";
-// import TransactionHistoryPage from "../TransactionHistoryPage/TransactionHistoryPage";
-import Categories from "../CategoriesListPage/CategoriesListPage";
-import Header from "../../components/Header/Header";
 import LSapi from "../../utils/api/LSapi";
-import { useToggle } from "../../utils/hooks/useToggle";
 import returnArrow from "../.././assets//icons/return.svg";
 import menuBurger from "../.././assets/icons/menu-burger.svg";
 
 const MainPage = () => {
   const [headerTitle, setHeaderTitle] = useState("Wallet");
-  // const [activePage, setActivePage] = useState("MainPage");
-  const { isOpen, toggle } = useToggle(false);
   const [selectedTransaction, setSelectedTransaction] = useState("Expense");
   const [transactionsList, setTransactionsList] = useState(() =>
     LSapi.getDataFromLS(LSapi.keys.transactionsList, [])
