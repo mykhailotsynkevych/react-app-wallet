@@ -1,18 +1,12 @@
-import { Outlet } from "react-router-dom";
-import moment from "moment";
+import { Outlet, useParams } from "react-router-dom";
 import Header from "../../components/Header/Header";
-import s from "./TransactionHistoryPage.module.css";
-import moreIcon from "../../assets/icons/more.svg";
 
 const TransactionHistoryPage = (props) => {
   console.log(props)
+  const params = useParams();
+  console.log(params)
     return (
       <>
-      <Header
-      // icon={headerTitle === "Wallet" ? menuBurger : returnArrow}
-      // isOpen={isOpen}
-      // handleTitle={headerTitle === "Wallet" ? toggle : handleTitle}
-    />
       <main>
       <Outlet />
       </main>

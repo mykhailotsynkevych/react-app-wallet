@@ -2,10 +2,21 @@ import { useState } from "react";
 import { nanoid } from "nanoid";
 import s from "./CategoriesListPage.module.css";
 import moreIcon from "../../assets/icons/more.svg";
+import CategoriesList from "../../components/CategoriesList/CategoriesList";
 import addIcon from "../../assets/icons/add.svg";
 
-const CategoriesList = (props) => {
+const INITIAL_CATEGORIES = [
+  { id: "1", transactionArt: "Expense", nameCategory: "Food" },
+  { id: "2", transactionArt: "Expense", nameCategory: "Car" },
+  { id: "3", transactionArt: "Expense", nameCategory: "House" },
+
+  { id: "4", transactionArt: "Income", nameCategory: "Work" },
+  { id: "5", transactionArt: "Income", nameCategory: "Other" },
+];
+
+const CategoriesListPage = (props) => {
   const [nameCategory, setNameCategory] = useState("");
+  const [categoriesList, setCategoriesList] = useState(INITIAL_CATEGORIES);
 
   const handleChange = (e) => {
     const { value } = e.target;
@@ -29,23 +40,8 @@ const CategoriesList = (props) => {
 
   return (
     <main className={s.categoriesWrapper}>
-      <ul className={s.categoriesList}>
-        {props.categoriesList.map((categoryEl) => (
-          <li
-            key={categoryEl.id}
-            className={s.categoriesItem}
-            onClick={() => {
-              props.handleSelectCategory(categoryEl.nameCategory);
-              props.handleActivePage("MainPage", "Wallet");
-            }}
-          >
-            <p>{categoryEl.nameCategory}</p>
-            <button type="button" className={s.btnMore}>
-              <img src={moreIcon} alt="icon More" />
-            </button>
-          </li>
-        ))}
-      </ul>
+      <CategoriesList categoriesList={categoriesList}/>
+        
       <form
         onSubmit={handleSubmit}
         name="add_category"
@@ -72,4 +68,4 @@ const CategoriesList = (props) => {
   );
 };
 
-export default CategoriesList;
+export default CategoriesListPage;

@@ -1,4 +1,5 @@
 import { useState, useEffect } from "react";
+import { Link } from "react-router-dom";
 import moment from "moment";
 import { nanoid } from "nanoid";
 import s from "./TransactionForm.module.scss";
@@ -148,12 +149,13 @@ const TransactionForm = (props) => {
 
       <div className={s.categoryWrapper}>
         <p className={s.categoryTitle}>Category</p>
+        <Link to="categories">
         <button
           className={s.categoryBtn}
           name="category"
           onClick={(e) => {
             e.preventDefault();
-            props.handleActivePage("CategoriesListPage", "Categories");
+            // props.handleActivePage("CategoriesListPage", "Categories");
           }}
         >
           <div className={s.categoryBtnWrapper}>
@@ -161,6 +163,8 @@ const TransactionForm = (props) => {
             <span className={s.categoryBtnTriangle}>&#8227;</span>
           </div>
         </button>
+      </Link>
+
       </div>
 
       <label className={s.greybgc}>

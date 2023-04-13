@@ -7,20 +7,10 @@ import sprite from "../.././assets/icons/sprite.svg";
 // import TransactionHistoryPage from "../TransactionHistoryPage/TransactionHistoryPage";
 import Categories from "../CategoriesListPage/CategoriesListPage";
 import Header from "../../components/Header/Header";
-import Menu from "../../components/Menu/Menu";
 import LSapi from "../../utils/api/LSapi";
 import { useToggle } from "../../utils/hooks/useToggle";
 import returnArrow from "../.././assets//icons/return.svg";
 import menuBurger from "../.././assets/icons/menu-burger.svg";
-
-const INITIAL_CATEGORIES = [
-  { id: "1", transactionArt: "Expense", nameCategory: "Food" },
-  { id: "2", transactionArt: "Expense", nameCategory: "Car" },
-  { id: "3", transactionArt: "Expense", nameCategory: "House" },
-
-  { id: "4", transactionArt: "Income", nameCategory: "Work" },
-  { id: "5", transactionArt: "Income", nameCategory: "Other" },
-];
 
 const MainPage = () => {
   const [headerTitle, setHeaderTitle] = useState("Wallet");
@@ -31,19 +21,19 @@ const MainPage = () => {
     LSapi.getDataFromLS(LSapi.keys.transactionsList, [])
   );
   const [selectedCategory, setSelectedCategory] = useState("Food");
-  const [categoriesList, setCategoriesList] = useState(() =>
-    LSapi.getDataFromLS(LSapi.keys.categoriesList, INITIAL_CATEGORIES)
-  );
+  // const [categoriesList, setCategoriesList] = useState(() =>
+  //   LSapi.getDataFromLS(LSapi.keys.categoriesList, INITIAL_CATEGORIES)
+  // );
 
   useEffect(() => {
-    if (categoriesList.length) {
-      LSapi.setDataToLS(LSapi.keys.categoriesList, categoriesList);
-    }
+    // if (categoriesList.length) {
+    //   LSapi.setDataToLS(LSapi.keys.categoriesList, categoriesList);
+    // }
 
     if (transactionsList.length) {
       LSapi.setDataToLS(LSapi.keys.transactionsList, transactionsList);
     }
-  }, [categoriesList, transactionsList]);
+  }, [transactionsList]);
 
   const handleTitle = (headerTitle = "Wallet") => {
     setHeaderTitle(headerTitle);
@@ -66,27 +56,20 @@ const MainPage = () => {
     transactionsList.push(newTransaction);
   };
 
-  const addNewCategory = (newCategory) => {
-    setCategoriesList((prevCategoryList) => [...prevCategoryList, newCategory]);
-  };
+  // const addNewCategory = (newCategory) => {
+  //   setCategoriesList((prevCategoryList) => [...prevCategoryList, newCategory]);
+  // };
 
   const filteredByTransactionArt = transactionsList.filter((transactionsEl) =>
     transactionsEl.transaction.includes(headerTitle)
   );
 
-  const filteredCategoriesByTransactionArt = categoriesList.filter(
-    (categoriesEl) => categoriesEl.transactionArt.includes(selectedTransaction)
-  );
+  // const filteredCategoriesByTransactionArt = categoriesList.filter(
+  //   (categoriesEl) => categoriesEl.transactionArt.includes(selectedTransaction)
+  // );
 
   return (
     <>
-      <Header
-        title={headerTitle}
-        icon={headerTitle === "Wallet" ? menuBurger : returnArrow}
-        isOpen={isOpen}
-        handleTitle={headerTitle === "Wallet" ? toggle : handleTitle}
-      />
-      <Menu isOpen={isOpen} />
       <main>
         <TotalBalance />
         <TransactionForm
@@ -100,7 +83,7 @@ const MainPage = () => {
         <Link to="transactions/income">
           <button
             className={s.btnTransaction}
-            onClick={() => handleTitle("Income")}
+            // onClick={() => handleTitle("Income")}
           >
             <svg width="70" height="70">
               <use href={sprite + "#icon-income"}></use>
@@ -120,15 +103,6 @@ const MainPage = () => {
         </div>
       </main>
       {/* <TransactionHistoryPage transactionsList={transactionsList} /> */}
-      <Link to="categories">
-        <Categories
-          // handleActivePage={handleActivePage}
-          selectedTransaction={selectedTransaction}
-          handleSelectCategory={handleSelectCategory}
-          addNewCategory={addNewCategory}
-          categoriesList={filteredCategoriesByTransactionArt}
-        />
-      </Link>
     </>
   );
 };

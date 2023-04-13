@@ -1,5 +1,5 @@
 import { useState} from "react";
-// import {useLocation } from 'react-router-dom';
+import {useParams} from 'react-router-dom';
 import moment from "moment";
 
 import s from './TransactionsList.module.css';
@@ -16,7 +16,8 @@ const initTransaction = {
 
 const TransactionsList = () => {
     const [transactionsList, setTransactionsList] = useState([initTransaction]);
-//   const location = useLocation();
+  const params = useParams();
+  console.log(params)
   
   return (
     <ul>
