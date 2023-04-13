@@ -5,7 +5,7 @@ import {
   StyledMenuBurger,
   StyledIconUser,
   StyledIconFind,
-} from "./SharedLayout.styled";
+} from "./Header.styled";
 import userIcon from "../../assets/icons/user.svg";
 import findIcon from "../../assets/icons/find.svg";
 import closeIcon from "../../assets/icons/close.svg";

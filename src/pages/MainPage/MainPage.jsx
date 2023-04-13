@@ -5,7 +5,7 @@ import s from "./MainPage.module.css";
 import sprite from "../.././assets/icons/sprite.svg";
 import TransactionHistoryPage from "../TransactionHistoryPage/TransactionHistoryPage";
 import CategoriesListPage from "../CategoriesListPage/CategoriesListPage";
-import SharedLayout from "../../components/SharedLayout/SharedLayout";
+import Header from "../../components/Header/Header";
 import Menu from "../../components/Menu/Menu";
 import LSapi from "../../utils/api/LSapi";
 import { useToggle } from "../../utils/hooks/useToggle";
@@ -83,12 +83,12 @@ const MainPage = () => {
 
   return (
     <>
-      {/* <SharedLayout
+      <Header
         title={headerTitle}
         icon={activePage === "MainPage" ? menuBurger : returnArrow}
         isOpen={isOpen}
         handleActivePage={activePage === "MainPage" ? toggle : handleActivePage}
-      /> */}
+      />
       <Menu isOpen={isOpen} />
       <main>
         <TotalBalance />
