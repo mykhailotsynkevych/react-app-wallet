@@ -1,4 +1,3 @@
-import { Outlet } from "react-router-dom";
 import {
   StyledMainTitle,
   StyledHeaderWrapper,
@@ -39,7 +38,6 @@ const Header = (props) => {
       <StyledIconUser>
         <img src={userIcon} alt="userIcon"/>
       </StyledIconUser>
-      <Outlet />
     </StyledHeaderWrapper>
     </>
   );

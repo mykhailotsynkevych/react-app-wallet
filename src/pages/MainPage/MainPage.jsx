@@ -4,7 +4,7 @@ import TotalBalance from "../../components/TotalBalance/TotalBalance";
 import TransactionForm from "../../components/TransactionForm/TransactionForm";
 import s from "./MainPage.module.css";
 import sprite from "../.././assets/icons/sprite.svg";
-import TransactionHistoryPage from "../TransactionHistoryPage/TransactionHistoryPage";
+// import TransactionHistoryPage from "../TransactionHistoryPage/TransactionHistoryPage";
 import Categories from "../CategoriesListPage/CategoriesListPage";
 import Header from "../../components/Header/Header";
 import Menu from "../../components/Menu/Menu";
@@ -45,9 +45,7 @@ const MainPage = () => {
     }
   }, [categoriesList, transactionsList]);
 
-  const handleTitle = (
-    headerTitle = "Wallet"
-  ) => {
+  const handleTitle = (headerTitle = "Wallet") => {
     setHeaderTitle(headerTitle);
   };
 
@@ -99,6 +97,7 @@ const MainPage = () => {
           addTrasaction={addTransaction}
         />
         <div className={s.btnTransactionWrapper}>
+        <Link to="transactions/income">
           <button
             className={s.btnTransaction}
             onClick={() => handleTitle("Income")}
@@ -107,28 +106,29 @@ const MainPage = () => {
               <use href={sprite + "#icon-income"}></use>
             </svg>
           </button>
-          <Link to="/transactions">
-          <button
-            className={s.btnTransaction}
-            onClick={() => handleTitle("Expense")}
-          >
-            <svg width="70" height="70">
-              <use href={`${sprite}#icon-expense`}></use>
-            </svg>
-          </button>
+          </Link>
+          <Link to="transactions/expense">
+            <button
+              className={s.btnTransaction}
+              // onClick={() => handleTitle("Expense")}
+            >
+              <svg width="70" height="70">
+                <use href={`${sprite}#icon-expense`}></use>
+              </svg>
+            </button>
           </Link>
         </div>
       </main>
-        <TransactionHistoryPage transactionsList={transactionsList} />
-        <Link to="categories">
-          <Categories
-            // handleActivePage={handleActivePage}
-            selectedTransaction={selectedTransaction}
-            handleSelectCategory={handleSelectCategory}
-            addNewCategory={addNewCategory}
-            categoriesList={filteredCategoriesByTransactionArt}
-          />
-        </Link>
+      {/* <TransactionHistoryPage transactionsList={transactionsList} /> */}
+      <Link to="categories">
+        <Categories
+          // handleActivePage={handleActivePage}
+          selectedTransaction={selectedTransaction}
+          handleSelectCategory={handleSelectCategory}
+          addNewCategory={addNewCategory}
+          categoriesList={filteredCategoriesByTransactionArt}
+        />
+      </Link>
     </>
   );
 };
