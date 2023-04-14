@@ -1,4 +1,5 @@
 import { useState, useEffect } from "react";
+import { Link } from "react-router-dom";
 import moment from "moment";
 import { nanoid } from "nanoid";
 import s from "./TransactionForm.module.scss";
@@ -18,8 +19,8 @@ const TransactionForm = (props) => {
   const [comment, setComment] = useState("");
 
   useEffect(() => {
-    setCategory(props.selectedCategory)
-    setTransaction(props.selectedTransaction)
+    setCategory(props.selectedCategory);
+    setTransaction(props.selectedTransaction);
   }, [props.selectedCategory, props.selectedTransaction]);
 
   const handleChange = (e) => {
@@ -28,7 +29,7 @@ const TransactionForm = (props) => {
     switch (name) {
       case "transaction":
         setTransaction(value);
-        props.handleSelectTransation(value)
+        props.handleSelectTransation(value);
         break;
       case "date":
         setDate(value);
@@ -51,8 +52,6 @@ const TransactionForm = (props) => {
     }
   };
 
-  
-
   const handleSubmit = (e) => {
     e.preventDefault();
     if (amount === "") {
@@ -73,7 +72,7 @@ const TransactionForm = (props) => {
   };
 
   const resetForm = () => {
-    setTransaction("Expense")
+    setTransaction("Expense");
     setDate(curDate);
     setTime(curTime);
     setCategory(props.selectedCategory);
@@ -148,19 +147,10 @@ const TransactionForm = (props) => {
 
       <div className={s.categoryWrapper}>
         <p className={s.categoryTitle}>Category</p>
-        <button
-          className={s.categoryBtn}
-          name="category"
-          onClick={(e) => {
-            e.preventDefault();
-            props.handleActivePage("CategoriesListPage", "Categories");
-          }}
-        >
-          <div className={s.categoryBtnWrapper}>
-            <span>{props.selectedCategory}</span>
-            <span className={s.categoryBtnTriangle}>&#8227;</span>
-          </div>
-        </button>
+        <Link to={`categories/${transaction.toLowerCase()}`} className={s.categoryBtnLink}>
+          <span>{props.selectedCategory}</span>
+          <span className={s.categoryBtnTriangle}>&#8227;</span>
+        </Link>
       </div>
 
       <label className={s.greybgc}>
@@ -190,7 +180,6 @@ const TransactionForm = (props) => {
         Submit
       </button>
     </form>
-    
   );
 };
 

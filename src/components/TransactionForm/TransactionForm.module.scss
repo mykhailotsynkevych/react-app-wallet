@@ -100,19 +100,14 @@ label {
   padding: 5px 5px 0px 5px;
 }
 
-.categoryBtn {
-  padding-left: 7px;
+.categoryBtnLink {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
   font-size: 20px;
-  background-color: inherit;
+  padding-left: 7px;
   color:  rgb(83, 82, 82);
   font-weight: bold;
-}
-
-.categoryBtnWrapper {
-    display: flex;
-    align-items: center;
-    justify-content: space-between;
-    padding-right: 7px;
 }
 
 .categoryBtnTriangle {

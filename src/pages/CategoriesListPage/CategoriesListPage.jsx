@@ -1,11 +1,36 @@
-import { useState } from "react";
+import { useState, useEffect } from "react";
+import { useParams } from "react-router-dom";
 import { nanoid } from "nanoid";
 import s from "./CategoriesListPage.module.css";
-import moreIcon from "../../assets/icons/more.svg";
+import CategoriesList from "../../components/CategoriesList/CategoriesList";
 import addIcon from "../../assets/icons/add.svg";
+import LSapi from "../../utils/api/LSapi";
 
-const CategoriesList = (props) => {
+const INITIAL_CATEGORIES = [
+  { id: "1", transactionArt: "Expense", nameCategory: "Food" },
+  { id: "2", transactionArt: "Expense", nameCategory: "Car" },
+  { id: "3", transactionArt: "Expense", nameCategory: "House" },
+
+  { id: "4", transactionArt: "Income", nameCategory: "Work" },
+  { id: "5", transactionArt: "Income", nameCategory: "Other" },
+];
+
+const CategoriesListPage = () => {
   const [nameCategory, setNameCategory] = useState("");
+  const [categoriesList, setCategoriesList] = useState(() =>
+    LSapi.getDataFromLS(LSapi.keys.categoriesList, INITIAL_CATEGORIES)
+  );
+  const params = useParams();
+
+  useEffect(() => {
+    LSapi.setDataToLS(LSapi.keys.categoriesList, categoriesList);
+  }, [categoriesList]);
+
+  const filteredByTransactionArt = categoriesList.filter((categoriesEl) =>
+    categoriesEl.transactionArt.includes(
+      params.categoriesArt.toUpperCase()[0] + params.categoriesArt.slice(1)
+    )
+  );
 
   const handleChange = (e) => {
     const { value } = e.target;
@@ -19,33 +44,22 @@ const CategoriesList = (props) => {
       return alert("Please enter category");
     }
 
-    props.addNewCategory({
+    addNewCategory({
       id: nanoid(),
-      transactionArt: props.selectedTransaction,
+      transactionArt: params.categoriesArt,
       nameCategory,
     });
     setNameCategory("");
   };
 
+  const addNewCategory = (newCategory) => {
+    setCategoriesList((prevCategoryList) => [...prevCategoryList, newCategory]);
+  };
+
   return (
     <main className={s.categoriesWrapper}>
-      <ul className={s.categoriesList}>
-        {props.categoriesList.map((categoryEl) => (
-          <li
-            key={categoryEl.id}
-            className={s.categoriesItem}
-            onClick={() => {
-              props.handleSelectCategory(categoryEl.nameCategory);
-              props.handleActivePage("MainPage", "Wallet");
-            }}
-          >
-            <p>{categoryEl.nameCategory}</p>
-            <button type="button" className={s.btnMore}>
-              <img src={moreIcon} alt="icon More" />
-            </button>
-          </li>
-        ))}
-      </ul>
+      <CategoriesList categoriesList={filteredByTransactionArt} />
+
       <form
         onSubmit={handleSubmit}
         name="add_category"
@@ -72,4 +86,4 @@ const CategoriesList = (props) => {
   );
 };
 
-export default CategoriesList;
+export default CategoriesListPage;
