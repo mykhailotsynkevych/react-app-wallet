@@ -1,13 +1,9 @@
-import { useParams } from "react-router-dom";
 import s from "./CategoriesList.module.css";
 import moreIcon from "../../assets/icons/more.svg";
 
 
 
 const CategoriesList = ({categoriesList}) => {
-
-  const params = useParams();
-  console.log(params);
 
   return (
     <ul className={s.categoriesList}>

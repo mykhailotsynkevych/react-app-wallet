@@ -147,7 +147,7 @@ const TransactionForm = (props) => {
 
       <div className={s.categoryWrapper}>
         <p className={s.categoryTitle}>Category</p>
-        <Link to="categories" className={s.categoryBtnLink}>
+        <Link to={`categories/${transaction}`} className={s.categoryBtnLink}>
           <span>{props.selectedCategory}</span>
           <span className={s.categoryBtnTriangle}>&#8227;</span>
         </Link>

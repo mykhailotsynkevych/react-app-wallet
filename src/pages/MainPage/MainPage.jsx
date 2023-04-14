@@ -50,17 +50,7 @@ const MainPage = () => {
     transactionsList.push(newTransaction);
   };
 
-  // const addNewCategory = (newCategory) => {
-  //   setCategoriesList((prevCategoryList) => [...prevCategoryList, newCategory]);
-  // };
 
-  const filteredByTransactionArt = transactionsList.filter((transactionsEl) =>
-    transactionsEl.transaction.includes(headerTitle)
-  );
-
-  // const filteredCategoriesByTransactionArt = categoriesList.filter(
-  //   (categoriesEl) => categoriesEl.transactionArt.includes(selectedTransaction)
-  // );
 
   return (
     <>
@@ -96,7 +86,6 @@ const MainPage = () => {
           </Link>
         </div>
       </main>
-      {/* <TransactionHistoryPage transactionsList={transactionsList} /> */}
     </>
   );
 };

@@ -1,4 +1,5 @@
 import { useState } from "react";
+import {useParams} from 'react-router-dom';
 import { nanoid } from "nanoid";
 import s from "./CategoriesListPage.module.css";
 import CategoriesList from "../../components/CategoriesList/CategoriesList";
@@ -16,6 +17,11 @@ const INITIAL_CATEGORIES = [
 const CategoriesListPage = (props) => {
   const [nameCategory, setNameCategory] = useState("");
   const [categoriesList, setCategoriesList] = useState(INITIAL_CATEGORIES);
+  const params = useParams();
+
+  const filteredByTransactionArt = categoriesList.filter((categoriesEl) =>
+  categoriesEl.transactionArt.includes(params.categoriesArt)
+);
 
   const handleChange = (e) => {
     const { value } = e.target;
@@ -29,17 +35,21 @@ const CategoriesListPage = (props) => {
       return alert("Please enter category");
     }
 
-    props.addNewCategory({
+    addNewCategory({
       id: nanoid(),
-      transactionArt: props.selectedTransaction,
+      transactionArt: params.categoriesArt,
       nameCategory,
     });
     setNameCategory("");
   };
 
+  const addNewCategory = (newCategory) => {
+    setCategoriesList((prevCategoryList) => [...prevCategoryList, newCategory]);
+  };
+
   return (
     <main className={s.categoriesWrapper}>
-      <CategoriesList categoriesList={categoriesList}/>
+      <CategoriesList categoriesList={filteredByTransactionArt}/>
         
       <form
         onSubmit={handleSubmit}
