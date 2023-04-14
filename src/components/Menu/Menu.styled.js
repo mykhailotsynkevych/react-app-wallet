@@ -12,8 +12,8 @@ top: 47.5px;
   transition: transform 0.5s linear;
   transform: translateX(-100%);
 
-  ${({ isOpen }) =>
-    isOpen &&
+  ${({ isOpenMenu }) =>
+  isOpenMenu &&
     "transform: translateX(0); box-shadow: 3px 0px 3px 0px rgb(0 0 0 / 40%)"}
 `;
 

@@ -17,8 +17,8 @@ const StyledSearchForm = styled.form`
 
 
 
-  ${({ isOpen }) =>
-    isOpen &&
+  ${({ isOpenSearchInput }) =>
+  isOpenSearchInput &&
     `transform: translateX(75%); box-shadow: 3px 0px 3px 0px rgb(0 0 0 / 40%);
     visibility: visible;
     `}

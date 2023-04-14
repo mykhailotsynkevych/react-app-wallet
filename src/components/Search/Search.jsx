@@ -6,10 +6,10 @@ import {
 } from "./Search.styled";
 import findIcon from "../../assets/icons/find.svg";
 
-const Search = ({ isOpen }) => {
+const Search = ({ isOpenSearchInput }) => {
   return (
     <StyledSearchForm
-      isOpen={isOpen}
+    isOpenSearchInput={isOpenSearchInput}
       name="search_form"
       autocomplete="on"
       novalidate

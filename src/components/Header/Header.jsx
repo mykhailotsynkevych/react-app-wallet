@@ -1,3 +1,5 @@
+import { useState } from "react";
+import { useParams } from "react-router-dom";
 import {
   StyledMainTitle,
   StyledHeaderWrapper,
@@ -10,30 +12,42 @@ import findIcon from "../../assets/icons/find.svg";
 import closeIcon from "../../assets/icons/close.svg";
 import { useToggle } from "../../utils/hooks/useToggle";
 import Search from "../Search/Search";
+import Menu from "../Menu/Menu";
+import returnArrow from "../../assets/icons/return.svg";
+import menuBurger from "../../assets/icons/menu-burger.svg";
+
+// title={headerTitle}
+// icon={headerTitle === "Wallet" ? menuBurger : returnArrow}
+// isOpen={isOpen}
+// handleTitle={headerTitle === "Wallet" ? toggle : handleTitle}
 
 
-const Header = (props) => {
-  const { isOpen, toggle } = useToggle(false);
+const Header = () => {
+  const [title, setTitle] = useState("Wallet");
+  const [isOpenSearchInput, searchInputToggle] = useToggle(false);
+  const [isOpenMenu, menuToggle] = useToggle(false);
+  const params = useParams();
+  console.log(params)
+
   return (
     <>
-    <Search isOpen={isOpen} />
+    <Search isOpenSearchInput={isOpenSearchInput} />
+    <Menu isOpenMenu={isOpenMenu} />
     <StyledHeaderWrapper>
       <StyledMenuBurger
         type="button"
-        isOpen={props.isOpen}
-        onClick={() => {
-          props.handleTitle();
-        }}
+        isOpen={isOpenMenu}
+        onClick={menuToggle}
       >
-        <img src={props.icon} alt="icon" />
+        <img src={title === "Wallet" ? menuBurger : returnArrow} alt="icon" />
       </StyledMenuBurger>
-      <StyledMainTitle>{props.title}</StyledMainTitle>
+      <StyledMainTitle>{title}</StyledMainTitle>
       <StyledIconFind
         type="button"
-        isOpen={isOpen}
-        onClick={toggle}
+        isOpenSearchInput={isOpenSearchInput}
+        onClick={searchInputToggle}
       >
-        <img src={isOpen ? closeIcon : findIcon} alt="icon" />
+        <img src={isOpenSearchInput ? closeIcon : findIcon} alt="icon" />
       </StyledIconFind>
       <StyledIconUser>
         <img src={userIcon} alt="userIcon"/>

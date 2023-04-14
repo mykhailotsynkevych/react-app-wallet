@@ -3,9 +3,9 @@ import {
 } from "./Menu.styled";
 
 
-const Menu = ({isOpen}) => {
+const Menu = ({isOpenMenu}) => {
   return (
-    <StyledMenuWrapper isOpen={isOpen}>
+    <StyledMenuWrapper isOpenMenu={isOpenMenu}>
       <h2>Menu</h2>
     </StyledMenuWrapper>
   );

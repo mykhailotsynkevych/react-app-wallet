@@ -5,11 +5,8 @@ import TransactionForm from "../../components/TransactionForm/TransactionForm";
 import s from "./MainPage.module.css";
 import sprite from "../.././assets/icons/sprite.svg";
 import LSapi from "../../utils/api/LSapi";
-import returnArrow from "../.././assets//icons/return.svg";
-import menuBurger from "../.././assets/icons/menu-burger.svg";
 
 const MainPage = () => {
-  const [headerTitle, setHeaderTitle] = useState("Wallet");
   const [selectedTransaction, setSelectedTransaction] = useState("Expense");
   const [transactionsList, setTransactionsList] = useState(() =>
     LSapi.getDataFromLS(LSapi.keys.transactionsList, [])
@@ -24,14 +21,14 @@ const MainPage = () => {
     //   LSapi.setDataToLS(LSapi.keys.categoriesList, categoriesList);
     // }
 
-    if (transactionsList.length) {
+    if (transactionsList) {
       LSapi.setDataToLS(LSapi.keys.transactionsList, transactionsList);
     }
   }, [transactionsList]);
 
-  const handleTitle = (headerTitle = "Wallet") => {
-    setHeaderTitle(headerTitle);
-  };
+  // const handleTitle = (headerTitle = "Wallet") => {
+  //   setHeaderTitle(headerTitle);
+  // };
 
   const handleSelectTransation = (transaction = "Expense") => {
     setSelectedTransaction(transaction);
@@ -47,7 +44,7 @@ const MainPage = () => {
       ...prevTransactionsList,
       newTransaction,
     ]);
-    transactionsList.push(newTransaction);
+    // transactionsList.push(newTransaction);
   };
 
 
@@ -57,7 +54,7 @@ const MainPage = () => {
       <main>
         <TotalBalance />
         <TransactionForm
-          handleTitle={handleTitle}
+          // handleTitle={handleTitle}
           handleSelectTransation={handleSelectTransation}
           selectedTransaction={selectedTransaction}
           selectedCategory={selectedCategory}

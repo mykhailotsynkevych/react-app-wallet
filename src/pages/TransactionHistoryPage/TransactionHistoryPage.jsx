@@ -1,13 +1,8 @@
-import { Outlet, useParams } from "react-router-dom";
-import Header from "../../components/Header/Header";
+import { Outlet } from "react-router-dom";
 
-const TransactionHistoryPage = (props) => {
-  console.log(props)
-  const params = useParams();
-  console.log(params)
+const TransactionHistoryPage = () => {
 
-
-    return (
+return (
       <>
       <main>
       <Outlet />

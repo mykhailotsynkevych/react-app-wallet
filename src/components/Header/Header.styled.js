@@ -42,8 +42,8 @@ transition: transform 0.2s linear;
 cursor: pointer;
 }
 
-${({ isOpen }) =>
-isOpen &&
+${({ isOpenSearchInput }) =>
+isOpenSearchInput &&
 "transform: rotate(90deg); width: 30px"}`;
 
 const StyledIconUser = styled.button`

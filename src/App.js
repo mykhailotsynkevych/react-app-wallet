@@ -1,10 +1,5 @@
 // First  - Bibliothek
 import { Navigate, Route, Routes } from "react-router-dom";
-import { useState } from "react";
-import { useToggle } from "./utils/hooks/useToggle";
-import returnArrow from "./assets//icons/return.svg";
-import menuBurger from "./assets/icons/menu-burger.svg";
-import Menu from "./components/Menu/Menu";
 
 // Second - Components
 import Header from "./components/Header/Header";
@@ -19,23 +14,11 @@ import CategoriesList from "./components/CategoriesList/CategoriesList";
 import "./App.css";
 
 const App = () => {
-  const [headerTitle, setHeaderTitle] = useState("Wallet");
-  const { isOpen, toggle } = useToggle(false);
-
-  const handleTitle = (headerTitle = "Wallet") => {
-    setHeaderTitle(headerTitle);
-  };
 
   return (
     <div className="App">
       <div className="pageWrapper">
-        <Header
-          title={headerTitle}
-          icon={headerTitle === "Wallet" ? menuBurger : returnArrow}
-          isOpen={isOpen}
-          handleTitle={headerTitle === "Wallet" ? toggle : handleTitle}
-        />
-        <Menu isOpen={isOpen} />
+        <Header/>
         <Routes>
           <Route path="/" element={<MainPage />} />
           <Route path="/transactions" element={<Transactions />}>
