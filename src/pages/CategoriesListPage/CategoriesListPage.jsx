@@ -1,9 +1,10 @@
-import { useState } from "react";
-import {useParams} from 'react-router-dom';
+import { useState, useEffect } from "react";
+import { useParams } from "react-router-dom";
 import { nanoid } from "nanoid";
 import s from "./CategoriesListPage.module.css";
 import CategoriesList from "../../components/CategoriesList/CategoriesList";
 import addIcon from "../../assets/icons/add.svg";
+import LSapi from "../../utils/api/LSapi";
 
 const INITIAL_CATEGORIES = [
   { id: "1", transactionArt: "Expense", nameCategory: "Food" },
@@ -14,14 +15,22 @@ const INITIAL_CATEGORIES = [
   { id: "5", transactionArt: "Income", nameCategory: "Other" },
 ];
 
-const CategoriesListPage = (props) => {
+const CategoriesListPage = () => {
   const [nameCategory, setNameCategory] = useState("");
-  const [categoriesList, setCategoriesList] = useState(INITIAL_CATEGORIES);
+  const [categoriesList, setCategoriesList] = useState(() =>
+    LSapi.getDataFromLS(LSapi.keys.categoriesList, INITIAL_CATEGORIES)
+  );
   const params = useParams();
 
+  useEffect(() => {
+    LSapi.setDataToLS(LSapi.keys.categoriesList, categoriesList);
+  }, [categoriesList]);
+
   const filteredByTransactionArt = categoriesList.filter((categoriesEl) =>
-  categoriesEl.transactionArt.includes(params.categoriesArt)
-);
+    categoriesEl.transactionArt.includes(
+      params.categoriesArt.toUpperCase()[0] + params.categoriesArt.slice(1)
+    )
+  );
 
   const handleChange = (e) => {
     const { value } = e.target;
@@ -49,8 +58,8 @@ const CategoriesListPage = (props) => {
 
   return (
     <main className={s.categoriesWrapper}>
-      <CategoriesList categoriesList={filteredByTransactionArt}/>
-        
+      <CategoriesList categoriesList={filteredByTransactionArt} />
+
       <form
         onSubmit={handleSubmit}
         name="add_category"

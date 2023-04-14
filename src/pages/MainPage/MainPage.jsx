@@ -12,23 +12,12 @@ const MainPage = () => {
     LSapi.getDataFromLS(LSapi.keys.transactionsList, [])
   );
   const [selectedCategory, setSelectedCategory] = useState("Food");
-  // const [categoriesList, setCategoriesList] = useState(() =>
-  //   LSapi.getDataFromLS(LSapi.keys.categoriesList, INITIAL_CATEGORIES)
-  // );
 
   useEffect(() => {
-    // if (categoriesList.length) {
-    //   LSapi.setDataToLS(LSapi.keys.categoriesList, categoriesList);
-    // }
-
-    if (transactionsList) {
+    if (transactionsList.length) {
       LSapi.setDataToLS(LSapi.keys.transactionsList, transactionsList);
     }
   }, [transactionsList]);
-
-  // const handleTitle = (headerTitle = "Wallet") => {
-  //   setHeaderTitle(headerTitle);
-  // };
 
   const handleSelectTransation = (transaction = "Expense") => {
     setSelectedTransaction(transaction);
@@ -47,8 +36,6 @@ const MainPage = () => {
     // transactionsList.push(newTransaction);
   };
 
-
-
   return (
     <>
       <main>
@@ -61,15 +48,15 @@ const MainPage = () => {
           addTrasaction={addTransaction}
         />
         <div className={s.btnTransactionWrapper}>
-        <Link to="transactions/income">
-          <button
-            className={s.btnTransaction}
-            // onClick={() => handleTitle("Income")}
-          >
-            <svg width="70" height="70">
-              <use href={sprite + "#icon-income"}></use>
-            </svg>
-          </button>
+          <Link to="transactions/income">
+            <button
+              className={s.btnTransaction}
+              // onClick={() => handleTitle("Income")}
+            >
+              <svg width="70" height="70">
+                <use href={sprite + "#icon-income"}></use>
+              </svg>
+            </button>
           </Link>
           <Link to="transactions/expense">
             <button
