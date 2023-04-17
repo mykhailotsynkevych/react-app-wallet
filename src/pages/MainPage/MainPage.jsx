@@ -47,7 +47,7 @@ const MainPage = () => {
           addTrasaction={addTransaction}
         />
         <div className={s.btnTransactionWrapper}>
-          <Link to="transactions/income">
+          <Link to="/transactions/income">
             <button
               className={s.btnTransaction}
               // onClick={() => handleTitle("Income")}
@@ -57,7 +57,7 @@ const MainPage = () => {
               </svg>
             </button>
           </Link>
-          <Link to="transactions/expense">
+          <Link to="/transactions/expense">
             <button
               className={s.btnTransaction}
               // onClick={() => handleTitle("Expense")}

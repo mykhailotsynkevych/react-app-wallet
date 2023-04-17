@@ -26,7 +26,7 @@ const Header = () => {
 
   const handleToggleIcon = () => {
     params['*'] === "" && menuToggle();
-    params['*'] !== "" && navigate('/');
+    params['*'] !== "" && navigate('/*');
   };
 
   return (
