@@ -1,5 +1,5 @@
 import { useState } from "react";
-import { useParams } from "react-router-dom";
+import { useMatch, useNavigate, Link } from "react-router-dom";
 import {
   StyledMainTitle,
   StyledHeaderWrapper,
@@ -16,18 +16,18 @@ import Menu from "../Menu/Menu";
 import returnArrow from "../../assets/icons/return.svg";
 import menuBurger from "../../assets/icons/menu-burger.svg";
 
-// title={headerTitle}
-// icon={headerTitle === "Wallet" ? menuBurger : returnArrow}
-// isOpen={isOpen}
-// handleTitle={headerTitle === "Wallet" ? toggle : handleTitle}
-
-
 const Header = () => {
   const [title, setTitle] = useState("Wallet");
   const [isOpenSearchInput, searchInputToggle] = useToggle(false);
   const [isOpenMenu, menuToggle] = useToggle(false);
-  const params = useParams();
+  const {params} = useMatch("/*");
+  const navigate = useNavigate();
   console.log(params)
+
+  const handleToggleIcon = () => {
+    params['*'] === "" && menuToggle();
+    params['*'] !== "" && navigate('/');
+  };
 
   return (
     <>
@@ -37,9 +37,9 @@ const Header = () => {
       <StyledMenuBurger
         type="button"
         isOpen={isOpenMenu}
-        onClick={menuToggle}
+        onClick={() => {handleToggleIcon()}}
       >
-        <img src={title === "Wallet" ? menuBurger : returnArrow} alt="icon" />
+        <img src={params['*'] === "" ? menuBurger : returnArrow} alt="icon" />
       </StyledMenuBurger>
       <StyledMainTitle>{title}</StyledMainTitle>
       <StyledIconFind

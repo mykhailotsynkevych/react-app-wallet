@@ -33,7 +33,6 @@ const MainPage = () => {
       ...prevTransactionsList,
       newTransaction,
     ]);
-    // transactionsList.push(newTransaction);
   };
 
   return (

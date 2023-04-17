@@ -4,9 +4,7 @@ import { Navigate, Route, Routes } from "react-router-dom";
 // Second - Components
 import Header from "./components/Header/Header";
 import MainPage from "./pages/MainPage/MainPage";
-import Transactions from "./pages/TransactionHistoryPage/TransactionHistoryPage";
 import Categories from "./pages/CategoriesListPage/CategoriesListPage";
-
 import TransactionsList from "./components/TransactionsList/TransactionList";
 import CategoriesList from "./components/CategoriesList/CategoriesList";
 
@@ -20,10 +18,8 @@ const App = () => {
       <div className="pageWrapper">
         <Header/>
         <Routes>
-          <Route path="/" element={<MainPage />} />
-          <Route path="/transactions" element={<Transactions />}>
-            <Route path=":transactionArt" element={<TransactionsList />} />
-          </Route>
+          <Route path="/*" element={<MainPage />} />
+          <Route path="/transactions/:transactionArt" element={<TransactionsList />}/>
           <Route path="/categories" element={<Categories />}>
             <Route path=":categoriesArt" element={<CategoriesList />} />
           </Route>
