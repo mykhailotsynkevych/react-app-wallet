@@ -23,7 +23,7 @@ const App = () => {
           <Route path="/categories" element={<Categories />}>
             <Route path=":categoriesArt" element={<CategoriesList />} />
           </Route>
-          <Route path="*" element={<Navigate to="/" />} />
+          <Route path="*" element={<MainPage />} />
         </Routes>
       </div>
     </div>
