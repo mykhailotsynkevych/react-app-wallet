@@ -1,12 +1,12 @@
-import { Outlet } from "react-router-dom";
+// import { Outlet } from "react-router-dom";
 
-const TransactionHistoryPage = () => {
+// const TransactionHistoryPage = () => {
 
-return (
-      <main>
-      <Outlet />
-      </main>
-    );
-  }
+// return (
+//       <main>
+//       <Outlet />
+//       </main>
+//     );
+//   }
 
-export default TransactionHistoryPage;
+// export default TransactionHistoryPage;

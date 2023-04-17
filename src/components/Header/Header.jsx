@@ -25,8 +25,8 @@ const Header = () => {
   console.log(params)
 
   const handleToggleIcon = () => {
-    params['*'] === "react-app-wallet/" && menuToggle();
-    params['*'] !== "react-app-wallet/" && navigate("react-app-wallet/");
+    params['*'].includes("react-app-wallet") && menuToggle();
+    !params['*'].includes("react-app-wallet") && navigate("react-app-wallet/");
   };
 
   return (
@@ -39,7 +39,7 @@ const Header = () => {
         isOpen={isOpenMenu}
         onClick={() => {handleToggleIcon()}}
       >
-        <img src={params['*'] === "react-app-wallet/" ? menuBurger : returnArrow} alt="icon" />
+        <img src={params['*'].includes("react-app-wallet") ? menuBurger : returnArrow} alt="icon" />
         {/* <img src={menuBurger} alt="icon" /> */}
       </StyledMenuBurger>
       <StyledMainTitle>{title}</StyledMainTitle>
