@@ -25,8 +25,8 @@ const Header = () => {
   console.log(params)
 
   const handleToggleIcon = () => {
-    params['*'] === "react-app-wallet" && menuToggle();
-    params['*'] !== "" && navigate('react-app-wallet');
+    params['*'].includes("react-app-wallet") && menuToggle();
+    !params['*'].includes("react-app-wallet") && navigate('react-app-wallet');
   };
 
   return (
