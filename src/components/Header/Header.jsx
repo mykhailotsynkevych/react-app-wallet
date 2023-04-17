@@ -1,5 +1,5 @@
 import { useState } from "react";
-import { useMatch, useNavigate, Link } from "react-router-dom";
+import { useMatch, useNavigate} from "react-router-dom";
 import {
   StyledMainTitle,
   StyledHeaderWrapper,
@@ -39,7 +39,7 @@ const Header = () => {
         isOpen={isOpenMenu}
         onClick={() => {handleToggleIcon()}}
       >
-        <img src={params['*'] === "react-app-wallet" ? menuBurger : returnArrow} alt="icon" />
+        <img src={params['*'].includes("react-app-wallet") ? menuBurger : returnArrow} alt="icon" />
       </StyledMenuBurger>
       <StyledMainTitle>{title}</StyledMainTitle>
       <StyledIconFind
