@@ -25,8 +25,8 @@ const Header = () => {
   console.log(params)
 
   const handleToggleIcon = () => {
-    params['/*'] === "" && menuToggle();
-    params['/*'] !== "" && navigate('react-app-wallet');
+    params['*'] === "" && menuToggle();
+    params['*'] !== "" && navigate('/');
   };
 
   return (
@@ -39,7 +39,7 @@ const Header = () => {
         isOpen={isOpenMenu}
         onClick={() => {handleToggleIcon()}}
       >
-        <img src={params['/*'] === "" ? menuBurger : returnArrow} alt="icon" />
+        <img src={params['*'] === "" ? menuBurger : returnArrow} alt="icon" />
         {/* <img src={menuBurger} alt="icon" /> */}
       </StyledMenuBurger>
       <StyledMainTitle>{title}</StyledMainTitle>
