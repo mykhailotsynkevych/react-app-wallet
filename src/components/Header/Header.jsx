@@ -1,5 +1,5 @@
 import { useState } from "react";
-import { useMatch, useNavigate, useLocation} from "react-router-dom";
+import { useNavigate, useLocation } from "react-router-dom";
 import {
   StyledMainTitle,
   StyledHeaderWrapper,
@@ -20,41 +20,50 @@ const Header = () => {
   const [title, setTitle] = useState("Wallet");
   const [isOpenSearchInput, searchInputToggle] = useToggle(false);
   const [isOpenMenu, menuToggle] = useToggle(false);
-  // const {params} = useMatch("/");
   const navigate = useNavigate();
   const location = useLocation();
-  console.log(location)
+  console.log(location);
 
   const handleToggleIcon = () => {
-    // params['*'].includes("react-app-wallet") && menuToggle();
-    // !params['*'].includes("react-app-wallet") && navigate("react-app-wallet/");
+    location.pathname.includes("react-app-wallet") && menuToggle();
+    !location.pathname.includes("react-app-wallet") &&
+      navigate("react-app-wallet/");
   };
 
   return (
     <>
-    <Search isOpenSearchInput={isOpenSearchInput} />
-    <Menu isOpenMenu={isOpenMenu} />
-    <StyledHeaderWrapper>
-      <StyledMenuBurger
-        type="button"
-        isOpen={isOpenMenu}
-        onClick={() => {handleToggleIcon()}}
-      >
-        {/* <img src={params['*'].includes("react-app-wallet") ? menuBurger : returnArrow} alt="icon" /> */}
-        <img src={menuBurger} alt="icon" />
-      </StyledMenuBurger>
-      <StyledMainTitle>{title}</StyledMainTitle>
-      <StyledIconFind
-        type="button"
-        isOpenSearchInput={isOpenSearchInput}
-        onClick={searchInputToggle}
-      >
-        <img src={isOpenSearchInput ? closeIcon : findIcon} alt="icon" />
-      </StyledIconFind>
-      <StyledIconUser>
-        <img src={userIcon} alt="userIcon"/>
-      </StyledIconUser>
-    </StyledHeaderWrapper>
+      <Search isOpenSearchInput={isOpenSearchInput} />
+      <Menu isOpenMenu={isOpenMenu} />
+      <StyledHeaderWrapper>
+        <StyledMenuBurger
+          type="button"
+          isOpen={isOpenMenu}
+          onClick={() => {
+            handleToggleIcon();
+          }}
+        >
+          <img
+            src={
+              location.pathname.includes("react-app-wallet") ||
+              location.pathname === "/"
+                ? menuBurger
+                : returnArrow
+            }
+            alt="icon"
+          />
+        </StyledMenuBurger>
+        <StyledMainTitle>{title}</StyledMainTitle>
+        <StyledIconFind
+          type="button"
+          isOpenSearchInput={isOpenSearchInput}
+          onClick={searchInputToggle}
+        >
+          <img src={isOpenSearchInput ? closeIcon : findIcon} alt="icon" />
+        </StyledIconFind>
+        <StyledIconUser>
+          <img src={userIcon} alt="userIcon" />
+        </StyledIconUser>
+      </StyledHeaderWrapper>
     </>
   );
 };
