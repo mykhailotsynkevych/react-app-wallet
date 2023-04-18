@@ -1,5 +1,5 @@
 import { useState, useEffect } from "react";
-import { Link } from "react-router-dom";
+import { Link, useLocation } from "react-router-dom";
 import moment from "moment";
 import { nanoid } from "nanoid";
 import s from "./TransactionForm.module.scss";
@@ -17,6 +17,9 @@ const TransactionForm = (props) => {
   const [category, setCategory] = useState(props.selectedCategory);
   const [amount, setAmount] = useState("");
   const [comment, setComment] = useState("");
+
+  const location = useLocation();
+  console.log(location)
 
   useEffect(() => {
     setCategory(props.selectedCategory);
@@ -147,7 +150,7 @@ const TransactionForm = (props) => {
 
       <div className={s.categoryWrapper}>
         <p className={s.categoryTitle}>Category</p>
-        <Link to={`/categories/${transaction.toLowerCase()}`} className={s.categoryBtnLink}>
+        <Link to={`/categories/${transaction.toLowerCase()}`} className={s.categoryBtnLink} state={{ from: location }}>
           <span>{props.selectedCategory}</span>
           <span className={s.categoryBtnTriangle}>&#8227;</span>
         </Link>

@@ -1,5 +1,5 @@
 import { useState, useEffect } from "react";
-import { Link } from "react-router-dom";
+import { Link, useLocation } from "react-router-dom";
 import TotalBalance from "../../components/TotalBalance/TotalBalance";
 import TransactionForm from "../../components/TransactionForm/TransactionForm";
 import s from "./MainPage.module.css";
@@ -12,6 +12,7 @@ const MainPage = () => {
     LSapi.getDataFromLS(LSapi.keys.transactionsList, [])
   );
   const [selectedCategory, setSelectedCategory] = useState("Food");
+  const location = useLocation();
 
   useEffect(() => {
     if (transactionsList.length) {
@@ -37,7 +38,7 @@ const MainPage = () => {
 
   return (
     <>
-      <main>
+      <main state={{ from: location }}>
         <TotalBalance />
         <TransactionForm
           // handleTitle={handleTitle}

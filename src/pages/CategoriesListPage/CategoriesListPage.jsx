@@ -22,6 +22,15 @@ const CategoriesListPage = () => {
   );
   const params = useParams();
 
+//   const visibleCategories = categoriesList.filter((categoriesEl) =>
+//   categoriesList.nameCategory.toLowerCase().includes(categoryName.toLowerCase())
+// );
+
+// const updateQueryString = (name) => {
+//   const nextParams = name !== "" ? { name } : {};
+//   setSearchParams(nextParams);
+// };
+
   useEffect(() => {
     LSapi.setDataToLS(LSapi.keys.categoriesList, categoriesList);
   }, [categoriesList]);
@@ -46,7 +55,7 @@ const CategoriesListPage = () => {
 
     addNewCategory({
       id: nanoid(),
-      transactionArt: params.categoriesArt,
+      transactionArt: params.categoriesArt.toUpperCase()[0] + params.categoriesArt.slice(1),
       nameCategory,
     });
     setNameCategory("");

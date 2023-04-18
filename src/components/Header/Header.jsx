@@ -22,7 +22,6 @@ const Header = () => {
   const [isOpenMenu, menuToggle] = useToggle(false);
   const navigate = useNavigate();
   const location = useLocation();
-  console.log(location);
 
   const handleToggleIcon = () => {
     location.pathname.includes("react-app-wallet") && menuToggle();

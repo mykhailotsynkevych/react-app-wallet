@@ -1,9 +1,24 @@
 import s from "./CategoriesList.module.css";
 import moreIcon from "../../assets/icons/more.svg";
+import {
+  useSearchParams,
+  useNavigate,
+  Link,
+  useLocation,
+} from "react-router-dom";
 
+const CategoriesList = ({ categoriesList }) => {
+  const [searchParams, setSearchParams] = useSearchParams();
+  const categoryName = searchParams.get("categoryName") ?? "";
 
+  const navigate = useNavigate();
+  const location = useLocation();
+  // console.log(location.state.from.pathname);
 
-const CategoriesList = ({categoriesList}) => {
+  const updateQueryString = (category) => {
+    const nextParams = category !== "" ? { category } : {};
+    setSearchParams(nextParams);
+  };
 
   return (
     <ul className={s.categoriesList}>
@@ -11,12 +26,14 @@ const CategoriesList = ({categoriesList}) => {
         <li
           key={categoryEl.id}
           className={s.categoriesItem}
-          // onClick={() => {
-          //   props.handleSelectCategory(categoryEl.nameCategory);
-          //   props.handleActivePage("MainPage", "Wallet");
-          // }}
+          onClick={() => {
+            updateQueryString(categoryEl.nameCategory);
+            navigate("/");
+          }}
         >
-          <p>{categoryEl.nameCategory}</p>
+
+            <p>{categoryEl.nameCategory}</p>
+
           <button type="button" className={s.btnMore}>
             <img src={moreIcon} alt="icon More" />
           </button>
