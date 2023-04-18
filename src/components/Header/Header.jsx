@@ -26,7 +26,7 @@ const Header = () => {
   const handleToggleIcon = () => {
     location.pathname.includes("react-app-wallet") && menuToggle();
     !location.pathname.includes("react-app-wallet") &&
-      navigate(-1);
+      navigate("/");
   };
 
   return (
