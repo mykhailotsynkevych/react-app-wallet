@@ -7,12 +7,12 @@ import addIcon from "../../assets/icons/add.svg";
 import LSapi from "../../utils/api/LSapi";
 
 const INITIAL_CATEGORIES = [
-  { id: "1", transactionArt: "Expense", nameCategory: "Food" },
-  { id: "2", transactionArt: "Expense", nameCategory: "Car" },
-  { id: "3", transactionArt: "Expense", nameCategory: "House" },
+  { id: "1", transaction: "Expense", nameCategory: "Food" },
+  { id: "2", transaction: "Expense", nameCategory: "Car" },
+  { id: "3", transaction: "Expense", nameCategory: "House" },
 
-  { id: "4", transactionArt: "Income", nameCategory: "Work" },
-  { id: "5", transactionArt: "Income", nameCategory: "Other" },
+  { id: "4", transaction: "Income", nameCategory: "Work" },
+  { id: "5", transaction: "Income", nameCategory: "Other" },
 ];
 
 const CategoriesListPage = () => {
@@ -35,8 +35,8 @@ const CategoriesListPage = () => {
     LSapi.setDataToLS(LSapi.keys.categoriesList, categoriesList);
   }, [categoriesList]);
 
-  const filteredByTransactionArt = categoriesList.filter((categoriesEl) =>
-    categoriesEl.transactionArt.includes(
+  const filteredByTransaction = categoriesList.filter((categoriesEl) =>
+    categoriesEl.transaction.includes(
       params.categoriesArt.toUpperCase()[0] + params.categoriesArt.slice(1)
     )
   );
@@ -55,7 +55,7 @@ const CategoriesListPage = () => {
 
     addNewCategory({
       id: nanoid(),
-      transactionArt: params.categoriesArt.toUpperCase()[0] + params.categoriesArt.slice(1),
+      transaction: params.categoriesArt.toUpperCase()[0] + params.categoriesArt.slice(1),
       nameCategory,
     });
     setNameCategory("");
@@ -67,7 +67,7 @@ const CategoriesListPage = () => {
 
   return (
     <main className={s.categoriesWrapper}>
-      <CategoriesList categoriesList={filteredByTransactionArt} />
+      <CategoriesList categoriesList={filteredByTransaction} />
 
       <form
         onSubmit={handleSubmit}

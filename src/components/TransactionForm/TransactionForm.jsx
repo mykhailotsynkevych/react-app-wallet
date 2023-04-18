@@ -11,25 +11,17 @@ const curDate = moment().format("YYYY-MM-DD");
 const curTime = moment().format("HH:mm");
 
 const TransactionForm = (props) => {
+  const [searchParams, setSearchParams] = useSearchParams();
   const [transaction, setTransaction] = useState("Expense");
   const [date, setDate] = useState(curDate);
   const [time, setTime] = useState(curTime);
-  const [category, setCategory] = useState("Food");
+  const [category, setCategory] = useState(searchParams.get("category") ?? "Food");
   const [amount, setAmount] = useState("");
   const [comment, setComment] = useState("");
 
   const location = useLocation();
   // console.log(location)
 
-  const [searchParams, setSearchParams] = useSearchParams();
-  const categoryName = searchParams.get("name") ?? "";
-
-  // console.log(categoryName)
-
-  // useEffect(() => {
-  //   setCategory(props.selectedCategory);
-  //   setTransaction(props.selectedTransaction);
-  // }, [props.selectedCategory, props.selectedTransaction]);
 
   const handleChange = (e) => {
     const { name, value } = e.target;
@@ -74,15 +66,15 @@ const TransactionForm = (props) => {
       comment,
     });
 
-    props.handleSelectTransation();
     resetForm();
   };
 
   const resetForm = () => {
+    setSearchParams({});
     setTransaction("Expense");
     setDate(curDate);
     setTime(curTime);
-    setCategory(props.selectedCategory);
+    setCategory("Food");
     setAmount("");
     setComment("");
   };
@@ -154,8 +146,8 @@ const TransactionForm = (props) => {
 
       <div className={s.categoryWrapper}>
         <p className={s.categoryTitle}>Category</p>
-        <Link to={`/categories/${transaction}`} className={s.categoryBtnLink}>
-          <span>{categoryName === "" ? category : categoryName}</span>
+        <Link to={`/categories/${transaction.toLowerCase()}`} className={s.categoryBtnLink}>
+          <span>{category}</span>
           <span className={s.categoryBtnTriangle}>&#8227;</span>
         </Link>
       </div>

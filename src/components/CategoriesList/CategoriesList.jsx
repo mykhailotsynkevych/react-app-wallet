@@ -31,7 +31,7 @@ const CategoriesList = ({ categoriesList }) => {
           className={s.categoriesItem}
           onClick={() => {
             updateQueryString(categoryEl.nameCategory);
-            navigate( `/categories?name=${categoryEl.nameCategory}`
+            navigate( `/react-app-wallet?category=${categoryEl.nameCategory}`
             );
           }}
         >
