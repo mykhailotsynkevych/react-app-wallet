@@ -1,4 +1,4 @@
-import s from "./CategoriesList.module.css";
+import s from "./CategoriesList.module.scss";
 import moreIcon from "../../assets/icons/more.svg";
 import {
   useSearchParams,
@@ -9,7 +9,9 @@ import {
 
 const CategoriesList = ({ categoriesList }) => {
   const [searchParams, setSearchParams] = useSearchParams();
-  const categoryName = searchParams.get("categoryName") ?? "";
+  const categoryName = searchParams.get("category") ?? "";
+
+  // console.log(categoryName);
 
   const navigate = useNavigate();
   const location = useLocation();
@@ -17,6 +19,7 @@ const CategoriesList = ({ categoriesList }) => {
 
   const updateQueryString = (category) => {
     const nextParams = category !== "" ? { category } : {};
+    // console.log(nextParams)
     setSearchParams(nextParams);
   };
 
@@ -28,11 +31,11 @@ const CategoriesList = ({ categoriesList }) => {
           className={s.categoriesItem}
           onClick={() => {
             updateQueryString(categoryEl.nameCategory);
-            navigate("/");
+            navigate( `/react-app-wallet/category?name=${categoryEl.nameCategory}`
+            );
           }}
         >
-
-            <p>{categoryEl.nameCategory}</p>
+          <p className={s.categoriesItemName}>{categoryEl.nameCategory}</p>
 
           <button type="button" className={s.btnMore}>
             <img src={moreIcon} alt="icon More" />

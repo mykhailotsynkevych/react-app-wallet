@@ -1,5 +1,5 @@
 import { useState, useEffect } from "react";
-import { Link, useLocation } from "react-router-dom";
+import { Link, useLocation, useSearchParams } from "react-router-dom";
 import moment from "moment";
 import { nanoid } from "nanoid";
 import s from "./TransactionForm.module.scss";
@@ -11,20 +11,25 @@ const curDate = moment().format("YYYY-MM-DD");
 const curTime = moment().format("HH:mm");
 
 const TransactionForm = (props) => {
-  const [transaction, setTransaction] = useState(props.selectedTransaction);
+  const [transaction, setTransaction] = useState("Expense");
   const [date, setDate] = useState(curDate);
   const [time, setTime] = useState(curTime);
-  const [category, setCategory] = useState(props.selectedCategory);
+  const [category, setCategory] = useState("Food");
   const [amount, setAmount] = useState("");
   const [comment, setComment] = useState("");
 
   const location = useLocation();
-  console.log(location)
+  // console.log(location)
 
-  useEffect(() => {
-    setCategory(props.selectedCategory);
-    setTransaction(props.selectedTransaction);
-  }, [props.selectedCategory, props.selectedTransaction]);
+  const [searchParams, setSearchParams] = useSearchParams();
+  const categoryName = searchParams.get("name") ?? "";
+
+  // console.log(categoryName)
+
+  // useEffect(() => {
+  //   setCategory(props.selectedCategory);
+  //   setTransaction(props.selectedTransaction);
+  // }, [props.selectedCategory, props.selectedTransaction]);
 
   const handleChange = (e) => {
     const { name, value } = e.target;
@@ -32,7 +37,6 @@ const TransactionForm = (props) => {
     switch (name) {
       case "transaction":
         setTransaction(value);
-        props.handleSelectTransation(value);
         break;
       case "date":
         setDate(value);
@@ -99,7 +103,7 @@ const TransactionForm = (props) => {
           type="radio"
           name="transaction"
           value="Expense"
-          checked={props.selectedTransaction === "Expense"}
+          checked={transaction === "Expense"}
           onChange={handleChange}
         />
         <label
@@ -114,7 +118,7 @@ const TransactionForm = (props) => {
           type="radio"
           name="transaction"
           value="Income"
-          checked={props.selectedTransaction === "Income"}
+          checked={transaction === "Income"}
           onChange={handleChange}
         />
         <label
@@ -150,8 +154,8 @@ const TransactionForm = (props) => {
 
       <div className={s.categoryWrapper}>
         <p className={s.categoryTitle}>Category</p>
-        <Link to={`/categories/${transaction.toLowerCase()}`} className={s.categoryBtnLink} state={{ from: location }}>
-          <span>{props.selectedCategory}</span>
+        <Link to={`/categories/${transaction}`} className={s.categoryBtnLink} state={{ from: location }}>
+          <span>{categoryName === "" ? category : categoryName}</span>
           <span className={s.categoryBtnTriangle}>&#8227;</span>
         </Link>
       </div>

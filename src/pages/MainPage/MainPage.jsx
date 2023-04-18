@@ -7,11 +7,11 @@ import sprite from "../.././assets/icons/sprite.svg";
 import LSapi from "../../utils/api/LSapi";
 
 const MainPage = () => {
-  const [selectedTransaction, setSelectedTransaction] = useState("Expense");
+  // const [selectedTransaction, setSelectedTransaction] = useState("Expense");
   const [transactionsList, setTransactionsList] = useState(() =>
     LSapi.getDataFromLS(LSapi.keys.transactionsList, [])
   );
-  const [selectedCategory, setSelectedCategory] = useState("Food");
+  // const [selectedCategory, setSelectedCategory] = useState("Food");
   const location = useLocation();
 
   useEffect(() => {
@@ -20,14 +20,14 @@ const MainPage = () => {
     }
   }, [transactionsList]);
 
-  const handleSelectTransation = (transaction = "Expense") => {
-    setSelectedTransaction(transaction);
-    setSelectedCategory(transaction === "Expense" ? "Food" : "Work");
-  };
+  // const handleSelectTransation = (transaction = "Expense") => {
+  //   setSelectedTransaction(transaction);
+  //   setSelectedCategory(transaction === "Expense" ? "Food" : "Work");
+  // };
 
-  const handleSelectCategory = (category) => {
-    setSelectedCategory(category);
-  };
+  // const handleSelectCategory = (category) => {
+  //   setSelectedCategory(category);
+  // };
 
   const addTransaction = (newTransaction) => {
     setTransactionsList((prevTransactionsList) => [
@@ -42,9 +42,9 @@ const MainPage = () => {
         <TotalBalance />
         <TransactionForm
           // handleTitle={handleTitle}
-          handleSelectTransation={handleSelectTransation}
-          selectedTransaction={selectedTransaction}
-          selectedCategory={selectedCategory}
+          // handleSelectTransation={handleSelectTransation}
+          // selectedTransaction={selectedTransaction}
+          // selectedCategory={selectedCategory}
           addTrasaction={addTransaction}
         />
         <div className={s.btnTransactionWrapper}>
