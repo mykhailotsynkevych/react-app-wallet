@@ -2,11 +2,12 @@
 import { Navigate, Route, Routes } from "react-router-dom";
 
 // Second - Components
-import Header from "./components/Header/Header";
-import MainPage from "./pages/MainPage/MainPage";
-import Categories from "./pages/CategoriesListPage/CategoriesListPage";
-import TransactionsList from "./components/TransactionsList/TransactionList";
-import CategoriesList from "./components/CategoriesList/CategoriesList";
+import MainPage from "../pages/MainPage/MainPage";
+import Categories from "../pages/CategoriesListPage/CategoriesListPage";
+
+import Header from "./Header/Header";
+import TransactionsList from "./TransactionsList/TransactionList";
+import CategoriesList from "./CategoriesList/CategoriesList";
 
 // Third - Other
 import "./App.css";
@@ -18,12 +19,12 @@ const App = () => {
       <div className="pageWrapper">
         <Header/>
         <Routes>
-          <Route path="/*" element={<MainPage />} />
+          <Route path="/react-app-wallet" element={<MainPage />} />
           <Route path="/transactions/:transactionArt" element={<TransactionsList />}/>
           <Route path="/categories" element={<Categories />}>
             <Route path=":categoriesArt" element={<CategoriesList />} />
           </Route>
-          <Route path="*" element={<Navigate to="/*" />} />
+          <Route path="*" element={<Navigate to="/react-app-wallet" />} />
         </Routes>
       </div>
     </div>
