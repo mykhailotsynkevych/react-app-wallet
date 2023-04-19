@@ -22,24 +22,14 @@ const CategoriesListPage = () => {
   );
   const params = useParams();
 
-//   const visibleCategories = categoriesList.filter((categoriesEl) =>
-//   categoriesList.nameCategory.toLowerCase().includes(categoryName.toLowerCase())
-// );
-
-// const updateQueryString = (name) => {
-//   const nextParams = name !== "" ? { name } : {};
-//   setSearchParams(nextParams);
-// };
-
   useEffect(() => {
     LSapi.setDataToLS(LSapi.keys.categoriesList, categoriesList);
   }, [categoriesList]);
 
-  const filteredByTransaction = categoriesList.filter((categoriesEl) =>
-    categoriesEl.transaction.includes(
-      params.categoriesArt.toUpperCase()[0] + params.categoriesArt.slice(1)
-    )
-  );
+
+  const filteredByTransaction = categoriesList.filter((categoriesEl) => 
+    categoriesEl.transaction.toLowerCase().includes(
+      params.categoriesArt.toLowerCase()));
 
   const handleChange = (e) => {
     const { value } = e.target;
@@ -55,7 +45,8 @@ const CategoriesListPage = () => {
 
     addNewCategory({
       id: nanoid(),
-      transaction: params.categoriesArt.toUpperCase()[0] + params.categoriesArt.slice(1),
+      transaction:
+        params.categoriesArt.toUpperCase()[0] + params.categoriesArt.slice(1),
       nameCategory,
     });
     setNameCategory("");

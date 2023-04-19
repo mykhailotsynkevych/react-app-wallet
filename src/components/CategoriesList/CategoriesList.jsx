@@ -3,23 +3,15 @@ import moreIcon from "../../assets/icons/more.svg";
 import {
   useSearchParams,
   useNavigate,
-  Link,
-  useLocation,
 } from "react-router-dom";
 
 const CategoriesList = ({ categoriesList }) => {
   const [searchParams, setSearchParams] = useSearchParams();
-  const categoryName = searchParams.get("category") ?? "";
-
-  // console.log(categoryName);
 
   const navigate = useNavigate();
-  const location = useLocation();
-  // console.log(location.state.from.pathname);
 
   const updateQueryString = (category) => {
     const nextParams = category !== "" ? { category } : {};
-    // console.log(nextParams)
     setSearchParams(nextParams);
   };
 
