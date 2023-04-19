@@ -19,12 +19,12 @@ const App = () => {
       <div className="pageWrapper">
         <Header/>
         <Routes>
-          <Route path="/react-app-wallet" element={<MainPage />} />
+          <Route path="/*" element={<MainPage />} />
           <Route path="/transactions/:transactionArt" element={<TransactionsList />}/>
           <Route path="/categories" element={<Categories />}>
             <Route path=":categoriesArt" element={<CategoriesList />} />
           </Route>
-          <Route path="*" element={<Navigate to="/react-app-wallet" />} />
+          <Route path="*" element={<Navigate to="/*" />} />
         </Routes>
       </div>
     </div>
