@@ -12,7 +12,7 @@ const curTime = moment().format("HH:mm");
 
 const TransactionForm = (props) => {
   const [searchParams, setSearchParams] = useSearchParams();
-  const [transaction, setTransaction] = useState("Expense");
+  const [transaction, setTransaction] = useState(searchParams.get("transaction") ?? "Expense");
   const [date, setDate] = useState(curDate);
   const [time, setTime] = useState(curTime);
   const [category, setCategory] = useState(searchParams.get("category") ?? "Food");
@@ -22,6 +22,11 @@ const TransactionForm = (props) => {
   const location = useLocation();
   // console.log(location)
 
+  const updateQueryString = (transaction) => {
+    const nextParams = transaction !== "" ? { transaction } : {};
+    setSearchParams(nextParams);
+  };
+
 
   const handleChange = (e) => {
     const { name, value } = e.target;
@@ -29,6 +34,7 @@ const TransactionForm = (props) => {
     switch (name) {
       case "transaction":
         setTransaction(value);
+        updateQueryString(value);
         break;
       case "date":
         setDate(value);
