@@ -34,7 +34,9 @@ font-size: 16px;
 
 const StyledSearchInput = styled.input`
 width: 100%;
-
+outline: none;
+font-size: 16px;
+padding-left: 3px;
 `;
 
 const StyledSearchButton = styled.button`
