@@ -32,7 +32,7 @@ const Header = () => {
   return (
     <>
       <Search isOpenSearchInput={isOpenSearchInput} />
-      <Menu isOpenMenu={isOpenMenu} />
+      <Menu isOpenMenu={isOpenMenu} toggleMenu={menuToggle}/>
       <StyledHeaderWrapper>
         <StyledMenuBurger
           type="button"
