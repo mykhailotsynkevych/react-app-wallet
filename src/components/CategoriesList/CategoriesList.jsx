@@ -2,11 +2,15 @@ import s from "./CategoriesList.module.scss";
 import moreIcon from "../../assets/icons/more.svg";
 import {
   useSearchParams,
+  useLocation,
   useNavigate,
 } from "react-router-dom";
 
 const CategoriesList = ({ categoriesList }) => {
   const [searchParams, setSearchParams] = useSearchParams();
+  const location = useLocation();
+
+  // console.log(location.state.from.search)
 
   const navigate = useNavigate();
 
@@ -23,7 +27,7 @@ const CategoriesList = ({ categoriesList }) => {
           className={s.categoriesItem}
           onClick={() => {
             updateQueryString(categoryEl.nameCategory);
-            navigate( `/react-app-wallet?category=${categoryEl.nameCategory}`
+            navigate( `/${location.state.from.search}&category=${categoryEl.nameCategory}`
             );
           }}
         >

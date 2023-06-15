@@ -152,7 +152,7 @@ const TransactionForm = (props) => {
 
       <div className={s.categoryWrapper}>
         <p className={s.categoryTitle}>Category</p>
-        <Link to={`/categories/${transaction.toLowerCase()}`} className={s.categoryBtnLink}>
+        <Link to={`/categories/${transaction.toLowerCase()}`} state={{from: location}} className={s.categoryBtnLink}>
           <span>{category}</span>
           <span className={s.categoryBtnTriangle}>&#8227;</span>
         </Link>
