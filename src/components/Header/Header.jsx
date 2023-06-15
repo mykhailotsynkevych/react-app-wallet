@@ -24,16 +24,13 @@ const Header = () => {
   const location = useLocation();
 
   const handleToggleIcon = () => {
-    console.log(location.pathname)
-    location.pathname === "/" ? menuToggle() : navigate(-1);;
-    // !location.pathname.includes("react-app-wallet") &&
-    //   navigate(-1);
+    location.pathname === "/" ? menuToggle() : navigate(-1);
   };
 
   return (
     <>
       <Search isOpenSearchInput={isOpenSearchInput} />
-      <Menu isOpenMenu={isOpenMenu} toggleMenu={menuToggle}/>
+      <Menu isOpenMenu={isOpenMenu} toggleMenu={menuToggle} />
       <StyledHeaderWrapper>
         <StyledMenuBurger
           type="button"
@@ -43,12 +40,7 @@ const Header = () => {
           }}
         >
           <img
-            src={
-              // location.pathname.includes("react-app-wallet") ||
-              location.pathname === "/"
-                ? menuBurger
-                : returnArrow
-            }
+            src={location.pathname === "/" ? menuBurger : returnArrow}
             alt="icon"
           />
         </StyledMenuBurger>
