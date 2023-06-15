@@ -24,9 +24,10 @@ const Header = () => {
   const location = useLocation();
 
   const handleToggleIcon = () => {
-    location.pathname.includes("react-app-wallet") && menuToggle();
-    !location.pathname.includes("react-app-wallet") &&
-      navigate(-1);
+    console.log(location.pathname)
+    location.pathname === "/" ? menuToggle() : navigate(-1);;
+    // !location.pathname.includes("react-app-wallet") &&
+    //   navigate(-1);
   };
 
   return (
@@ -43,7 +44,7 @@ const Header = () => {
         >
           <img
             src={
-              location.pathname.includes("react-app-wallet") ||
+              // location.pathname.includes("react-app-wallet") ||
               location.pathname === "/"
                 ? menuBurger
                 : returnArrow
