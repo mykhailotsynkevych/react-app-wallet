@@ -1,8 +1,6 @@
 import { StyledMenuModal, StyledMenuBackdrop } from "./Menu.styled";
-import { useToggle } from "../../utils/hooks/useToggle";
 
 const Menu = ({ isOpenMenu, toggleMenu }) => {
-  // console.log(toggleMenu)
   const closeMenuPerBackdropClick = (e) => {
     if (isOpenMenu) {
       if(e.target === e.currentTarget) {

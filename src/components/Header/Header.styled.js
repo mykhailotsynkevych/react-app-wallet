@@ -8,9 +8,15 @@ const StyledHeaderWrapper = styled.header`
   box-shadow: 0px 2px 2px rgb(0 0 0 / 10%);
 `;
 
-const StyledMainTitle = styled.h1`
+const StyledMainTitle = styled.button`
 font-size: 24px;
-  text-align: center;
+text-align: center;
+background-color: transparent;
+font-weight: bold;
+
+:hover {
+  cursor: pointer;
+}
 `;
 
 

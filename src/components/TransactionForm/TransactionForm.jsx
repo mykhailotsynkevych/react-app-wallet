@@ -18,7 +18,6 @@ const TransactionForm = (props) => {
   const [category, setCategory] = useState(searchParams.get("category") ?? "Food");
   const [amount, setAmount] = useState("");
   const [comment, setComment] = useState("");
-
   const location = useLocation();
   // console.log(location)
 

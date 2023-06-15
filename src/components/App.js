@@ -19,7 +19,7 @@ const App = () => {
       <div className="pageWrapper">
         <Header/>
         <Routes>
-          <Route path="/*" element={<MainPage />} />
+          <Route path="/" element={<MainPage />} />
           <Route path="/transactions/:transactionArt" element={<TransactionsList />}/>
           <Route path="/categories" element={<Categories />}>
             <Route path=":categoriesArt" element={<CategoriesList />} />

@@ -1,5 +1,5 @@
 import { useState } from "react";
-import { useNavigate, useLocation } from "react-router-dom";
+import { Link, useNavigate, useLocation, useParams } from "react-router-dom";
 import {
   StyledMainTitle,
   StyledHeaderWrapper,
@@ -23,6 +23,7 @@ const Header = () => {
   const navigate = useNavigate();
   const location = useLocation();
 
+
   const handleToggleIcon = () => {
     location.pathname === "/" ? menuToggle() : navigate(-1);
   };
@@ -44,7 +45,7 @@ const Header = () => {
             alt="icon"
           />
         </StyledMenuBurger>
-        <StyledMainTitle>{title}</StyledMainTitle>
+        <Link to={`/`}><StyledMainTitle>{title}</StyledMainTitle></Link>
         <StyledIconFind
           type="button"
           isOpenSearchInput={isOpenSearchInput}

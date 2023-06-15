@@ -36,7 +36,6 @@ const TransactionsList = () => {
           {/* <p className={`${s.descr} ${isDoneStatus && s.isDone}`}>{descr}</p> */}
 
           <p
-            // className={s.transactionElAmount}
             className={`${s.transactionElAmount} ${
               transactionEl.transaction === "Expense" ? s.expense : s.income
             }`}
