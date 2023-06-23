@@ -27,7 +27,8 @@ const CategoriesList = ({ categoriesList }) => {
           className={s.categoriesItem}
           onClick={() => {
             updateQueryString(categoryEl.nameCategory);
-            navigate( `/${location.state.from.search}&category=${categoryEl.nameCategory}`
+            const transaction = searchParams.get("transaction")
+            navigate( `/${location.state.from.search}?transaction=${transaction ?? "expense"}&category=${categoryEl.nameCategory}`
             );
           }}
         >
