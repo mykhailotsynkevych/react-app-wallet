@@ -1,5 +1,5 @@
-import { useState, useEffect } from "react";
-import { Link, useLocation, useSearchParams } from "react-router-dom";
+import { useState } from "react";
+import { Link } from "react-router-dom";
 import moment from "moment";
 import { nanoid } from "nanoid";
 import s from "./TransactionForm.module.scss";
@@ -11,21 +11,12 @@ const curDate = moment().format("YYYY-MM-DD");
 const curTime = moment().format("HH:mm");
 
 const TransactionForm = (props) => {
-  const [searchParams, setSearchParams] = useSearchParams();
-  const [transaction, setTransaction] = useState(searchParams.get("transaction") ?? "Expense");
+  const [transaction, setTransaction] = useState(props.selectedTransaction);
   const [date, setDate] = useState(curDate);
   const [time, setTime] = useState(curTime);
-  const [category, setCategory] = useState(searchParams.get("category") ?? "Food");
+  const [category, setCategory] = useState(props.selectedCategory);
   const [amount, setAmount] = useState("");
   const [comment, setComment] = useState("");
-  const location = useLocation();
-  // console.log(location)
-
-  const updateQueryString = (transaction) => {
-    const nextParams = transaction !== "" ? { transaction } : {};
-    setSearchParams(nextParams);
-  };
-
 
   const handleChange = (e) => {
     const { name, value } = e.target;
@@ -33,7 +24,8 @@ const TransactionForm = (props) => {
     switch (name) {
       case "transaction":
         setTransaction(value);
-        updateQueryString(value);
+        props.handleSelectTransation(value);
+        setCategory(transaction === "Expense" ? "Work" : "Food");
         break;
       case "date":
         setDate(value);
@@ -43,7 +35,6 @@ const TransactionForm = (props) => {
         break;
       case "category":
         setCategory(value);
-        props.selectedCategory(value);
         break;
       case "amount":
         setAmount(Number(value));
@@ -75,7 +66,7 @@ const TransactionForm = (props) => {
   };
 
   const resetForm = () => {
-    setSearchParams({});
+    // setSearchParams({});
     setTransaction("Expense");
     setDate(curDate);
     setTime(curTime);
@@ -151,7 +142,10 @@ const TransactionForm = (props) => {
 
       <div className={s.categoryWrapper}>
         <p className={s.categoryTitle}>Category</p>
-        <Link to={`/categories/${transaction.toLowerCase()}`} state={{from: location}} className={s.categoryBtnLink}>
+        <Link
+          to={`/categories/${transaction.toLowerCase()}`}
+          className={s.categoryBtnLink}
+        >
           <span>{category}</span>
           <span className={s.categoryBtnTriangle}>&#8227;</span>
         </Link>

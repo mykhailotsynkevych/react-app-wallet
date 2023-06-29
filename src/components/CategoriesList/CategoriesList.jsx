@@ -1,35 +1,19 @@
 import s from "./CategoriesList.module.scss";
 import moreIcon from "../../assets/icons/more.svg";
-import {
-  useSearchParams,
-  useLocation,
-  useNavigate,
-} from "react-router-dom";
+import { useNavigate } from "react-router-dom";
 
-const CategoriesList = ({ categoriesList }) => {
-  const [searchParams, setSearchParams] = useSearchParams();
-  const location = useLocation();
-
-  // console.log(location.state.from.search)
-
+const CategoriesList = (props) => {
   const navigate = useNavigate();
-
-  const updateQueryString = (category) => {
-    const nextParams = category !== "" ? { category } : {};
-    setSearchParams(nextParams);
-  };
 
   return (
     <ul className={s.categoriesList}>
-      {categoriesList.map((categoryEl) => (
+      {props.categoriesList.map((categoryEl) => (
         <li
           key={categoryEl.id}
           className={s.categoriesItem}
           onClick={() => {
-            updateQueryString(categoryEl.nameCategory);
-            const transaction = searchParams.get("transaction")
-            navigate( `/${location.state.from.search}?transaction=${transaction ?? "expense"}&category=${categoryEl.nameCategory}`
-            );
+            props.handleSelectCategory(categoryEl.nameCategory);
+            navigate(-1);
           }}
         >
           <p className={s.categoriesItemName}>{categoryEl.nameCategory}</p>

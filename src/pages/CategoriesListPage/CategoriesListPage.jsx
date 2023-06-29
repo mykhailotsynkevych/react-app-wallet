@@ -15,7 +15,7 @@ const INITIAL_CATEGORIES = [
   { id: "5", transaction: "Income", nameCategory: "Other" },
 ];
 
-const CategoriesListPage = () => {
+const CategoriesListPage = (props) => {
   const [nameCategory, setNameCategory] = useState("");
   const [categoriesList, setCategoriesList] = useState(() =>
     LSapi.getDataFromLS(LSapi.keys.categoriesList, INITIAL_CATEGORIES)
@@ -57,8 +57,8 @@ const CategoriesListPage = () => {
   };
 
   return (
-    <main className={s.categoriesWrapper}>
-      <CategoriesList categoriesList={filteredByTransaction} />
+    <div className={s.categoriesWrapper}>
+      <CategoriesList categoriesList={filteredByTransaction} handleSelectCategory={props.handleSelectCategory}/>
 
       <form
         onSubmit={handleSubmit}
@@ -82,7 +82,7 @@ const CategoriesListPage = () => {
           <img src={addIcon} alt="icon Add" />
         </button>
       </form>
-    </main>
+    </div>
   );
 };
 

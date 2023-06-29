@@ -1,5 +1,9 @@
+import { Link , Route, Routes } from "react-router-dom";
 import { useState, useEffect } from "react";
-import { Link, useLocation } from "react-router-dom";
+
+import CategoriesPage from "../CategoriesListPage/CategoriesListPage";
+import CategoriesList from "../../components/CategoriesList/CategoriesList";
+
 import TotalBalance from "../../components/TotalBalance/TotalBalance";
 import TransactionForm from "../../components/TransactionForm/TransactionForm";
 import s from "./MainPage.module.css";
@@ -7,12 +11,11 @@ import sprite from "../.././assets/icons/sprite.svg";
 import LSapi from "../../utils/api/LSapi";
 
 const MainPage = () => {
-  // const [selectedTransaction, setSelectedTransaction] = useState("Expense");
+  const [headerTitle, setHeaderTitle] = useState("Wallet");
+  const [selectedTransaction, setSelectedTransaction] = useState("Expense");
   const [transactionsList, setTransactionsList] = useState(() =>
-    LSapi.getDataFromLS(LSapi.keys.transactionsList, [])
-  );
-  // const [selectedCategory, setSelectedCategory] = useState("Food");
-  const location = useLocation();
+    LSapi.getDataFromLS(LSapi.keys.transactionsList, []));
+  const [selectedCategory, setSelectedCategory] = useState("Food");
 
   useEffect(() => {
     if (transactionsList.length) {
@@ -20,14 +23,13 @@ const MainPage = () => {
     }
   }, [transactionsList]);
 
-  // const handleSelectTransation = (transaction = "Expense") => {
-  //   setSelectedTransaction(transaction);
-  //   setSelectedCategory(transaction === "Expense" ? "Food" : "Work");
-  // };
+  const handleSelectTransation = (transaction) => {
+    setSelectedTransaction(transaction);
+  };
 
-  // const handleSelectCategory = (category) => {
-  //   setSelectedCategory(category);
-  // };
+  const handleSelectCategory = (category) => {
+    setSelectedCategory(category);
+  };
 
   const addTransaction = (newTransaction) => {
     setTransactionsList((prevTransactionsList) => [
@@ -38,13 +40,18 @@ const MainPage = () => {
 
   return (
     <>
-      <main state={{ from: location }}>
-        <TotalBalance />
+      <main className={s.mainWrapper}>
+      <Routes>
+          <Route path="/categories" element={<CategoriesPage handleSelectCategory={handleSelectCategory}/>}>
+            <Route path=":categoriesArt" element={<CategoriesList />} />
+          </Route>
+          <Route index element={<>
+            <TotalBalance />
         <TransactionForm
           // handleTitle={handleTitle}
-          // handleSelectTransation={handleSelectTransation}
-          // selectedTransaction={selectedTransaction}
-          // selectedCategory={selectedCategory}
+          handleSelectTransation={handleSelectTransation}
+          selectedTransaction={selectedTransaction}
+          selectedCategory={selectedCategory}
           addTrasaction={addTransaction}
         />
         <div className={s.btnTransactionWrapper}>
@@ -69,6 +76,9 @@ const MainPage = () => {
             </button>
           </Link>
         </div>
+          </>} />
+        </Routes>
+        
       </main>
     </>
   );
