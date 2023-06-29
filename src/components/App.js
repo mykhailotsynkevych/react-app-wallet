@@ -17,7 +17,7 @@ const App = () => {
       <div className="pageWrapper">
         <Header/>
         <Routes>
-          <Route path="/*" element={<MainPage />} />
+          <Route path="/" element={<MainPage />} />
           <Route path="/transactions/:transactionArt" element={<TransactionsList />}/>
           <Route path="*" element={<MainPage />} />
         </Routes>
