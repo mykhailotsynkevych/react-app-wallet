@@ -31,13 +31,6 @@ const MainPage = () => {
     setSelectedCategory(category);
   };
 
-  const addTransaction = (newTransaction) => {
-    setTransactionsList((prevTransactionsList) => [
-      ...prevTransactionsList,
-      newTransaction,
-    ]);
-  };
-
   return (
     <>
       <main className={s.mainWrapper}>
@@ -52,7 +45,7 @@ const MainPage = () => {
           handleSelectTransation={handleSelectTransation}
           selectedTransaction={selectedTransaction}
           selectedCategory={selectedCategory}
-          addTrasaction={addTransaction}
+          // addTrasaction={addTransaction}
         />
         <div className={s.btnTransactionWrapper}>
           <Link to="transactions/income">

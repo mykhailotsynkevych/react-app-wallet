@@ -4,6 +4,9 @@ import moment from "moment";
 import { nanoid } from "nanoid";
 import s from "./TransactionForm.module.scss";
 
+import { useDispatch } from "react-redux";
+import { addTransaction } from "../../redux/actions";
+
 // const curDate = new Date().toLocaleDateString().split(".").reverse().join("-");
 const curDate = moment().format("YYYY-MM-DD");
 
@@ -17,6 +20,7 @@ const TransactionForm = (props) => {
   const [category, setCategory] = useState(props.selectedCategory);
   const [amount, setAmount] = useState("");
   const [comment, setComment] = useState("");
+  const dispatch = useDispatch();
 
   const handleChange = (e) => {
     const { name, value } = e.target;
@@ -52,15 +56,10 @@ const TransactionForm = (props) => {
     if (amount === "") {
       return alert("Please enter the amount");
     }
-    props.addTrasaction({
-      id: nanoid(),
-      transaction,
-      date,
-      time,
-      category,
-      amount,
-      comment,
-    });
+
+    dispatch(
+      addTransaction(transaction, date, time, category, amount, comment)
+    );
 
     resetForm();
   };

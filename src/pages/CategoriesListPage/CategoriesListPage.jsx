@@ -1,26 +1,20 @@
 import { useState, useEffect } from "react";
 import { useParams } from "react-router-dom";
-import { nanoid } from "nanoid";
 import s from "./CategoriesListPage.module.css";
 import CategoriesList from "../../components/CategoriesList/CategoriesList";
 import addIcon from "../../assets/icons/add.svg";
 import LSapi from "../../utils/api/LSapi";
 
-const INITIAL_CATEGORIES = [
-  { id: "1", transaction: "Expense", nameCategory: "Food" },
-  { id: "2", transaction: "Expense", nameCategory: "Car" },
-  { id: "3", transaction: "Expense", nameCategory: "House" },
-
-  { id: "4", transaction: "Income", nameCategory: "Work" },
-  { id: "5", transaction: "Income", nameCategory: "Other" },
-];
+import { useDispatch } from "react-redux";
+import { addCategory } from "../../redux/actions";
 
 const CategoriesListPage = (props) => {
   const [nameCategory, setNameCategory] = useState("");
   const [categoriesList, setCategoriesList] = useState(() =>
-    LSapi.getDataFromLS(LSapi.keys.categoriesList, INITIAL_CATEGORIES)
+    LSapi.getDataFromLS(LSapi.keys.categoriesList, [])
   );
   const params = useParams();
+  const dispatch = useDispatch();
 
   useEffect(() => {
     LSapi.setDataToLS(LSapi.keys.categoriesList, categoriesList);
@@ -43,12 +37,8 @@ const CategoriesListPage = (props) => {
       return alert("Please enter category");
     }
 
-    addNewCategory({
-      id: nanoid(),
-      transaction:
-        params.categoriesArt.toUpperCase()[0] + params.categoriesArt.slice(1),
-      nameCategory,
-    });
+    const transaction = params.categoriesArt.toUpperCase()[0] + params.categoriesArt.slice(1);
+    dispatch(addCategory(transaction, nameCategory));
     setNameCategory("");
   };
 
