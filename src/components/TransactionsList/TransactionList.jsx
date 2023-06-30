@@ -24,7 +24,10 @@ const TransactionsList = () => {
           <p className={s.transactionElTimeCategory}>
             {/* {transactionEl.date.split("-").reverse().join(".")} */}
             <span className={s.transactionElDate}>
-              {moment(transactionEl.date).format("DD.MM.YY")}
+            {moment(transactionEl.date).format("ddd")}
+            </span>
+            <span className={s.transactionElDate}>
+            {moment(transactionEl.date).format("DD MMM. YY")}
             </span>
             {transactionEl.time} <br />
             <span className={s.transactionElCategory}>

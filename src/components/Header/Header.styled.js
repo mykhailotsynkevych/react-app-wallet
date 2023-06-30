@@ -23,7 +23,7 @@ font-weight: bold;
 const StyledMenuBurger = styled.button`
 background-color: inherit;
 width: 26px;
-transition: transform 0.5s linear;
+transition: transform 0.3s linear;
 padding: 0px;
 margin-right: 10px;
 
