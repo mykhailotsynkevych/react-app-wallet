@@ -1,29 +1,17 @@
-import { useState, useEffect } from "react";
+import { useState } from "react";
 import { useParams } from "react-router-dom";
 import s from "./CategoriesListPage.module.css";
 import CategoriesList from "../../components/CategoriesList/CategoriesList";
 import addIcon from "../../assets/icons/add.svg";
-import LSapi from "../../utils/api/LSapi";
+// import LSapi from "../../utils/api/LSapi";
 
 import { useDispatch } from "react-redux";
 import { addCategory } from "../../redux/categories/categoriesActions";
 
 const CategoriesListPage = (props) => {
   const [nameCategory, setNameCategory] = useState("");
-  const [categoriesList, setCategoriesList] = useState(() =>
-    LSapi.getDataFromLS(LSapi.keys.categoriesList, [])
-  );
   const params = useParams();
   const dispatch = useDispatch();
-
-  useEffect(() => {
-    LSapi.setDataToLS(LSapi.keys.categoriesList, categoriesList);
-  }, [categoriesList]);
-
-
-  const filteredByTransaction = categoriesList.filter((categoriesEl) => 
-    categoriesEl.transaction.toLowerCase().includes(
-      params.categoriesArt.toLowerCase()));
 
   const handleChange = (e) => {
     const { value } = e.target;
@@ -42,13 +30,9 @@ const CategoriesListPage = (props) => {
     setNameCategory("");
   };
 
-  const addNewCategory = (newCategory) => {
-    setCategoriesList((prevCategoryList) => [...prevCategoryList, newCategory]);
-  };
-
   return (
     <div className={s.categoriesWrapper}>
-      <CategoriesList categoriesList={filteredByTransaction} handleSelectCategory={props.handleSelectCategory}/>
+      <CategoriesList handleSelectCategory={props.handleSelectCategory}/>
 
       <form
         onSubmit={handleSubmit}

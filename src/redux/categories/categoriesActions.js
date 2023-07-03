@@ -17,10 +17,3 @@ export const deleteCategory = (categoryId) => {
     payload: categoryId,
   };
 };
-
-export const setCategoriesFilter = value => {
-  return {
-    type: " filterCategories/setCategoriesFilter",
-    payload: value,
-  };
-};

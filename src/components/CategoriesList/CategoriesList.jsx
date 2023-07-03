@@ -1,20 +1,23 @@
 import s from "./CategoriesList.module.scss";
 import moreIcon from "../../assets/icons/more.svg";
 
+//Router
 import { useNavigate } from "react-router-dom";
 
+//Redux
 import { useSelector } from "react-redux";
-import { getCategories, getFilterCategories } from "../../redux/categories/categoriesSelectors";
+import { getCategories } from "../../redux/categories/categoriesSelectors";
+import { getFilter } from "../../redux/filter/filterSelectors";
 
 const CategoriesList = (props) => {
   const navigate = useNavigate();
   const categories = useSelector(getCategories);
-  const filter = useSelector(getFilterCategories);
+  const filter = useSelector(getFilter);
 
   const getVisibleCategories = (categories, filter) => {
     const normalizedFilter = filter.toLowerCase();
     return categories.filter(({ transaction }) =>
-    transaction.toLowerCase().includes(normalizedFilter),
+      transaction.toLowerCase().includes(normalizedFilter)
     );
   };
 

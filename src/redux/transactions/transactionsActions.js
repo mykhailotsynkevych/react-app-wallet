@@ -21,10 +21,3 @@ export const deleteTransaction = (categoryId) => {
     payload: categoryId,
   };
 };
-
-export const setTransactionsFilter = value => {
-  return {
-    type: " filterTransactions/setTransactionsFilter",
-    payload: value,
-  };
-};

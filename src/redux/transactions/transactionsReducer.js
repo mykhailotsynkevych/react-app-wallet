@@ -1,6 +1,4 @@
-import { combineReducers } from "redux";
-
-const transactionsReducer = (state = [], action) => {
+export const transactions = (state = [], action) => {
     switch (action.type) {
       case "transactions/addTransaction":
         return [...state, action.payload];
@@ -13,20 +11,3 @@ const transactionsReducer = (state = [], action) => {
         return state;
     }
   };
-
-  const filterTransactionsReducer = (state = "", action) => {
-    switch (action.type) {
-      case " filterTransactions/setTransactionsFilter":
-        return {
-          ...state,
-          status: action.payload,
-        };
-      default:
-        return state;
-    }
-  };
-  
-  export const rootTransactionsReducer = combineReducers({
-    transactions: transactionsReducer,
-    filterTransactions: filterTransactionsReducer,
-  });
