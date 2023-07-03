@@ -5,7 +5,7 @@ import { nanoid } from "nanoid";
 import s from "./TransactionForm.module.scss";
 
 import { useDispatch } from "react-redux";
-import { addTransaction } from "../../redux/actions";
+import { addTransaction } from "../../redux/transactions/transactionsActions";
 
 // const curDate = new Date().toLocaleDateString().split(".").reverse().join("-");
 const curDate = moment().format("YYYY-MM-DD");

@@ -6,7 +6,7 @@ import addIcon from "../../assets/icons/add.svg";
 import LSapi from "../../utils/api/LSapi";
 
 import { useDispatch } from "react-redux";
-import { addCategory } from "../../redux/actions";
+import { addCategory } from "../../redux/categories/categoriesActions";
 
 const CategoriesListPage = (props) => {
   const [nameCategory, setNameCategory] = useState("");
