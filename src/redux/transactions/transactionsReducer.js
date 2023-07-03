@@ -1,7 +1,11 @@
-export const transactions = (state = [], action) => {
+import LSapi from "../../utils/api/LSapi";
+
+export const transactionsReducer = (state = LSapi.getDataFromLS(LSapi.keys.transactionsList, []), action) => {
     switch (action.type) {
       case "transactions/addTransaction":
-        return [...state, action.payload];
+        const data = [...state, action.payload];
+        LSapi.setDataToLS(LSapi.keys.transactionsList, data);
+        return data;
       case "transactions/deleteTransaction":
         return {
           ...state,
@@ -11,3 +15,5 @@ export const transactions = (state = [], action) => {
         return state;
     }
   };
+
+  export default transactionsReducer;

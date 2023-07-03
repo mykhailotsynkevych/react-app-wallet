@@ -1,11 +1,11 @@
 import { useState } from "react";
 import { Link } from "react-router-dom";
 import moment from "moment";
-import { nanoid } from "nanoid";
 import s from "./TransactionForm.module.scss";
 
 import { useDispatch } from "react-redux";
 import { addTransaction } from "../../redux/transactions/transactionsActions";
+import { setStatusFilter } from "../../redux/filter/filterActions";
 
 // const curDate = new Date().toLocaleDateString().split(".").reverse().join("-");
 const curDate = moment().format("YYYY-MM-DD");
@@ -92,6 +92,7 @@ const TransactionForm = (props) => {
           value="Expense"
           checked={transaction === "Expense"}
           onChange={handleChange}
+          onClick={() => dispatch(setStatusFilter("Expense"))}
         />
         <label
           className={`${s.radioLabel} ${s.radio}`}
@@ -107,6 +108,7 @@ const TransactionForm = (props) => {
           value="Income"
           checked={transaction === "Income"}
           onChange={handleChange}
+          onClick={() => dispatch(setStatusFilter("Income"))}
         />
         <label
           className={`${s.radioLabel} ${s.radio}`}

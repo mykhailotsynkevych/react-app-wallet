@@ -1,11 +1,10 @@
-export const filter = (state = "Expense", action) => {
+const filterReducer = (state = "Expense", action) => {
     switch (action.type) {
-      case " filterCategories/setStatusFilter":
-        return {
-          ...state,
-          status: action.payload,
-        };
+      case " filter/setStatusFilter":
+        return action.payload
       default:
         return state;
     }
   };
+
+  export default filterReducer;

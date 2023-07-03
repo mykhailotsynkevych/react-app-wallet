@@ -14,18 +14,17 @@ const CategoriesList = (props) => {
   const categories = useSelector(getCategories);
   const filter = useSelector(getFilter);
 
-  const getVisibleCategories = (categories, filter) => {
-    const normalizedFilter = filter.toLowerCase();
+  const getFilteredCategories = (categories, filter) => {
     return categories.filter(({ transaction }) =>
-      transaction.toLowerCase().includes(normalizedFilter)
+      transaction.includes(filter)
     );
   };
 
-  const visibleCategories = getVisibleCategories(categories, filter);
+  const filteredCategories = getFilteredCategories(categories, filter);
 
   return (
     <ul className={s.categoriesList}>
-      {visibleCategories.map((categoryEl) => (
+      {filteredCategories.map((categoryEl) => (
         <li
           key={categoryEl.id}
           className={s.categoriesItem}

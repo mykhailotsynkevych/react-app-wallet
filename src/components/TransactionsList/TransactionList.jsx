@@ -6,20 +6,30 @@ import LSapi from "../../utils/api/LSapi";
 import s from "./TransactionsList.module.css";
 import moreIcon from "../../assets/icons/more.svg";
 
+//Redux
+import { useSelector } from "react-redux";
+import { getTransactions } from "../../redux/transactions/transactionsSelectors";
+import { getFilter } from "../../redux/filter/filterSelectors";
+
 const TransactionsList = () => {
   const [transactionsList, setTransactionsList] = useState(() =>
   LSapi.getDataFromLS(LSapi.keys.transactionsList, []));
   const params = useParams();
 
-  const filteredByTransactionArt = transactionsList.filter((transactionsEl) =>
-    transactionsEl.transaction.includes(
-      params.transactionArt.toUpperCase()[0] + params.transactionArt.slice(1)
-    )
-  );
+  const transactions = useSelector(getTransactions);
+  const filter = useSelector(getFilter);
+
+  const getFilteredCategories = (transactions, filter) => {
+    return transactions.filter(({ transaction }) =>
+      transaction.includes(filter)
+    );
+  };
+
+  const filteredTransactions = getFilteredCategories(transactions, filter);
 
   return (
     <ul>
-      {filteredByTransactionArt.map((transactionEl) => (
+      {filteredTransactions.map((transactionEl) => (
         <li key={transactionEl.id} className={s.transactionEl}>
           <p className={s.transactionElTimeCategory}>
             {/* {transactionEl.date.split("-").reverse().join(".")} */}
@@ -35,9 +45,6 @@ const TransactionsList = () => {
             </span>
             {transactionEl.comment}
           </p>
-
-          {/* <p className={`${s.descr} ${isDoneStatus && s.isDone}`}>{descr}</p> */}
-
           <p
             className={`${s.transactionElAmount} ${
               transactionEl.transaction === "Expense" ? s.expense : s.income
