@@ -1,26 +1,26 @@
 import s from "./CategoriesList.module.scss";
-import moreIcon from "../../assets/icons/more.svg";
-import { useNavigate } from "react-router-dom";
+import CategoriesItem from "../CategoriesItem/CategoriesItem";
+
+//Redux
+import { useSelector } from "react-redux";
+import { getCategories } from "../../redux/categories/categoriesSelectors";
+import { getFilter } from "../../redux/filter/filterSelectors";
 
 const CategoriesList = (props) => {
-  const navigate = useNavigate();
+  const categories = useSelector(getCategories);
+  const filter = useSelector(getFilter);
+
+  const getFilteredCategories = (categories, filter) => {
+    return categories.filter(({ transaction }) => transaction.includes(filter));
+  };
+
+  const filteredCategories = getFilteredCategories(categories, filter);
 
   return (
     <ul className={s.categoriesList}>
-      {props.categoriesList.map((categoryEl) => (
-        <li
-          key={categoryEl.id}
-          className={s.categoriesItem}
-          onClick={() => {
-            props.handleSelectCategory(categoryEl.nameCategory);
-            navigate(-1);
-          }}
-        >
-          <p className={s.categoriesItemName}>{categoryEl.nameCategory}</p>
-
-          <button type="button" className={s.btnMore}>
-            <img src={moreIcon} alt="icon More" />
-          </button>
+      {filteredCategories.map((categoryEl) => (
+        <li key={categoryEl.id}>
+          <CategoriesItem categoryEl={categoryEl} props={props} />
         </li>
       ))}
     </ul>
