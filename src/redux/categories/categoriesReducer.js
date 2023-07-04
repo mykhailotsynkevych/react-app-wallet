@@ -10,16 +10,16 @@ const initialCategoriesState = [
 ];
 
 const categoriesReducer = (state = LSapi.getDataFromLS(LSapi.keys.categoriesList, initialCategoriesState), action) => {
+ let data;
   switch (action.type) {
     case "categories/addCategory":
-      const data = [...state, action.payload];
+      data = [...state, action.payload];
       LSapi.setDataToLS(LSapi.keys.categoriesList, data);
       return data;
     case "categories/deleteCategory":
-      return {
-        ...state,
-        tasks: state.tasks.filter((task) => task.id !== action.payload),
-      };
+      data = state.filter(category => category.id !== action.payload);
+      LSapi.setDataToLS(LSapi.keys.categoriesList, data);
+      return data;
     default:
       return state;
   }
