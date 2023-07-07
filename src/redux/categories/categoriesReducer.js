@@ -1,4 +1,3 @@
-import LSapi from "../../utils/api/LSapi";
 import { combineReducers, createReducer } from "@reduxjs/toolkit";
 import { addCategory, deleteCategory } from "./categoriesActions";
 
@@ -14,14 +13,10 @@ const initialCategoriesState = [
 
 const categoriesReducer = createReducer(initialCategoriesState, {
     [addCategory]: (state, {payload}) => {
-      const data = [...state, payload];
-      // LSapi.setDataToLS(LSapi.keys.categoriesList, data);
-      return [data]
+      return [...state, payload]
     }  ,
     [deleteCategory]: (state, {payload}) => {
-      const data = state.filter((category) => category.id !== payload);
-      // LSapi.setDataToLS(LSapi.keys.categoriesList, data);
-      return data;
+      return state.filter((category) => category.id !== payload);
     }
   });
 

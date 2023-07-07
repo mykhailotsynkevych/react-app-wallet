@@ -22,16 +22,30 @@ const categoriesPersistConfig = {
   whitelist: ["categories"],
 };
 
+const transactionsPersistConfig = {
+  key: "transactions",
+  version: 1,
+  storage,
+  whitelist: ["transactions"],
+};
+
+const filterPersistConfig = {
+  key: "filter",
+  version: 1,
+  storage,
+  whitelist: ["filter"],
+};
+
 const categoriesPersistedReducer = persistReducer(categoriesPersistConfig, categoriesReducer);
-// const transactionsPersistedReducer = persistReducer(counterPersistConfig, transactionsReducer);
-// const filterPersistedReducer = persistReducer(counterPersistConfig, filterReducer);
+const transactionsPersistedReducer = persistReducer(transactionsPersistConfig, transactionsReducer);
+const filterPersistedReducer = persistReducer(filterPersistConfig, filterReducer);
 
 
 export const store = configureStore({
   reducer: {
     categories: categoriesPersistedReducer,
-    transactions: transactionsReducer,
-    filter: filterReducer,
+    transactions: transactionsPersistedReducer,
+    filter: filterPersistedReducer,
   },
   middleware: (getDefaultMiddleware) =>
   getDefaultMiddleware({

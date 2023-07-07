@@ -10,6 +10,8 @@ const CategoriesList = (props) => {
   const categories = useSelector(getCategories);
   const filter = useSelector(getFilter);
 
+  console.log(filter)
+
   const getFilteredCategories = (categories, filter) => {
     return categories.filter(({ transaction }) => transaction.includes(filter));
   };

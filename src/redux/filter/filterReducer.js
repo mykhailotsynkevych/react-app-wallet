@@ -1,10 +1,10 @@
-const filterReducer = (state = "Expense", action) => {
-    switch (action.type) {
-      case " filter/setStatusFilter":
-        return action.payload
-      default:
-        return state;
-    }
-  };
+import { combineReducers, createReducer } from "@reduxjs/toolkit";
+import { setStatusFilter } from "./filterActions";
 
-  export default filterReducer;
+const filterReducer = createReducer("Expense", {
+    [setStatusFilter]: (state, {payload}) => {
+      return payload
+    },
+  });
+
+  export default combineReducers({filter: filterReducer});

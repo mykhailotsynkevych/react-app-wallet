@@ -1,19 +1,12 @@
-import LSapi from "../../utils/api/LSapi";
+import { combineReducers, createReducer } from "@reduxjs/toolkit";
+import { addTransaction, deleteTransaction } from "./transactionsActions";
 
-export const transactionsReducer = (state = LSapi.getDataFromLS(LSapi.keys.transactionsList, []), action) => {
-    switch (action.type) {
-      case "transactions/addTransaction":
-        const data = [...state, action.payload];
-        LSapi.setDataToLS(LSapi.keys.transactionsList, data);
-        return data;
-      case "transactions/deleteTransaction":
-        return {
-          ...state,
-          tasks: state.tasks.filter((task) => task.id !== action.payload),
-        };
-      default:
-        return state;
-    }
-  };
+export const transactionsReducer = createReducer([], {
+     [addTransaction]: (state, {payload}) => {
+        return [...state, payload]},
+        [deleteTransaction]: (state, {payload}) => {
+          return state.filter((transaction) => transaction.id !== payload);
+        }
+  });
 
-  export default transactionsReducer;
+  export default combineReducers({transactions: transactionsReducer});

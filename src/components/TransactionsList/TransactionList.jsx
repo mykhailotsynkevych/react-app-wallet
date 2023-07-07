@@ -18,6 +18,7 @@ const TransactionsList = () => {
 
   const transactions = useSelector(getTransactions);
   const filter = useSelector(getFilter);
+  console.log(transactions)
 
   const getFilteredCategories = (transactions, filter) => {
     return transactions.filter(({ transaction }) =>
