@@ -21,7 +21,7 @@ const App = () => {
         <Header/>
         <Suspense fallback={< Loader />}>
         <Routes>
-          <Route path="/react-app-wallet/*" element={<MainPage />} />
+          <Route path="/*" element={<MainPage />} />
           <Route path="/transactions/:transactionArt" element={<TransactionsList />}/>
           <Route path="*" element={<MainPage />} />
         </Routes>
