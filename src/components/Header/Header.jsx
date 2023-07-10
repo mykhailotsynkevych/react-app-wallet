@@ -1,5 +1,4 @@
-import { useState } from "react";
-import { Link, useNavigate, useLocation, useParams } from "react-router-dom";
+import { Link, useNavigate, useLocation } from "react-router-dom";
 import {
   StyledMainTitle,
   StyledHeaderWrapper,
@@ -17,12 +16,10 @@ import returnArrow from "../../assets/icons/return.svg";
 import menuBurger from "../../assets/icons/menu-burger.svg";
 
 const Header = () => {
-  const [title, setTitle] = useState("Wallet");
   const [isOpenSearchInput, searchInputToggle] = useToggle(false);
   const [isOpenMenu, menuToggle] = useToggle(false);
   const navigate = useNavigate();
   const location = useLocation();
-
 
   const handleToggleIcon = () => {
     location.pathname === "/" ? menuToggle() : navigate(-1);
@@ -45,7 +42,7 @@ const Header = () => {
             alt="icon"
           />
         </StyledMenuBurger>
-        <Link to={`/`}><StyledMainTitle>{title}</StyledMainTitle></Link>
+        <Link to={`/`}><StyledMainTitle>Wallet</StyledMainTitle></Link>
         <StyledIconFind
           type="button"
           isOpenSearchInput={isOpenSearchInput}

@@ -1,12 +1,14 @@
 import { combineReducers, createReducer } from "@reduxjs/toolkit";
 import { addTransaction, deleteTransaction } from "./transactionsActions";
 
-export const transactionsReducer = createReducer([], {
-     [addTransaction]: (state, {payload}) => {
-        return [...state, payload]},
-        [deleteTransaction]: (state, {payload}) => {
-          return state.filter((transaction) => transaction.id !== payload);
-        }
-  });
+  const transactionsReducer = createReducer([], (builder) => {
+    builder
+      .addCase(addTransaction, (state, {payload}) => {
+        return [...state, payload]
+      })
+      .addCase(deleteTransaction, (state, {payload}) => {
+        return state.filter((category) => category.id !== payload)
+      })
+  })
 
   export default combineReducers({transactions: transactionsReducer});

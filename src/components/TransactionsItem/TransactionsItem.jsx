@@ -4,9 +4,6 @@ import moment from "moment";
 import { useState } from "react";
 import ItemModal from "../ItemModal/ItemModal";
 
-//Router
-import { useNavigate } from "react-router-dom";
-
 import { useDispatch } from "react-redux";
 import { deleteTransaction } from "../../redux/transactions/transactionsActions";
 

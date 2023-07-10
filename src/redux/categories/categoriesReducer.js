@@ -11,13 +11,14 @@ const initialCategoriesState = [
   { id: "5", transaction: "Income", nameCategory: "Other" },
 ];
 
-const categoriesReducer = createReducer(initialCategoriesState, {
-    [addCategory]: (state, {payload}) => {
+const categoriesReducer = createReducer(initialCategoriesState, (builder) => {
+  builder
+    .addCase(addCategory, (state, {payload}) => {
       return [...state, payload]
-    }  ,
-    [deleteCategory]: (state, {payload}) => {
-      return state.filter((category) => category.id !== payload);
-    }
-  });
+    })
+    .addCase(deleteCategory, (state, {payload}) => {
+      return state.filter((category) => category.id !== payload)
+    })
+})
 
 export default combineReducers({categories: categoriesReducer});
