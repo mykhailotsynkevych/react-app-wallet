@@ -1,16 +1,59 @@
-import { createStore } from "redux";
-import { devToolsEnhancer } from "@redux-devtools/extension"; 
-import { combineReducers } from "redux";
+import { configureStore } from '@reduxjs/toolkit';
+import storage from "redux-persist/lib/storage";
+import {
+  persistStore,
+  persistReducer,
+  FLUSH,
+  REHYDRATE,
+  PAUSE,
+  PERSIST,
+  PURGE,
+  REGISTER,
+} from 'redux-persist';
 
-import categories from "../redux/categories/categoriesReducer";
-import transactions from "../redux/transactions/transactionsReducer";
-import filter from "../redux/filter/filterReducer";
+import categoriesReducer from "../redux/categories/categoriesReducer";
+import transactionsReducer from "../redux/transactions/transactionsReducer";
+import filterReducer from "../redux/filter/filterReducer";
 
-const rootReducer = combineReducers({
-    categories,
-    transactions,
-    filter,
-  });
+const categoriesPersistConfig = {
+  key: "categories",
+  version: 1,
+  storage,
+  whitelist: ["categories"],
+};
 
-const enhancer = devToolsEnhancer();
-export const store = createStore(rootReducer, enhancer);
+const transactionsPersistConfig = {
+  key: "transactions",
+  version: 1,
+  storage,
+  whitelist: ["transactions"],
+};
+
+const filterPersistConfig = {
+  key: "filter",
+  version: 1,
+  storage,
+  whitelist: ["filter"],
+};
+
+const categoriesPersistedReducer = persistReducer(categoriesPersistConfig, categoriesReducer);
+const transactionsPersistedReducer = persistReducer(transactionsPersistConfig, transactionsReducer);
+const filterPersistedReducer = persistReducer(filterPersistConfig, filterReducer);
+
+
+export const store = configureStore({
+  reducer: {
+    categories: categoriesPersistedReducer,
+    transactions: transactionsPersistedReducer,
+    filter: filterPersistedReducer,
+  },
+  middleware: (getDefaultMiddleware) =>
+  getDefaultMiddleware({
+    serializableCheck: {
+      ignoredActions: [FLUSH, REHYDRATE, PAUSE, PERSIST, PURGE, REGISTER],
+    },
+  }),
+  devTools: process.env.NODE_ENV === 'development',
+});
+
+export const persistor = persistStore(store);

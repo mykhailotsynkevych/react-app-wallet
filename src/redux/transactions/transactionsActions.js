@@ -1,8 +1,7 @@
-import { nanoid } from "nanoid";
+import { createAction, nanoid } from '@reduxjs/toolkit';
 
-export const addTransaction = (transaction, date, time, category, amount, comment) => {
+export const addTransaction = createAction('transaction/add', (transaction, date, time, category, amount, comment) => {
   return {
-    type: "transactions/addTransaction",
     payload: {
       id: nanoid(),
       transaction,
@@ -13,11 +12,11 @@ export const addTransaction = (transaction, date, time, category, amount, commen
       comment,
     },
   };
-};
+});
 
-export const deleteTransaction = (categoryId) => {
+export const deleteTransaction = createAction('transaction/delete', (transactionId) => {
   return {
     type: "transactions/deleteTransaction",
-    payload: categoryId,
+    payload: transactionId,
   };
-};
+});

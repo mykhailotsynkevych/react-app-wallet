@@ -1,1 +1,1 @@
-export const getTransactions = state => state.transactions;
+export const getTransactions = state => state.transactions.transactions;

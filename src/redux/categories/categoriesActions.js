@@ -1,19 +1,14 @@
-import { nanoid } from "nanoid";
+import { createAction, nanoid } from '@reduxjs/toolkit';
 
-export const addCategory = (transaction, nameCategory) => {
-  return {
-    type: "categories/addCategory",
-    payload: {
-      id: nanoid(),
-      transaction,
-      nameCategory
-    },
-  };
-};
+export const addCategory = createAction('category/add', (transaction, nameCategory) => ({
+  payload: {
+    id: nanoid(),
+    transaction,
+    nameCategory
+  },
+}));
 
-export const deleteCategory = (categoryId) => {
-  return {
-    type: "categories/deleteCategory",
-    payload: categoryId,
-  };
-};
+export const deleteCategory = createAction('category/delete', (categoryId) => ({
+  payload: categoryId,
+}));
+

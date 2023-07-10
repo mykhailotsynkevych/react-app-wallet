@@ -1,5 +1,6 @@
 import s from "./CategoriesItem.module.css";
 import moreIcon from "../../assets/icons/more.svg";
+import ItemModal from "../ItemModal/ItemModal";
 
 import { useState } from "react";
 
@@ -37,10 +38,7 @@ const CategoriesItem = ({categoryEl, props}) => {
             <img src={moreIcon} alt="icon More" />
           </button>
           {openMenuId === categoryEl.id && (
-            <div className={s.categoryModal}>
-              <button className={s.categoryModalBtn}>Edit</button>
-              <button className={s.categoryModalBtn} onClick={handleDelete}>Delete</button>
-            </div>
+          <ItemModal handleDelete={handleDelete}/>
           )}
         </div>
     );

@@ -1,0 +1,22 @@
+.itemModal {
+    border-radius: 3px;
+    position: absolute;
+    right: 25px;
+    display: flex;
+    flex-direction: column;
+    background-color: white;
+    padding: 5px;
+  }
+
+  .itemModalBtn {
+    padding: 3px;
+    text-align: start;
+    background-color: white;
+    transition: all 0.3s ease-in-out;
+  }
+
+  .itemModalBtn:focus,
+  .itemModalBtn:hover {
+    cursor: pointer;
+    color: var(--main-color);
+  }
