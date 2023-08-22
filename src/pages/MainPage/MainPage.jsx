@@ -10,7 +10,7 @@ import s from "./MainPage.module.css";
 import sprite from "../.././assets/icons/sprite.svg";
 
 import { useDispatch } from "react-redux";
-import { setStatusFilter } from "../../redux/filter/filterActions";
+import { update } from "../../redux/filter/filterSlice";
 
 const MainPage = () => {
   const [selectedTransaction, setSelectedTransaction] = useState("Expense");
@@ -52,7 +52,7 @@ const MainPage = () => {
                   <Link to="transactions/income">
                     <button
                       className={s.btnTransaction}
-                      onClick={() => dispatch(setStatusFilter("Income"))}
+                      onClick={() => dispatch(update("Income"))}
                     >
                       <svg width="70" height="70">
                         <use href={sprite + "#icon-income"}></use>
@@ -62,7 +62,7 @@ const MainPage = () => {
                   <Link to="transactions/expense">
                     <button
                       className={s.btnTransaction}
-                      onClick={() => dispatch(setStatusFilter("Expense"))}
+                      onClick={() => dispatch(update("Expense"))}
                     >
                       <svg width="70" height="70">
                         <use href={`${sprite}#icon-expense`}></use>

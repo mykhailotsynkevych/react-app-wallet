@@ -1,11 +1,12 @@
 import { useState } from "react";
 import { Link } from "react-router-dom";
+import { nanoid } from 'nanoid'
 import moment from "moment";
 import s from "./TransactionForm.module.scss";
 
 import { useDispatch } from "react-redux";
-import { addTransaction } from "../../redux/transactions/transactionsActions";
-import { setStatusFilter } from "../../redux/filter/filterActions";
+import { add } from "../../redux/transactions/transactionsSlice";
+import { update } from "../../redux/filter/filterSlice";
 
 // const curDate = new Date().toLocaleDateString().split(".").reverse().join("-");
 const curDate = moment().format("YYYY-MM-DD");
@@ -57,9 +58,9 @@ const TransactionForm = (props) => {
       return alert("Please enter the amount");
     }
 
-    dispatch(
-      addTransaction(transaction, date, time, category, amount, comment)
-    );
+    const newTransaction = {id: nanoid(), transaction, date, time, category, amount, comment}
+
+    dispatch(add(newTransaction));
 
     resetForm();
   };
@@ -92,7 +93,7 @@ const TransactionForm = (props) => {
           value="Expense"
           checked={transaction === "Expense"}
           onChange={handleChange}
-          onClick={() => dispatch(setStatusFilter("Expense"))}
+          onClick={() => dispatch(update("Expense"))}
         />
         <label
           className={`${s.radioLabel} ${s.radio}`}
@@ -108,7 +109,7 @@ const TransactionForm = (props) => {
           value="Income"
           checked={transaction === "Income"}
           onChange={handleChange}
-          onClick={() => dispatch(setStatusFilter("Income"))}
+          onClick={() => dispatch(update("Income"))}
         />
         <label
           className={`${s.radioLabel} ${s.radio}`}

@@ -8,14 +8,14 @@ import { useState } from "react";
 import { useNavigate } from "react-router-dom";
 
 import { useDispatch} from "react-redux";
-import { deleteCategory } from "../../redux/categories/categoriesActions";
+import { remove } from "../../redux/categories/categoriesSlice";
 
 const CategoriesItem = ({categoryEl, props}) => {
     const [openMenuId, setOpenMenuId] = useState(null);
     const navigate = useNavigate();
     const dispatch = useDispatch();
 
-    const handleDelete = () => dispatch(deleteCategory(categoryEl.id));
+    const handleDelete = () => dispatch(remove(categoryEl.id));
     return (
         <div className={s.categoriesItem}>
           <p

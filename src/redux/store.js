@@ -11,9 +11,9 @@ import {
   REGISTER,
 } from 'redux-persist';
 
-import categoriesReducer from "../redux/categories/categoriesReducer";
-import transactionsReducer from "../redux/transactions/transactionsReducer";
-import filterReducer from "../redux/filter/filterReducer";
+import categoriesReducer from "../redux/categories/categoriesSlice";
+import transactionsReducer from "../redux/transactions/transactionsSlice";
+import filterReducer from "../redux/filter/filterSlice";
 
 const categoriesPersistConfig = {
   key: "categories",
