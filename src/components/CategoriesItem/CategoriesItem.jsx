@@ -35,7 +35,7 @@ const CategoriesItem = ({categoryEl, props}) => {
               setOpenMenuId(categoryEl.id);
             }}
           >
-            <img src={moreIcon} alt="icon More" />
+            <img className={s.btnMoreIcon} src={moreIcon} alt="icon More" />
           </button>
           {openMenuId === categoryEl.id && (
           <ItemModal handleDelete={handleDelete}/>
