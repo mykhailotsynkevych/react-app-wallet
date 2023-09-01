@@ -31,8 +31,7 @@ const Header = () => {
     const menuModal = document.querySelectorAll('[data-menu-modal]');
     const dataMenuHandle = document.querySelectorAll('[data-menu-handle]');
     const handleOutsideClick = (e) => {
-      if (isOpenMenu === true && e.target !== dataMenuHandle[0] && e.target !== menuModal[0]) {
-
+      if (isOpenMenu === true && e.target !== dataMenuHandle[0] && !menuModal[0].contains(e.target)) {
         menuToggle(false)
       }
     };
