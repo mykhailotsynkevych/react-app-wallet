@@ -57,12 +57,12 @@
     padding: 2px;
     width: 60px;
     height: 22px;
-    background-color: #F36F25;
+    background-color: rgb(242, 143, 57);
     -webkit-border-radius: 60px;
     -moz-border-radius: 60px;
     -ms-border-radius: 60px;
     -o-border-radius: 60px;
-    border-radius: 60px;
+    border-radius: 3px;
   }
   
   input.checkToggleRoundFlat + label:before,
@@ -77,8 +77,8 @@
     left: 2px;
     bottom: 2px;
     right: 2px;
-    background-color: #F36F25;
-    border-radius: 60px;
+    background-color: rgb(242, 143, 57);
+    border-radius: 3px;
   }
   input.checkToggleRoundFlat + .languageLabel:after {
     top: 4px;
@@ -86,11 +86,11 @@
     bottom: 4px;
     width: 30px;
     background-color: #fff;
-    -webkit-border-radius: 52px;
-    -moz-border-radius: 52px;
-    -ms-border-radius: 52px;
-    -o-border-radius: 52px;
-    border-radius: 52px;
+    -webkit-border-radius: 3px;
+    -moz-border-radius: 3px;
+    -ms-border-radius: 3px;
+    -o-border-radius: 3px;
+    border-radius: 3px;
     -webkit-transition: margin 0.2s;
     -moz-transition: margin 0.2s;
     -o-transition: margin 0.2s;
