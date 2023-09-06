@@ -3,11 +3,11 @@ import { createSlice } from "@reduxjs/toolkit";
 const filterSlice = createSlice({
   name: "filter",
   initialState: {
-    filter: "Expense",
+    value: "Expense",
   },
   reducers: {
     update(state, { payload }) {
-      return {filter: payload}
+      return {value: payload}
     },
   },
 });

@@ -14,6 +14,7 @@ import {
 import categoriesReducer from "../redux/categories/categoriesSlice";
 import transactionsReducer from "../redux/transactions/transactionsSlice";
 import filterReducer from "../redux/filter/filterSlice";
+import langReducer from "../redux/lang/langSlice";
 
 const categoriesPersistConfig = {
   key: "categories",
@@ -33,12 +34,20 @@ const filterPersistConfig = {
   key: "filter",
   version: 1,
   storage,
-  whitelist: ["filter"],
+  whitelist: ["value"],
+};
+
+const langPersistConfig = {
+  key: "lang",
+  version: 1,
+  storage,
+  whitelist: ["value"],
 };
 
 const categoriesPersistedReducer = persistReducer(categoriesPersistConfig, categoriesReducer);
 const transactionsPersistedReducer = persistReducer(transactionsPersistConfig, transactionsReducer);
 const filterPersistedReducer = persistReducer(filterPersistConfig, filterReducer);
+const langPersistedReducer = persistReducer(langPersistConfig, langReducer);
 
 
 export const store = configureStore({
@@ -46,6 +55,7 @@ export const store = configureStore({
     categories: categoriesPersistedReducer,
     transactions: transactionsPersistedReducer,
     filter: filterPersistedReducer,
+    lang: langPersistedReducer 
   },
   middleware: (getDefaultMiddleware) =>
   getDefaultMiddleware({

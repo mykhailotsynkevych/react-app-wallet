@@ -1,12 +1,16 @@
 import { useState } from "react";
+
 import { Link } from "react-router-dom";
-import { nanoid } from 'nanoid'
+import { nanoid } from "nanoid";
 import moment from "moment";
 import s from "./TransactionForm.module.scss";
 
-import { useDispatch } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
 import { add } from "../../redux/transactions/transactionsSlice";
 import { update } from "../../redux/filter/filterSlice";
+
+import langOptions from "../../utils/options/langOptions";
+import { getLanguage } from "../../redux/lang/langSelectors";
 
 // const curDate = new Date().toLocaleDateString().split(".").reverse().join("-");
 const curDate = moment().format("YYYY-MM-DD");
@@ -22,6 +26,8 @@ const TransactionForm = (props) => {
   const [amount, setAmount] = useState("");
   const [comment, setComment] = useState("");
   const dispatch = useDispatch();
+
+  const language = useSelector(getLanguage);
 
   const handleChange = (e) => {
     const { name, value } = e.target;
@@ -58,7 +64,15 @@ const TransactionForm = (props) => {
       return alert("Please enter the amount");
     }
 
-    const newTransaction = {id: nanoid(), transaction, date, time, category, amount, comment}
+    const newTransaction = {
+      id: nanoid(),
+      transaction,
+      date,
+      time,
+      category,
+      amount,
+      comment,
+    };
 
     dispatch(add(newTransaction));
 
@@ -83,7 +97,7 @@ const TransactionForm = (props) => {
       noValidate
       className={s.transactionForm}
     >
-      <p className={s.labelTitle}>Transaction</p>
+      <p className={s.labelTitle}>{langOptions.transaction[language]}</p>
       <div className={s.radioWrapper}>
         <input
           id="formRadioExpense"
@@ -99,7 +113,7 @@ const TransactionForm = (props) => {
           className={`${s.radioLabel} ${s.radio}`}
           htmlFor="formRadioExpense"
         >
-          Expense
+          {langOptions.expense[language]}
         </label>
         <input
           id="formRadioIncome"
@@ -115,13 +129,13 @@ const TransactionForm = (props) => {
           className={`${s.radioLabel} ${s.radio}`}
           htmlFor="formRadioIncome"
         >
-          Income
+          {langOptions.income[language]}
         </label>
       </div>
 
       <div className={s.timeWrapper}>
         <label>
-          Date and Time
+          {langOptions.dateAndTime[language]}
           <input
             type="date"
             name="date"
@@ -143,7 +157,7 @@ const TransactionForm = (props) => {
       </div>
 
       <div className={s.categoryWrapper}>
-        <p className={s.categoryTitle}>Category</p>
+        <p className={s.categoryTitle}>{langOptions.category[language]}</p>
         <Link
           to={`/categories/${transaction.toLowerCase()}`}
           className={s.categoryBtnLink}
@@ -154,7 +168,7 @@ const TransactionForm = (props) => {
       </div>
 
       <label className={s.greybgc}>
-        Amount
+        {langOptions.amount[language]}
         <input
           type="number"
           name="amount"
@@ -171,13 +185,13 @@ const TransactionForm = (props) => {
           type="text"
           name="comment"
           rows="1"
-          placeholder="Comment..."
+          placeholder={langOptions.comment[language]}
           defaultValue={comment}
           onChange={handleChange}
         ></textarea>
       </label>
       <button type="submit" className={s.formBtnSubmit}>
-        Submit
+        {langOptions.add[language]}
       </button>
     </form>
   );

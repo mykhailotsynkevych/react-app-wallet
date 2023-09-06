@@ -4,6 +4,8 @@ import { useToggle } from "../../utils/hooks/useToggle";
 //Components
 import Search from "../Search/Search";
 import Menu from "../Menu/Menu";
+import LangSelect from "../LangSelect/LangSelect";
+
 //Style
 import {
   StyledMainTitle,
@@ -78,6 +80,7 @@ const Header = () => {
         <StyledIconUser>
           <img src={userIcon} alt="userIcon" />
         </StyledIconUser>
+        <LangSelect />
       </StyledHeaderWrapper>
     </>
   );
