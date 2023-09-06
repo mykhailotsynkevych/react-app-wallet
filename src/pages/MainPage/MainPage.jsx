@@ -1,6 +1,7 @@
-import { Link, Route, Routes } from "react-router-dom";
+import { Link, Route, Routes, useMatch } from "react-router-dom";
 import { useState} from "react";
 
+import Header from "../../components/Header/Header";
 import CategoriesPage from "../CategoriesListPage/CategoriesListPage";
 import CategoriesList from "../../components/CategoriesList/CategoriesList";
 
@@ -16,6 +17,7 @@ const MainPage = () => {
   const [selectedTransaction, setSelectedTransaction] = useState("Expense");
   const [selectedCategory, setSelectedCategory] = useState("Food");
   const dispatch = useDispatch();
+  const {params} = useMatch('/*')
 
   const handleSelectTransation = (transaction) => {
     setSelectedTransaction(transaction);
@@ -27,6 +29,7 @@ const MainPage = () => {
 
   return (
     <>
+      <Header title={params['*'] === '' ? "Wallet" : "Category"} />
       <main className={s.mainWrapper}>
         <Routes>
           <Route
@@ -43,7 +46,6 @@ const MainPage = () => {
               <>
                 <TotalBalance />
                 <TransactionForm
-                  // handleTitle={handleTitle}
                   handleSelectTransation={handleSelectTransation}
                   selectedTransaction={selectedTransaction}
                   selectedCategory={selectedCategory}

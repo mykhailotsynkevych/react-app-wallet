@@ -2,6 +2,7 @@ import { useSelector } from "react-redux";
 import { getTransactions } from "../../redux/transactions/transactionsSelectors";
 import { getFilter } from "../../redux/filter/filterSelectors";
 
+import Header from "../Header/Header";
 import TransactionsItem from "../TransactionsItem/TransactionsItem";
 
 const TransactionsList = () => {
@@ -17,13 +18,16 @@ const TransactionsList = () => {
   const filteredTransactions = getFilteredCategories(transactions, filter);
 
   return (
-    <ul>
-      {filteredTransactions.map((transactionEl) => (
-      <li key={transactionEl.id}>
-      <TransactionsItem transactionEl={transactionEl} />
-      </li>
-      ))}
-    </ul>
+    <>
+      <Header title={filter}/>
+      <ul>
+        {filteredTransactions.map((transactionEl) => (
+          <li key={transactionEl.id}>
+            <TransactionsItem transactionEl={transactionEl} />
+          </li>
+        ))}
+      </ul>
+    </>
   );
 };
 

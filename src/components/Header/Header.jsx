@@ -21,7 +21,7 @@ import closeIcon from "../../assets/icons/close.svg";
 import returnArrow from "../../assets/icons/return.svg";
 import menuBurger from "../../assets/icons/menu-burger.svg";
 
-const Header = () => {
+const Header = ({title}) => {
   const [isOpenSearchInput, searchInputToggle] = useToggle(false);
   const [isOpenMenu, menuToggle] = useToggle(false);
   const navigate = useNavigate();
@@ -69,7 +69,7 @@ const Header = () => {
             alt="icon"
           />
         </StyledMenuBurger>
-        <Link to={`/`}><StyledMainTitle>Wallet</StyledMainTitle></Link>
+        <Link to={`/`}><StyledMainTitle>{title}</StyledMainTitle></Link>
         <StyledIconFind
           type="button"
           isOpenSearchInput={isOpenSearchInput}
