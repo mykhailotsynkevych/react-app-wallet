@@ -1,4 +1,12 @@
 import { Link, useNavigate, useLocation } from "react-router-dom";
+import { useEffect } from "react";
+import { useToggle } from "../../utils/hooks/useToggle";
+//Components
+import Search from "../Search/Search";
+import Menu from "../Menu/Menu";
+import LangSelect from "../LangSelect/LangSelect";
+
+//Style
 import {
   StyledMainTitle,
   StyledHeaderWrapper,
@@ -6,20 +14,38 @@ import {
   StyledIconUser,
   StyledIconFind,
 } from "./Header.styled";
+//Icons
 import userIcon from "../../assets/icons/user.svg";
 import findIcon from "../../assets/icons/find.svg";
 import closeIcon from "../../assets/icons/close.svg";
-import { useToggle } from "../../utils/hooks/useToggle";
-import Search from "../Search/Search";
-import Menu from "../Menu/Menu";
 import returnArrow from "../../assets/icons/return.svg";
 import menuBurger from "../../assets/icons/menu-burger.svg";
 
-const Header = () => {
+const Header = ({title}) => {
   const [isOpenSearchInput, searchInputToggle] = useToggle(false);
   const [isOpenMenu, menuToggle] = useToggle(false);
   const navigate = useNavigate();
   const location = useLocation();
+
+
+
+  useEffect(() => {
+    const menuModal = document.querySelectorAll('[data-menu-modal]');
+    const dataMenuHandle = document.querySelectorAll('[data-menu-handle]');
+    const handleOutsideClick = (e) => {
+      if (isOpenMenu === true && e.target !== dataMenuHandle[0] && !menuModal[0].contains(e.target)) {
+        menuToggle(false)
+      }
+    };
+  
+    if (isOpenMenu) {
+      document.addEventListener('click', handleOutsideClick);
+    }
+  
+    return () => {
+      document.removeEventListener('click', handleOutsideClick);
+    };
+  }, [isOpenMenu]);
 
   const handleToggleIcon = () => {
     location.pathname === "/" ? menuToggle() : navigate(-1);
@@ -28,7 +54,7 @@ const Header = () => {
   return (
     <>
       <Search isOpenSearchInput={isOpenSearchInput} />
-      <Menu isOpenMenu={isOpenMenu} toggleMenu={menuToggle} />
+      <Menu isOpenMenu={isOpenMenu} />
       <StyledHeaderWrapper>
         <StyledMenuBurger
           type="button"
@@ -38,11 +64,12 @@ const Header = () => {
           }}
         >
           <img
+            data-menu-handle
             src={location.pathname === "/" ? menuBurger : returnArrow}
             alt="icon"
           />
         </StyledMenuBurger>
-        <Link to={`/`}><StyledMainTitle>Wallet</StyledMainTitle></Link>
+        <Link to={`/`}><StyledMainTitle>{title}</StyledMainTitle></Link>
         <StyledIconFind
           type="button"
           isOpenSearchInput={isOpenSearchInput}
@@ -53,6 +80,7 @@ const Header = () => {
         <StyledIconUser>
           <img src={userIcon} alt="userIcon" />
         </StyledIconUser>
+        <LangSelect />
       </StyledHeaderWrapper>
     </>
   );

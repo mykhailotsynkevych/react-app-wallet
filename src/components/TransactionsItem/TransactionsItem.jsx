@@ -5,13 +5,13 @@ import { useState } from "react";
 import ItemModal from "../ItemModal/ItemModal";
 
 import { useDispatch } from "react-redux";
-import { deleteTransaction } from "../../redux/transactions/transactionsActions";
+import { remove } from "../../redux/transactions/transactionsSlice";
 
 const TransactionsItem = ({ transactionEl }) => {
   const [openMenuId, setOpenMenuId] = useState(null);
   const dispatch = useDispatch();
 
-  const handleDelete = () => dispatch(deleteTransaction(transactionEl.id));
+  const handleDelete = () => dispatch(remove(transactionEl.id));
 
   return (
     <div className={s.transactionEl}>
@@ -47,7 +47,7 @@ const TransactionsItem = ({ transactionEl }) => {
         <img src={moreIcon} alt="icon More" />
       </button>
       {openMenuId === transactionEl.id && (
-        <ItemModal handleDelete={handleDelete} />
+        <ItemModal transactionId={transactionEl.id} handleDelete={handleDelete} />
       )}
     </div>
   );

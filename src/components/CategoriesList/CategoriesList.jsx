@@ -6,7 +6,7 @@ import { useSelector } from "react-redux";
 import { getCategories } from "../../redux/categories/categoriesSelectors";
 import { getFilter } from "../../redux/filter/filterSelectors";
 
-const CategoriesList = (props) => {
+  const CategoriesList = ({handleSelected}) => {
   const categories = useSelector(getCategories);
   const filter = useSelector(getFilter);
 
@@ -20,7 +20,7 @@ const CategoriesList = (props) => {
     <ul className={s.categoriesList}>
       {filteredCategories.map((categoryEl) => (
         <li key={categoryEl.id}>
-          <CategoriesItem categoryEl={categoryEl} props={props} />
+          <CategoriesItem categoryEl={categoryEl} handleSelected={handleSelected} />
         </li>
       ))}
     </ul>

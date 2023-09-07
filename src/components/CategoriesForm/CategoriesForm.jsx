@@ -1,11 +1,12 @@
 import { useState } from "react";
+import { nanoid } from 'nanoid'
 
 import s from "./CategoriesForm.module.css";
 
 import addIcon from "../../assets/icons/add.svg";
 
 import { useDispatch,useSelector } from "react-redux";
-import { addCategory } from "../../redux/categories/categoriesActions";
+import { add } from "../../redux/categories/categoriesSlice";
 import { getFilter } from "../../redux/filter/filterSelectors";
 
 const CategoriesForm = () => {
@@ -25,7 +26,8 @@ const CategoriesForm = () => {
       return alert("Please enter category");
     }
 
-    dispatch(addCategory(filter, nameCategory));
+    const newCategory = {id: nanoid(), transaction: filter, nameCategory}
+    dispatch(add(newCategory));
     setNameCategory("");
   };
 

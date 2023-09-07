@@ -1,27 +1,23 @@
+//Styles&Icons
 import s from "./CategoriesItem.module.css";
-import moreIcon from "../../assets/icons/more.svg";
-import ItemModal from "../ItemModal/ItemModal";
-
-import { useState } from "react";
-
-//Router
+import deleteIcon from "../../assets/icons/delete.svg";
+//Routes
 import { useNavigate } from "react-router-dom";
-
+//Redux Toolkit
 import { useDispatch} from "react-redux";
-import { deleteCategory } from "../../redux/categories/categoriesActions";
+import { remove } from "../../redux/categories/categoriesSlice";
 
-const CategoriesItem = ({categoryEl, props}) => {
-    const [openMenuId, setOpenMenuId] = useState(null);
+const CategoriesItem = ({categoryEl, handleSelected}) => {
     const navigate = useNavigate();
     const dispatch = useDispatch();
 
-    const handleDelete = () => dispatch(deleteCategory(categoryEl.id));
+    const handleDelete = () => dispatch(remove(categoryEl.id));
     return (
         <div className={s.categoriesItem}>
           <p
             className={s.categoriesItemName}
             onClick={() => {
-              props.handleSelectCategory(categoryEl.nameCategory);
+              handleSelected("category", categoryEl.nameCategory);
               navigate(-1);
             }}
           >
@@ -32,14 +28,11 @@ const CategoriesItem = ({categoryEl, props}) => {
             type="button"
             className={s.btnMore}
             onClick={() => {
-              setOpenMenuId(categoryEl.id);
+              handleDelete(categoryEl.id);
             }}
           >
-            <img src={moreIcon} alt="icon More" />
+            <img className={s.btnMoreIcon} src={deleteIcon} alt="delete icon" />
           </button>
-          {openMenuId === categoryEl.id && (
-          <ItemModal handleDelete={handleDelete}/>
-          )}
         </div>
     );
   };

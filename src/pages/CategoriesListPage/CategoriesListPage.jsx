@@ -3,10 +3,10 @@ import CategoriesForm from "../../components/CategoriesForm/CategoriesForm";
 
 import s from "./CategoriesListPage.module.css";
 
-const CategoriesListPage = (props) => {
+const CategoriesListPage = ({handleSelected}) => {
   return (
     <div className={s.categoriesWrapper}>
-      <CategoriesList handleSelectCategory={props.handleSelectCategory}/>
+      <CategoriesList handleSelected={handleSelected}/>
       <CategoriesForm/>
     </div>
   );

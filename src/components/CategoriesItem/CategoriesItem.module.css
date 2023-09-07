@@ -14,12 +14,22 @@
       cursor: pointer;
       color: var(--main-color);
     }
+
+    .categoriesItemName {
+      width: 90%;
+      text-align: start;
+    }
     
     .btnMore {
       background-color: inherit;
-      width: 20px;
+      width: 10%;
       padding: 0px;
-      position: relative;
+      display: flex;
+      justify-content: flex-end;
+    }
+
+    .btnMoreIcon {
+      width: 20px;
     }
 
     .btnMore:focus,
