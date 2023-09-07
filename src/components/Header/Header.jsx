@@ -45,7 +45,7 @@ const Header = ({title}) => {
     return () => {
       document.removeEventListener('click', handleOutsideClick);
     };
-  }, [isOpenMenu]);
+  }, [isOpenMenu, menuToggle]);
 
   const handleToggleIcon = () => {
     location.pathname === "/" ? menuToggle() : navigate(-1);

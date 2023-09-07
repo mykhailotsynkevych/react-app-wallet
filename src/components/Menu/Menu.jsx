@@ -4,7 +4,6 @@ import {
   StyledMenuLabel,
   StyledMenuSwitchInput,
   StyledMenuSwitchSlider,
-  StyledMenuSwitchLanguage,
 } from "./Menu.styled";
 import s from "./Menu.module.css";
 
