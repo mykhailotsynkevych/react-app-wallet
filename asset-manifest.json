@@ -1,15 +1,20 @@
 {
   "files": {
     "main.css": "/react-app-wallet/static/css/main.a8fe8bac.css",
-    "main.js": "/react-app-wallet/static/js/main.439373d5.js",
-    "static/css/521.f8e1a08a.chunk.css": "/react-app-wallet/static/css/521.f8e1a08a.chunk.css",
-    "static/js/521.feb68ed2.chunk.js": "/react-app-wallet/static/js/521.feb68ed2.chunk.js",
-    "static/css/906.6979b361.chunk.css": "/react-app-wallet/static/css/906.6979b361.chunk.css",
-    "static/js/906.25e7cb17.chunk.js": "/react-app-wallet/static/js/906.25e7cb17.chunk.js",
-    "static/js/426.b4c8d14b.chunk.js": "/react-app-wallet/static/js/426.b4c8d14b.chunk.js",
+    "main.js": "/react-app-wallet/static/js/main.cda3d9a8.js",
+    "static/css/555.ea1444f0.chunk.css": "/react-app-wallet/static/css/555.ea1444f0.chunk.css",
+    "static/js/555.f4fe2398.chunk.js": "/react-app-wallet/static/js/555.f4fe2398.chunk.js",
+    "static/css/798.671ee1fb.chunk.css": "/react-app-wallet/static/css/798.671ee1fb.chunk.css",
+    "static/js/798.d91ce339.chunk.js": "/react-app-wallet/static/js/798.d91ce339.chunk.js",
+    "static/css/617.efcadfdf.chunk.css": "/react-app-wallet/static/css/617.efcadfdf.chunk.css",
+    "static/js/617.a8eab042.chunk.js": "/react-app-wallet/static/js/617.a8eab042.chunk.js",
+    "static/js/479.bf81295e.chunk.js": "/react-app-wallet/static/js/479.bf81295e.chunk.js",
+    "static/js/156.d7142fc5.chunk.js": "/react-app-wallet/static/js/156.d7142fc5.chunk.js",
     "static/media/sprite.svg": "/react-app-wallet/static/media/sprite.47bce9a41b1c29fc3b8f7380c2b51fb4.svg",
     "static/media/find.svg": "/react-app-wallet/static/media/find.5a4337c82c7442ca883146f90a9dcc3b.svg",
     "index.html": "/react-app-wallet/index.html",
+    "static/media/delete.svg": "/react-app-wallet/static/media/delete.ea3b1b0178e40e5ff7816d79b51de911.svg",
+    "static/media/check.svg": "/react-app-wallet/static/media/check.6bb0e2b89b79a1fec47707093e293642.svg",
     "static/media/user.svg": "/react-app-wallet/static/media/user.cc64d841d11a890b28b025863ae65853.svg",
     "static/media/close.svg": "/react-app-wallet/static/media/close.ae8de706cb336e0579adee6a13a9046e.svg",
     "static/media/return.svg": "/react-app-wallet/static/media/return.92cae9c734e9aa85b78968ce6deab52f.svg",
@@ -17,15 +22,18 @@
     "static/media/menu-burger.svg": "/react-app-wallet/static/media/menu-burger.9dd69ef40c2405b1a43b4909f78f8450.svg",
     "static/media/add.svg": "/react-app-wallet/static/media/add.7580885786ef6415dc335741331ec6b6.svg",
     "main.a8fe8bac.css.map": "/react-app-wallet/static/css/main.a8fe8bac.css.map",
-    "main.439373d5.js.map": "/react-app-wallet/static/js/main.439373d5.js.map",
-    "521.f8e1a08a.chunk.css.map": "/react-app-wallet/static/css/521.f8e1a08a.chunk.css.map",
-    "521.feb68ed2.chunk.js.map": "/react-app-wallet/static/js/521.feb68ed2.chunk.js.map",
-    "906.6979b361.chunk.css.map": "/react-app-wallet/static/css/906.6979b361.chunk.css.map",
-    "906.25e7cb17.chunk.js.map": "/react-app-wallet/static/js/906.25e7cb17.chunk.js.map",
-    "426.b4c8d14b.chunk.js.map": "/react-app-wallet/static/js/426.b4c8d14b.chunk.js.map"
+    "main.cda3d9a8.js.map": "/react-app-wallet/static/js/main.cda3d9a8.js.map",
+    "555.ea1444f0.chunk.css.map": "/react-app-wallet/static/css/555.ea1444f0.chunk.css.map",
+    "555.f4fe2398.chunk.js.map": "/react-app-wallet/static/js/555.f4fe2398.chunk.js.map",
+    "798.671ee1fb.chunk.css.map": "/react-app-wallet/static/css/798.671ee1fb.chunk.css.map",
+    "798.d91ce339.chunk.js.map": "/react-app-wallet/static/js/798.d91ce339.chunk.js.map",
+    "617.efcadfdf.chunk.css.map": "/react-app-wallet/static/css/617.efcadfdf.chunk.css.map",
+    "617.a8eab042.chunk.js.map": "/react-app-wallet/static/js/617.a8eab042.chunk.js.map",
+    "479.bf81295e.chunk.js.map": "/react-app-wallet/static/js/479.bf81295e.chunk.js.map",
+    "156.d7142fc5.chunk.js.map": "/react-app-wallet/static/js/156.d7142fc5.chunk.js.map"
   },
   "entrypoints": [
     "static/css/main.a8fe8bac.css",
-    "static/js/main.439373d5.js"
+    "static/js/main.cda3d9a8.js"
   ]
 }
