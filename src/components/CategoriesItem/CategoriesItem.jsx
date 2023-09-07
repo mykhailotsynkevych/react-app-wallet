@@ -1,4 +1,3 @@
-import { useState } from "react";
 //Styles&Icons
 import s from "./CategoriesItem.module.css";
 import deleteIcon from "../../assets/icons/delete.svg";
@@ -8,8 +7,7 @@ import { useNavigate } from "react-router-dom";
 import { useDispatch} from "react-redux";
 import { remove } from "../../redux/categories/categoriesSlice";
 
-const CategoriesItem = ({categoryEl, props}) => {
-    const [openMenuId, setOpenMenuId] = useState(null);
+const CategoriesItem = ({categoryEl, handleSelected}) => {
     const navigate = useNavigate();
     const dispatch = useDispatch();
 
@@ -19,7 +17,7 @@ const CategoriesItem = ({categoryEl, props}) => {
           <p
             className={s.categoriesItemName}
             onClick={() => {
-              props.handleSelectCategory(categoryEl.nameCategory);
+              handleSelected("category", categoryEl.nameCategory);
               navigate(-1);
             }}
           >
@@ -33,7 +31,7 @@ const CategoriesItem = ({categoryEl, props}) => {
               handleDelete(categoryEl.id);
             }}
           >
-            <img className={s.btnMoreIcon} src={deleteIcon} alt="icon More" />
+            <img className={s.btnMoreIcon} src={deleteIcon} alt="delete icon" />
           </button>
         </div>
     );

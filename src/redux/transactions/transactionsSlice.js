@@ -11,9 +11,13 @@ const transactionsSlice = createSlice({
     },
     remove(state, { payload }) {
       return {transactions: state.transactions.filter((transactionEl) => transactionEl.id !== payload)}
+    },
+    edit(state, { payload }) {
+      state.transactions = state.transactions.map((el) => 
+      el.id !== payload.id ? el : {...payload})
     }
   },
 });
 
-export const { add, remove } = transactionsSlice.actions;
+export const { add, remove, edit } = transactionsSlice.actions;
 export default transactionsSlice.reducer;

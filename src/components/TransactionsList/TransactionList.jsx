@@ -4,6 +4,7 @@ import { getFilter } from "../../redux/filter/filterSelectors";
 
 import Header from "../Header/Header";
 import TransactionsItem from "../TransactionsItem/TransactionsItem";
+import s from "./TransactionsList.module.css";
 
 const TransactionsList = () => {
   const transactions = useSelector(getTransactions);
@@ -20,7 +21,7 @@ const TransactionsList = () => {
   return (
     <>
       <Header title={filter}/>
-      <ul>
+      <ul className={s.transactionsList}>
         {filteredTransactions.map((transactionEl) => (
           <li key={transactionEl.id}>
             <TransactionsItem transactionEl={transactionEl} />

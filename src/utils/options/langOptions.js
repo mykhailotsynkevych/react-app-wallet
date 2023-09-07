@@ -26,10 +26,6 @@ const langOptions = {
   comment: {
     de: "Kommentar",
     en: "comment"
-  },
-  add: {
-    de: "hinzufügen",
-    en: "add"
   }
 };
 

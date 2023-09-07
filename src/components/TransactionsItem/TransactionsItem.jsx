@@ -47,7 +47,7 @@ const TransactionsItem = ({ transactionEl }) => {
         <img src={moreIcon} alt="icon More" />
       </button>
       {openMenuId === transactionEl.id && (
-        <ItemModal handleDelete={handleDelete} />
+        <ItemModal transactionId={transactionEl.id} handleDelete={handleDelete} />
       )}
     </div>
   );
