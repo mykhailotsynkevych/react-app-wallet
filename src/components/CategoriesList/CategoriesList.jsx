@@ -4,11 +4,14 @@ import CategoriesItem from "../CategoriesItem/CategoriesItem";
 //Redux
 import { useSelector } from "react-redux";
 import { getCategories } from "../../redux/categories/categoriesSelectors";
+import { getCategoriesApi } from "../../utils/api/mockapi";
 import { getFilter } from "../../redux/filter/filterSelectors";
 
   const CategoriesList = ({handleSelected}) => {
   const categories = useSelector(getCategories);
   const filter = useSelector(getFilter);
+
+  getCategoriesApi();
 
   const getFilteredCategories = (categories, filter) => {
     return categories.filter(({ transaction }) => transaction.includes(filter));
