@@ -6,5 +6,5 @@ export const getCategoriesApi = async () => {
   const response = await axios.get(
     '/categories'
   );
-  return console.log(response.data);
+  return response.data;
 };

@@ -1,19 +1,21 @@
 import { createSlice } from "@reduxjs/toolkit";
+import { getCategories } from "./categoriesOperations";
 
-const initialCategoriesState = [
-  //Expense
-  { id: "1", transaction: "Expense", nameCategory: "Food" },
-  { id: "2", transaction: "Expense", nameCategory: "Car" },
-  { id: "3", transaction: "Expense", nameCategory: "House" },
-  //Income
-  { id: "4", transaction: "Income", nameCategory: "Work" },
-  { id: "5", transaction: "Income", nameCategory: "Other" },
-];
+const handlePending = state => {
+  state.isLoading = true;
+};
+
+const handleRejected = (state, action) => {
+  state.isLoading = false;
+  state.error = action.payload;
+};
 
 const categoriesSlice = createSlice({
   name: "categories",
   initialState: {
-    categories: initialCategoriesState,
+    categories: [],
+    isLoading: false,
+    error: null,
   },
   reducers: {
     add(state, { payload }) {
@@ -23,6 +25,16 @@ const categoriesSlice = createSlice({
       return {categories: state.categories.filter((category) => category.id !== payload)}
     }
   },
+  extraReducers: {
+    //get
+    [getCategories.pending]: handlePending,
+    [getCategories.fulfilled](state, action) {
+      state.isLoading = false;
+      state.error = null;
+      state.categories = action.payload;
+    },
+    [getCategories.rejected]: handleRejected,
+  }
 });
 
 export const { add, remove } = categoriesSlice.actions;
