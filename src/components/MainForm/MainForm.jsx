@@ -1,5 +1,4 @@
 import moment from "moment";
-import { nanoid } from "nanoid";
 import { useState } from "react";
 import { Route, Routes } from "react-router-dom";
 
@@ -7,7 +6,7 @@ import CategoriesList from "../CategoriesList/CategoriesList";
 import TransactionForm from "../TransactionForm/TransactionForm";
 import CategoriesPage from "../../pages/CategoriesListPage/CategoriesListPage";
 
-import { add } from "../../redux/transactions/transactionsSlice";
+import { addTransactions } from "../../redux/transactions/transactionsOperations";
 import { useDispatch} from "react-redux";
 
 const curDate = moment().format("YYYY-MM-DD");//new Date().toLocaleDateString().split(".").reverse().join("-");
@@ -27,8 +26,7 @@ const MainForm = () => {
   const dispatch = useDispatch();
 
   const handleAddDispatch = () => {
-    const id = nanoid();
-    dispatch(add({ id, ...form }));
+    dispatch(addTransactions(form));
       setForm(initialForm);
   };
 
