@@ -1,4 +1,4 @@
-import { useDispatch } from 'react-redux';
+import { useDispatch, useSelector } from 'react-redux';
 import { useEffect } from 'react';
 
 import { getCategories } from '../../redux/categories/categoriesOperations';
@@ -13,7 +13,7 @@ const CategoriesListPage = ({handleSelected}) => {
 
   useEffect(() => {
     dispatch(getCategories());
-  });
+  }, [dispatch]);
   
   return (
     <div className={s.categoriesWrapper}>

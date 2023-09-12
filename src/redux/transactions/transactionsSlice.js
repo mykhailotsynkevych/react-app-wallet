@@ -22,20 +22,6 @@ const transactionsSlice = createSlice({
     isLoading: false,
     error: null,
   },
-  reducers: {
-    remove(state, { payload }) {
-      return {
-        transactions: state.transactions.filter(
-          (transactionEl) => transactionEl.id !== payload
-        ),
-      };
-    },
-    edit(state, { payload }) {
-      state.transactions = state.transactions.map((el) =>
-        el.id !== payload.id ? el : { ...payload }
-      );
-    },
-  },
   extraReducers: {
     //get
     [getTransactions.pending]: handlePending,
@@ -80,5 +66,4 @@ const transactionsSlice = createSlice({
   },
 });
 
-export const { remove, edit } = transactionsSlice.actions;
 export default transactionsSlice.reducer;

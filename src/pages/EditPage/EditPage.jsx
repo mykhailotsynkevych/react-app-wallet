@@ -1,7 +1,7 @@
 import { useSelector, useDispatch } from "react-redux";
 import { useState } from "react";
 import { useParams, useNavigate } from "react-router-dom";
-import { getTransactions } from "../../redux/transactions/transactionsSelectors";
+import { selectTransactions } from "../../redux/transactions/transactionsSelectors";
 import Header from "../../components/Header/Header";
 import TransactionForm from "../../components/TransactionForm/TransactionForm";
 import s from "./EditPage.module.css";
@@ -9,7 +9,7 @@ import { editTransactions } from "../../redux/transactions/transactionsOperation
 
 const EditPage = () => {
   const { transactionId } = useParams();
-  const transactionList = useSelector(getTransactions);
+  const transactionList = useSelector(selectTransactions);
   const editTransaction = transactionList.find(
     (transactionEl) => transactionEl.id === transactionId
   );
