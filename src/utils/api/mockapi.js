@@ -32,6 +32,12 @@ export const addTransactionsApi = async (transactionEl) => {
 
 export const deleteTransactionsApi = async id  => {
   await axios.delete(`/transactions/${id}`);
-
   return id;
+};
+
+export const editTransactionsApi = async transactionEl  => {
+  const response = await axios.put(`/transactions/${transactionEl.id}`, {
+    ...transactionEl
+  });
+  return response.data;
 };

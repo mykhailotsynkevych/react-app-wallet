@@ -1,7 +1,12 @@
 import { createSlice } from "@reduxjs/toolkit";
-import { getTransactions, addTransactions, deleteTransactions } from "./transactionsOperations";
+import {
+  getTransactions,
+  addTransactions,
+  deleteTransactions,
+  editTransactions,
+} from "./transactionsOperations";
 
-const handlePending = state => {
+const handlePending = (state) => {
   state.isLoading = true;
 };
 
@@ -18,16 +23,18 @@ const transactionsSlice = createSlice({
     error: null,
   },
   reducers: {
-    add(state, { payload }) {
-      return {transactions: [...state.transactions, payload]}
-    },
     remove(state, { payload }) {
-      return {transactions: state.transactions.filter((transactionEl) => transactionEl.id !== payload)}
+      return {
+        transactions: state.transactions.filter(
+          (transactionEl) => transactionEl.id !== payload
+        ),
+      };
     },
     edit(state, { payload }) {
-      state.transactions = state.transactions.map((el) => 
-      el.id !== payload.id ? el : {...payload})
-    }
+      state.transactions = state.transactions.map((el) =>
+        el.id !== payload.id ? el : { ...payload }
+      );
+    },
   },
   extraReducers: {
     //get
@@ -54,13 +61,24 @@ const transactionsSlice = createSlice({
       state.isLoading = false;
       state.error = null;
       const index = state.transactions.findIndex(
-        task => task.id === action.payload.id
+        (task) => task.id === action.payload.id
       );
       state.transactions.splice(index, 1);
     },
     [deleteTransactions.rejected]: handleRejected,
-  }
+
+    //edit
+    [editTransactions.pending]: handlePending,
+    [editTransactions.fulfilled](state, action) {
+      state.isLoading = false;
+      state.error = null;
+      state.transactions = state.transactions.map((el) =>
+      el.id !== action.payload.id ? el : { ...action.payload }
+    );
+    },
+    [editTransactions.rejected]: handleRejected,
+  },
 });
 
-export const { add, remove, edit } = transactionsSlice.actions;
+export const { remove, edit } = transactionsSlice.actions;
 export default transactionsSlice.reducer;

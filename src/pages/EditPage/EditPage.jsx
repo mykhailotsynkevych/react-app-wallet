@@ -5,7 +5,7 @@ import { getTransactions } from "../../redux/transactions/transactionsSelectors"
 import Header from "../../components/Header/Header";
 import TransactionForm from "../../components/TransactionForm/TransactionForm";
 import s from "./EditPage.module.css";
-import { edit } from "../../redux/transactions/transactionsSlice";
+import { editTransactions } from "../../redux/transactions/transactionsOperations";
 
 const EditPage = () => {
   const { transactionId } = useParams();
@@ -17,11 +17,8 @@ const EditPage = () => {
   const dispatch = useDispatch();
   const navigate = useNavigate();
 
-
-
-
   const handleEditDispatch = () => {
-    dispatch(edit({ ...transactionToEdit }));
+    dispatch(editTransactions(transactionToEdit));
     navigate(-1);
   };
   return (
