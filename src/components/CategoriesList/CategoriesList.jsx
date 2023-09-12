@@ -3,11 +3,11 @@ import CategoriesItem from "../CategoriesItem/CategoriesItem";
 
 //Redux
 import { useSelector } from "react-redux";
-import { getCategories } from "../../redux/categories/categoriesSelectors";
+import { selectCategories } from "../../redux/categories/categoriesSelectors";
 import { getFilter } from "../../redux/filter/filterSelectors";
 
   const CategoriesList = ({handleSelected}) => {
-  const categories = useSelector(getCategories);
+  const categories = useSelector(selectCategories);
   const filter = useSelector(getFilter);
 
   const getFilteredCategories = (categories, filter) => {

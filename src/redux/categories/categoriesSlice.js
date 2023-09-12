@@ -1,5 +1,5 @@
 import { createSlice } from "@reduxjs/toolkit";
-import { getCategories } from "./categoriesOperations";
+import { getCategories, addCategories, deleteCategories } from "./categoriesOperations";
 
 const handlePending = state => {
   state.isLoading = true;
@@ -18,9 +18,6 @@ const categoriesSlice = createSlice({
     error: null,
   },
   reducers: {
-    add(state, { payload }) {
-      return {categories: [...state.categories, payload]}
-    },
     remove(state, { payload }) {
       return {categories: state.categories.filter((category) => category.id !== payload)}
     }
@@ -34,10 +31,30 @@ const categoriesSlice = createSlice({
       state.categories = action.payload;
     },
     [getCategories.rejected]: handleRejected,
+
+    //add
+    [addCategories.pending]: handlePending,
+    [addCategories.fulfilled](state, action) {
+      state.isLoading = false;
+      state.error = null;
+      state.categories.push(action.payload);
+    },
+    [addCategories.rejected]: handleRejected,
+
+    //delete
+    [deleteCategories.pending]: handlePending,
+    [deleteCategories.fulfilled](state, action) {
+      state.isLoading = false;
+      state.error = null;
+      const index = state.categories.findIndex(
+        task => task.id === action.payload.id
+      );
+      state.categories.splice(index, 1);
+    },
+    [deleteCategories.rejected]: handleRejected,
   }
 });
 
-export const { add, remove } = categoriesSlice.actions;
 export default categoriesSlice.reducer;
 
 

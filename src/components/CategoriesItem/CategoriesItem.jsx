@@ -5,13 +5,13 @@ import deleteIcon from "../../assets/icons/delete.svg";
 import { useNavigate } from "react-router-dom";
 //Redux Toolkit
 import { useDispatch} from "react-redux";
-import { remove } from "../../redux/categories/categoriesSlice";
+import { deleteCategories } from "../../redux/categories/categoriesOperations";
 
 const CategoriesItem = ({categoryEl, handleSelected}) => {
     const navigate = useNavigate();
     const dispatch = useDispatch();
 
-    const handleDelete = () => dispatch(remove(categoryEl.id));
+    const handleDelete = () => dispatch(deleteCategories(categoryEl.id));
     return (
         <div className={s.categoriesItem}>
           <p
