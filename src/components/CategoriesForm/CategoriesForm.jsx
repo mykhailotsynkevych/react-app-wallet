@@ -7,12 +7,12 @@ import addIcon from "../../assets/icons/add.svg";
 
 import { useDispatch,useSelector } from "react-redux";
 import { addCategories } from "../../redux/categories/categoriesOperations";
-import { getFilter } from "../../redux/filter/filterSelectors";
+import { selectFilter } from "../../redux/filter/filterSelectors";
 
 const CategoriesForm = () => {
   const [nameCategory, setNameCategory] = useState("");
   const dispatch = useDispatch();
-  const filter = useSelector(getFilter);
+  const filter = useSelector(selectFilter);
 
   const handleChange = (e) => {
     const { value } = e.target;

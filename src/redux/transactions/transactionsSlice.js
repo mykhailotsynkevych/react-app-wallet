@@ -10,9 +10,9 @@ const handlePending = (state) => {
   state.isLoading = true;
 };
 
-const handleRejected = (state, action) => {
+const handleRejected = (state, {payload}) => {
   state.isLoading = false;
-  state.error = action.payload;
+  state.error = payload;
 };
 
 const transactionsSlice = createSlice({
@@ -25,29 +25,29 @@ const transactionsSlice = createSlice({
   extraReducers: {
     //get
     [getTransactions.pending]: handlePending,
-    [getTransactions.fulfilled](state, action) {
+    [getTransactions.fulfilled](state, {payload}) {
       state.isLoading = false;
       state.error = null;
-      state.transactions = action.payload;
+      state.transactions = payload;
     },
     [getTransactions.rejected]: handleRejected,
 
     //add
     [addTransactions.pending]: handlePending,
-    [addTransactions.fulfilled](state, action) {
+    [addTransactions.fulfilled](state, {payload}) {
       state.isLoading = false;
       state.error = null;
-      state.transactions.push(action.payload);
+      state.transactions.push(payload);
     },
     [addTransactions.rejected]: handleRejected,
 
     //delete
     [deleteTransactions.pending]: handlePending,
-    [deleteTransactions.fulfilled](state, action) {
+    [deleteTransactions.fulfilled](state, {payload}) {
       state.isLoading = false;
       state.error = null;
       const index = state.transactions.findIndex(
-        (task) => task.id === action.payload.id
+        (task) => task.id === payload.id
       );
       state.transactions.splice(index, 1);
     },
@@ -55,11 +55,11 @@ const transactionsSlice = createSlice({
 
     //edit
     [editTransactions.pending]: handlePending,
-    [editTransactions.fulfilled](state, action) {
+    [editTransactions.fulfilled](state, {payload}) {
       state.isLoading = false;
       state.error = null;
       state.transactions = state.transactions.map((el) =>
-      el.id !== action.payload.id ? el : { ...action.payload }
+      el.id !== payload.id ? el : { ...payload }
     );
     },
     [editTransactions.rejected]: handleRejected,

@@ -5,9 +5,9 @@ const handlePending = state => {
   state.isLoading = true;
 };
 
-const handleRejected = (state, action) => {
+const handleRejected = (state, {payload}) => {
   state.isLoading = false;
-  state.error = action.payload;
+  state.error = payload;
 };
 
 const categoriesSlice = createSlice({
@@ -17,37 +17,32 @@ const categoriesSlice = createSlice({
     isLoading: false,
     error: null,
   },
-  reducers: {
-    remove(state, { payload }) {
-      return {categories: state.categories.filter((category) => category.id !== payload)}
-    }
-  },
   extraReducers: {
     //get
     [getCategories.pending]: handlePending,
-    [getCategories.fulfilled](state, action) {
+    [getCategories.fulfilled](state, {payload}) {
       state.isLoading = false;
       state.error = null;
-      state.categories = action.payload;
+      state.categories = payload;
     },
     [getCategories.rejected]: handleRejected,
 
     //add
     [addCategories.pending]: handlePending,
-    [addCategories.fulfilled](state, action) {
+    [addCategories.fulfilled](state, {payload}) {
       state.isLoading = false;
       state.error = null;
-      state.categories.push(action.payload);
+      state.categories.push(payload);
     },
     [addCategories.rejected]: handleRejected,
 
     //delete
     [deleteCategories.pending]: handlePending,
-    [deleteCategories.fulfilled](state, action) {
+    [deleteCategories.fulfilled](state, {payload}) {
       state.isLoading = false;
       state.error = null;
       const index = state.categories.findIndex(
-        task => task.id === action.payload.id
+        task => task.id === payload.id
       );
       state.categories.splice(index, 1);
     },

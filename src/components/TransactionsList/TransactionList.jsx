@@ -1,7 +1,7 @@
 import { useSelector, useDispatch } from "react-redux";
 import { selectTransactions } from "../../redux/transactions/transactionsSelectors";
 import { useEffect } from 'react';
-import { getFilter } from "../../redux/filter/filterSelectors";
+import { selectFilter } from "../../redux/filter/filterSelectors";
 
 
 import Header from "../Header/Header";
@@ -12,7 +12,7 @@ import { getTransactions } from '../../redux/transactions/transactionsOperations
 
 const TransactionsList = () => {
   const transactions = useSelector(selectTransactions);
-  const filter = useSelector(getFilter);
+  const filter = useSelector(selectFilter);
 
   const dispatch = useDispatch();
 
