@@ -1,10 +1,10 @@
 import { useDispatch, useSelector } from "react-redux";
-import { getLanguage } from "../../redux/lang/langSelectors";
+import { selectLang } from "../../redux/lang/langSelectors";
 import { changeLang } from "../../redux/lang/langSlice";
 import s from "./LangSelect.module.css";
 
 const LangSelect = () => {
-  const language = useSelector(getLanguage);
+  const language = useSelector(selectLang);
   const dispatch = useDispatch();
 
   const handleChange = e => dispatch(changeLang(e.target.value))

@@ -1,14 +1,25 @@
-import { useSelector } from "react-redux";
-import { getTransactions } from "../../redux/transactions/transactionsSelectors";
-import { getFilter } from "../../redux/filter/filterSelectors";
+import { useSelector, useDispatch } from "react-redux";
+import { selectTransactions, selectHasTransactions } from "../../redux/transactions/transactionsSelectors";
+import { useEffect } from 'react';
+import { selectFilter } from "../../redux/filter/filterSelectors";
+
 
 import Header from "../Header/Header";
 import TransactionsItem from "../TransactionsItem/TransactionsItem";
 import s from "./TransactionsList.module.css";
 
+import { getTransactions } from '../../redux/transactions/transactionsOperations';
+
 const TransactionsList = () => {
-  const transactions = useSelector(getTransactions);
-  const filter = useSelector(getFilter);
+  const transactions = useSelector(selectTransactions);
+  const hasTransactions = useSelector(selectHasTransactions);
+  const filter = useSelector(selectFilter);
+
+  const dispatch = useDispatch();
+
+  useEffect(() => {
+   if(!hasTransactions) dispatch(getTransactions());
+  }, [dispatch, hasTransactions]);
 
   const getFilteredCategories = (transactions, filter) => {
     return transactions.filter(({ transaction }) =>

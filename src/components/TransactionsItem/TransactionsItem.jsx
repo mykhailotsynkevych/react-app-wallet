@@ -5,13 +5,13 @@ import { useState } from "react";
 import ItemModal from "../ItemModal/ItemModal";
 
 import { useDispatch } from "react-redux";
-import { remove } from "../../redux/transactions/transactionsSlice";
+import { deleteTransactions } from "../../redux/transactions/transactionsOperations";
 
 const TransactionsItem = ({ transactionEl }) => {
   const [openMenuId, setOpenMenuId] = useState(null);
   const dispatch = useDispatch();
 
-  const handleDelete = () => dispatch(remove(transactionEl.id));
+  const handleDelete = () => dispatch(deleteTransactions(transactionEl.id));
 
   return (
     <div className={s.transactionEl}>

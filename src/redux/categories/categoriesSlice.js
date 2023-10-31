@@ -1,31 +1,58 @@
 import { createSlice } from "@reduxjs/toolkit";
+import {
+  getCategories,
+  addCategories,
+  deleteCategories,
+} from "./categoriesOperations";
 
-const initialCategoriesState = [
-  //Expense
-  { id: "1", transaction: "Expense", nameCategory: "Food" },
-  { id: "2", transaction: "Expense", nameCategory: "Car" },
-  { id: "3", transaction: "Expense", nameCategory: "House" },
-  //Income
-  { id: "4", transaction: "Income", nameCategory: "Work" },
-  { id: "5", transaction: "Income", nameCategory: "Other" },
-];
+const handlePending = (state) => {
+  state.isLoading = true;
+};
+
+const handleRejected = (state, { payload }) => {
+  state.isLoading = false;
+  state.error = payload;
+};
 
 const categoriesSlice = createSlice({
   name: "categories",
   initialState: {
-    categories: initialCategoriesState,
+    categories: [],
+    isLoading: false,
+    error: null,
   },
-  reducers: {
-    add(state, { payload }) {
-      return {categories: [...state.categories, payload]}
-    },
-    remove(state, { payload }) {
-      return {categories: state.categories.filter((category) => category.id !== payload)}
-    }
+  extraReducers: (builder) => {
+    builder
+      //get
+      .addCase(getCategories.pending, handlePending)
+      .addCase(getCategories.fulfilled, (state, { payload }) => {
+        state.isLoading = false;
+        state.error = null;
+        state.categories = payload;
+      })
+      .addCase(getCategories.rejected, handleRejected)
+
+      //add
+      .addCase(addCategories.pending, handlePending)
+      .addCase(addCategories.fulfilled, (state, { payload }) => {
+        state.isLoading = false;
+        state.error = null;
+        state.categories.push(payload);
+      })
+      .addCase(addCategories.rejected, handleRejected)
+
+      //delete
+      .addCase(deleteCategories.pending, handlePending)
+      .addCase(deleteCategories.fulfilled, (state, { payload }) => {
+        state.isLoading = false;
+        state.error = null;
+        const index = state.categories.findIndex(
+          (task) => task.id === payload.id
+        );
+        state.categories.splice(index, 1);
+      })
+      .addCase(deleteCategories.rejected, handleRejected);
   },
 });
 
-export const { add, remove } = categoriesSlice.actions;
 export default categoriesSlice.reducer;
-
-

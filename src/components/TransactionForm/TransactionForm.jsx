@@ -7,11 +7,11 @@ import { useDispatch, useSelector } from "react-redux";
 import { update } from "../../redux/filter/filterSlice";
 
 import langOptions from "../../utils/options/langOptions";
-import { getLanguage } from "../../redux/lang/langSelectors";
+import { selectLang } from "../../redux/lang/langSelectors";
 
 const TransactionForm = ({form, setForm, handleDispatch}) => {
   const dispatch = useDispatch();
-  const language = useSelector(getLanguage);
+  const language = useSelector(selectLang);
   
   const handleChange = (e) => {
     const { name, value } = e.target;

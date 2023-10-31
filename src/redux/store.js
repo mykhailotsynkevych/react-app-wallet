@@ -11,24 +11,10 @@ import {
   REGISTER,
 } from 'redux-persist';
 
-import categoriesReducer from "../redux/categories/categoriesSlice";
-import transactionsReducer from "../redux/transactions/transactionsSlice";
+import categories from "../redux/categories/categoriesSlice";
+import transactions from "../redux/transactions/transactionsSlice";
 import filterReducer from "../redux/filter/filterSlice";
 import langReducer from "../redux/lang/langSlice";
-
-const categoriesPersistConfig = {
-  key: "categories",
-  version: 1,
-  storage,
-  whitelist: ["categories"],
-};
-
-const transactionsPersistConfig = {
-  key: "transactions",
-  version: 1,
-  storage,
-  whitelist: ["transactions"],
-};
 
 const filterPersistConfig = {
   key: "filter",
@@ -44,16 +30,14 @@ const langPersistConfig = {
   whitelist: ["value"],
 };
 
-const categoriesPersistedReducer = persistReducer(categoriesPersistConfig, categoriesReducer);
-const transactionsPersistedReducer = persistReducer(transactionsPersistConfig, transactionsReducer);
 const filterPersistedReducer = persistReducer(filterPersistConfig, filterReducer);
 const langPersistedReducer = persistReducer(langPersistConfig, langReducer);
 
 
 export const store = configureStore({
   reducer: {
-    categories: categoriesPersistedReducer,
-    transactions: transactionsPersistedReducer,
+    categories,
+    transactions,
     filter: filterPersistedReducer,
     lang: langPersistedReducer 
   },
