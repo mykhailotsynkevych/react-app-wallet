@@ -1,5 +1,5 @@
 import { useSelector, useDispatch } from "react-redux";
-import { selectTransactions } from "../../redux/transactions/transactionsSelectors";
+import { selectTransactions, selectHasTransactions } from "../../redux/transactions/transactionsSelectors";
 import { useEffect } from 'react';
 import { selectFilter } from "../../redux/filter/filterSelectors";
 
@@ -12,13 +12,14 @@ import { getTransactions } from '../../redux/transactions/transactionsOperations
 
 const TransactionsList = () => {
   const transactions = useSelector(selectTransactions);
+  const hasTransactions = useSelector(selectHasTransactions);
   const filter = useSelector(selectFilter);
 
   const dispatch = useDispatch();
 
   useEffect(() => {
-    dispatch(getTransactions());
-  }, [dispatch]);
+   if(!hasTransactions) dispatch(getTransactions());
+  }, [dispatch, hasTransactions]);
 
   const getFilteredCategories = (transactions, filter) => {
     return transactions.filter(({ transaction }) =>
