@@ -22,47 +22,48 @@ const transactionsSlice = createSlice({
     isLoading: false,
     error: null,
   },
-  extraReducers: {
+  extraReducers: (builder) => {
+    builder
     //get
-    [getTransactions.pending]: handlePending,
-    [getTransactions.fulfilled](state, {payload}) {
+    .addCase(getTransactions.pending, handlePending)
+    .addCase(getTransactions.fulfilled, (state, {payload}) => {
       state.isLoading = false;
       state.error = null;
       state.transactions = payload;
-    },
-    [getTransactions.rejected]: handleRejected,
+    })
+    .addCase(getTransactions.rejected, handleRejected)
 
     //add
-    [addTransactions.pending]: handlePending,
-    [addTransactions.fulfilled](state, {payload}) {
+    .addCase(addTransactions.pending, handlePending)
+    .addCase(addTransactions.fulfilled, (state, {payload}) => {
       state.isLoading = false;
       state.error = null;
       state.transactions.push(payload);
-    },
-    [addTransactions.rejected]: handleRejected,
+    })
+    .addCase(addTransactions.rejected, handleRejected)
 
     //delete
-    [deleteTransactions.pending]: handlePending,
-    [deleteTransactions.fulfilled](state, {payload}) {
+    .addCase(deleteTransactions.pending, handlePending)
+    .addCase(deleteTransactions.fulfilled, (state, {payload}) => {
       state.isLoading = false;
       state.error = null;
       const index = state.transactions.findIndex(
         (task) => task.id === payload.id
       );
       state.transactions.splice(index, 1);
-    },
-    [deleteTransactions.rejected]: handleRejected,
+    })
+    .addCase(deleteTransactions.rejected, handleRejected)
 
     //edit
-    [editTransactions.pending]: handlePending,
-    [editTransactions.fulfilled](state, {payload}) {
+    .addCase(editTransactions.pending, handlePending)
+    .addCase(editTransactions.fulfilled, (state, {payload}) => {
       state.isLoading = false;
       state.error = null;
       state.transactions = state.transactions.map((el) =>
       el.id !== payload.id ? el : { ...payload }
     );
-    },
-    [editTransactions.rejected]: handleRejected,
+    })
+    .addCase(editTransactions.rejected, handleRejected)
   },
 });
 
