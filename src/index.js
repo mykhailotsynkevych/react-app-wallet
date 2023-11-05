@@ -14,7 +14,7 @@ root.render(
   <React.StrictMode>
     <Provider store={store}>
     <PersistGate loading={null} persistor={persistor}>
-      <BrowserRouter basename="/react-app-wallet/">
+      <BrowserRouter>
         <App />
       </BrowserRouter>
       </PersistGate>
