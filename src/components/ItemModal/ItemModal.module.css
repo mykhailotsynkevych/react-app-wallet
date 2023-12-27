@@ -1,17 +1,17 @@
 .itemModal {
-    border-radius: 3px;
+    border-radius: var(--border-radius);
     position: absolute;
     right: 25px;
     display: flex;
     flex-direction: column;
-    background-color: white;
+    background-color: var(--white);
     padding: 5px;
   }
 
   .itemModalBtn {
     padding: 3px;
     text-align: start;
-    background-color: white;
+    background-color: var(--white);
     transition: all 0.3s ease-in-out;
   }
 

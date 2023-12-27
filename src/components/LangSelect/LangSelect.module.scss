@@ -1,0 +1,64 @@
+@import "../../assets/styles/mixins.scss";
+
+.langWrapper {
+  display: flex;
+  height: 20px;
+  width: 48%;
+  padding: 2px;
+  background-color: var(--main-color);
+  border-radius: var(-- border-radius);
+  justify-content: space-between;
+}
+
+.langWrapper .input {
+  @include visually-hidden;
+
+  &:checked + .radioLabel.radio {
+    color: var(--main-color);
+    background-color: var(-- white);
+    box-sizing: content-box;
+  }
+}
+
+.radioLabel{
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+}
+
+.radio {
+  align-items: center;
+  
+
+  &.radioLabel {
+    font-weight: bold;
+    font-size: 12px;
+    color: var(-- white);
+    padding: 0px 11px;
+    border-radius: var(-- border-radius);
+  
+  }
+}
+
+.labelTitle {
+  align-self: flex-start;
+  padding: 5px;
+  color: rgb(117, 117, 117);
+  font-size: 18px;
+
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

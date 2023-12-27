@@ -23,7 +23,7 @@ const StyledMenuModal = styled.div`
   transition: transform 0.3s linear;
   transform: translateX(-100%);
 
-  ${({ isOpenMenu }) => isOpenMenu && "transform: translateX(0); width: 40%;"}
+  ${({ isOpenMenu }) => isOpenMenu && "transform: translateX(0); width: 50%;"}
 `;
 
 const StyledMenuLabel = styled.label`
@@ -68,7 +68,7 @@ const StyledMenuSwitchInput = styled.input`
   height: 0;
 
   :checked + ${StyledMenuSwitchSlider} {
-    background-color: #2196f3;
+    background-color: var(--main-color);
   }
 
   :checked + ${StyledMenuSwitchSlider}:before {

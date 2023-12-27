@@ -5,9 +5,6 @@ import { Route, Routes } from "react-router-dom";
 // Second - Components
 import Loader from "../components/Loader/Loader";
 
-// Third - Other
-import "./App.css";
-
 //lazy
 const MainPage = lazy(() => import("../pages/MainPage/MainPage"));
 const EditPage = lazy(() => import("../pages/EditPage/EditPage"));
@@ -16,8 +13,8 @@ const TransactionsList = lazy(() => import("./TransactionsList/TransactionList")
 const App = () => {
 
   return (
-    <div className="App">
-      <div className="pageWrapper">
+    <div className="page">
+      <div className="wallet">
         <Suspense fallback={< Loader />}>
         <Routes>
           <Route path="/*" element={<MainPage />} />

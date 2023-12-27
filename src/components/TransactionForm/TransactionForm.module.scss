@@ -3,10 +3,10 @@
 .transactionForm {
   display: flex;
   flex-direction: column;
-  background-color: white;
+  background-color: var(--white);
   box-shadow: 0px 5px 5px rgba(0, 0, 0, 0.1);
   margin: 0px 7px;
-  border-radius: 3px;
+  border-radius: var(--border-radius);
 }
 
 input,
@@ -81,12 +81,11 @@ label {
 .timeWrapper {
   display: flex;
   align-items: flex-end;
-  // background-color: rgb(234, 234, 234);
   background-color: var(--secondary-color);
 }
 
 .dateText {
-  color: #3180ff;
+  color: #535252;
   font-weight: bold;
 }
 
@@ -141,7 +140,7 @@ justify-content: center;
 .formBtnSubmit:hover,
 .formBtnSubmit:focus {
   cursor: pointer;
-  color: white;
+  color: var(--white);
 
   background-color: var(--main-color);
 

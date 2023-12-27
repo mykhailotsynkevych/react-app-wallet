@@ -12,6 +12,7 @@ const StyledMainTitle = styled.button`
 font-size: 24px;
 text-align: center;
 background-color: transparent;
+color: var(--black-color);
 font-weight: bold;
 
 :hover {
