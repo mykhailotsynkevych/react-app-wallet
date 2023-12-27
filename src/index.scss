@@ -2,7 +2,8 @@
 
 :root {
   --main-color: rgb(242, 143, 57);
-  --secondary-color: rgb(234, 234, 234);
+  --secondary-color: rgb(83, 82, 82);
+  --main-bgc: rgb(234, 234, 234);
   --black: rgb(0, 0, 0);
   --white: rgb(255, 255, 255);
   --black-color: rgb(0, 0, 0);
@@ -69,7 +70,7 @@ img {
 .page {
   background: linear-gradient(
     to top,
-    var(--main-color), #30e8bf
+    var(--main-color), var(--secondary-color)
   );
   height: 100vh;
   text-align: center;

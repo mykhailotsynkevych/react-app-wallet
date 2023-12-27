@@ -81,11 +81,11 @@ label {
 .timeWrapper {
   display: flex;
   align-items: flex-end;
-  background-color: var(--secondary-color);
+  background-color: var(--main-bgc);
 }
 
 .dateText {
-  color: #535252;
+  color: var(--secondary-color);
   font-weight: bold;
 }
 
@@ -107,7 +107,7 @@ label {
   align-items: center;
   font-size: 20px;
   padding-left: 7px;
-  color:  rgb(83, 82, 82);
+  color:  var(--secondary-color);
   font-weight: bold;
 }
 
@@ -118,7 +118,7 @@ label {
 }
 
 .greybgc {
-  background-color: var(--secondary-color);
+  background-color: var(--main-bgc);
 }
 
 .formBtnSubmit {
@@ -133,7 +133,7 @@ label {
 justify-content: center;
 
   transition: all 0.3s ease 0s;
-  background-color: var(--secondary-color);
+  background-color: var(--main-bgc);
   box-shadow: 0px 2px 4px rgba(0, 0, 0, 0.2);
 }
 
