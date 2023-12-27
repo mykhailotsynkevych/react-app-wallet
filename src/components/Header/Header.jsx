@@ -48,7 +48,8 @@ const Header = ({title}) => {
   }, [isOpenMenu, menuToggle]);
 
   const handleToggleIcon = () => {
-    location.pathname === "/" ? menuToggle() : navigate(-1);
+    // location.pathname === "/" ? menuToggle() : navigate(-1);
+    menuToggle();
   };
 
   return (
@@ -65,7 +66,8 @@ const Header = ({title}) => {
         >
           <img
             data-menu-handle
-            src={location.pathname === "/" ? menuBurger : returnArrow}
+            // src={location.pathname === "/" ? menuBurger : returnArrow}
+            src={menuBurger}
             alt="icon"
           />
         </StyledMenuBurger>

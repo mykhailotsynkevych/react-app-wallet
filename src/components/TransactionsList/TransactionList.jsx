@@ -4,7 +4,7 @@ import { useEffect } from 'react';
 import { selectFilter } from "../../redux/filter/filterSelectors";
 
 
-import Header from "../Header/Header";
+// import Header from "../Header/Header";
 import TransactionsItem from "../TransactionsItem/TransactionsItem";
 import s from "./TransactionsList.module.css";
 
@@ -31,7 +31,7 @@ const TransactionsList = () => {
 
   return (
     <>
-      <Header title={filter}/>
+      {/* <Header title={filter}/> */}
       <ul className={s.transactionsList}>
         {filteredTransactions.map((transactionEl) => (
           <li key={transactionEl.id}>

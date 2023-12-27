@@ -1,6 +1,6 @@
 import { Link, Route, Routes, useMatch } from "react-router-dom";
 
-import Header from "../../components/Header/Header";
+// import Header from "../../components/Header/Header";
 import TotalBalance from "../../components/TotalBalance/TotalBalance";
 import MainForm from "../../components/MainForm/MainForm";
 
@@ -16,7 +16,7 @@ const MainPage = () => {
 
   return (
     <>
-      <Header title={params["*"] === "" ? "Wallet" : "Category"} />
+      {/* <Header title={params["*"] === "" ? "Wallet" : "Category"} /> */}
       <main className={s.mainWrapper}>
         {params["*"] === "" && <TotalBalance /> }
         <MainForm />

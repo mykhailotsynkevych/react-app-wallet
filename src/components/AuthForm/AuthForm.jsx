@@ -1,0 +1,61 @@
+import { Link } from "react-router-dom";
+import { useForm } from "../../utils/hooks/useForm";
+import s from "./AuthForm.module.scss";
+
+const AuthForm = () => {
+  const { form, handleChange, handleSubmit } = useForm({
+    initialValues: { name: "", email: "", password: "" },
+    // onSubmit: (values) => cbOnSubmit(values),
+    onSubmit: (values) => console.log(values),
+  });
+
+  const { name, email, password } = form;
+  return (
+    <form className={s.form} onSubmit={handleSubmit}>
+      {/* <label className={s.label}>
+        <span> Name </span>
+        <input
+          className={s.input}
+          type="text"
+          name="name"
+          value={name}
+          onChange={handleChange}
+        />
+      </label> */}
+      <label className={s.label}>
+        <span> Email </span>
+        <input
+          className={s.input}
+          type="text"
+          name="email"
+          value={email}
+          onChange={handleChange}
+        />
+      </label>
+      <label className={s.label}>
+        <span> Password </span>
+        <input
+          className={s.input}
+          type="text"
+          name="password"
+          value={password}
+          onChange={handleChange}
+        />
+      </label>
+      <button className={s.submit} type="submit">
+        {/* {btnTitle} */}
+        register
+      </button>
+
+      <Link
+        className={s.submit}
+        //   to={navTo}
+      >
+        {/* {linkTitle} */}
+        return
+      </Link>
+    </form>
+  );
+};
+
+export default AuthForm;

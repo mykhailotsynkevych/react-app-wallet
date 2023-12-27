@@ -15,6 +15,7 @@ import categories from "../redux/categories/categoriesSlice";
 import transactions from "../redux/transactions/transactionsSlice";
 import filterReducer from "../redux/filter/filterSlice";
 import langReducer from "../redux/lang/langSlice";
+import auth from "../redux/auth/authSlice";
 
 const filterPersistConfig = {
   key: "filter",
@@ -36,6 +37,7 @@ const langPersistedReducer = persistReducer(langPersistConfig, langReducer);
 
 export const store = configureStore({
   reducer: {
+    auth,
     categories,
     transactions,
     filter: filterPersistedReducer,
