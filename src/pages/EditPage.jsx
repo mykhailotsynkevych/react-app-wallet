@@ -1,11 +1,11 @@
 import { useSelector, useDispatch } from "react-redux";
 import { useState } from "react";
 import { useParams, useNavigate } from "react-router-dom";
-import { selectTransactions } from "../../redux/transactions/transactionsSelectors";
-import Header from "../../components/Header/Header";
-import TransactionForm from "../../components/TransactionForm/TransactionForm";
-import s from "./EditPage.module.css";
-import { editTransactions } from "../../redux/transactions/transactionsOperations";
+import { selectTransactions } from "../redux/transactions/transactionsSelectors";
+import Header from "../components/Header/Header";
+import TransactionForm from "../components/TransactionForm/TransactionForm";
+import s from "./Page.module.css";
+import { editTransactions } from "../redux/transactions/transactionsOperations";
 
 const EditPage = () => {
   const { transactionId } = useParams();

@@ -16,3 +16,15 @@ export const registerUser = createAsyncThunk(
     }
   }
 );
+
+export const loginUser = createAsyncThunk(
+  "auth/login",
+  async (userData, { rejectWithValue }) => {
+    try {
+      const postedUserData = await loginUserApi(userData);
+      return postedUserData;
+    } catch (error) {
+      return rejectWithValue(error.message);
+    }
+  }
+);

@@ -4,7 +4,7 @@ import { Route, Routes } from "react-router-dom";
 
 import CategoriesList from "../CategoriesList/CategoriesList";
 import TransactionForm from "../TransactionForm/TransactionForm";
-import CategoriesPage from "../../pages/CategoriesListPage/CategoriesListPage";
+import CategoriesPage from "../../pages/CategoriesListPage";
 
 import { addTransactions } from "../../redux/transactions/transactionsOperations";
 import { useDispatch} from "react-redux";

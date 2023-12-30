@@ -1,15 +1,11 @@
-import { useDispatch } from "react-redux";
 // import { Link } from "react-router-dom";
 import { useForm } from "../../utils/hooks/useForm";
 import s from "./AuthForm.module.scss";
-import { registerUser } from "../../redux/auth/authOperations";
 
-const AuthForm = () => {
-  const dispatch = useDispatch();
+const AuthForm = ({ cbOnSubmit, btnTitle}) => {
   const { form, handleChange, handleSubmit } = useForm({
     initialValues: {email: "", password: "" },
-    // onSubmit: (values) => cbOnSubmit(values),
-    onSubmit: (values) => dispatch(registerUser(values)),
+    onSubmit: (values) => cbOnSubmit(values),
   });
 
   const { email, password } = form;
@@ -45,9 +41,8 @@ const AuthForm = () => {
           onChange={handleChange}
         />
       </label>
-      <button className={s.submit} type="submit">
-        {/* {btnTitle} */}
-        register
+      <button className="button" type="submit">
+        {btnTitle}
       </button>
 
       {/* <Link

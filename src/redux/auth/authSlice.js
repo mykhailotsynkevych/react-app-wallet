@@ -29,6 +29,21 @@ const authSlice = createSlice({
       state.isLoading = false;
       state.error = payload;
     },
+    //login
+    [loginUser.pending]: (state) => {
+      state.isLoading = true;
+      state.error = null;
+    },
+    [loginUser.fulfilled]: (state, { payload }) => {
+      const { idToken, ...rest } = payload;
+      state.isLoding = false;
+      state.user = rest;
+      state.idToken = idToken;
+    },
+    [loginUser.rejected]: (state, { payload }) => {
+      state.isLoading = false;
+      state.error = payload;
+    },
   }
 });
 

@@ -1,14 +1,14 @@
 import { Link, Route, Routes, useMatch } from "react-router-dom";
 
 // import Header from "../../components/Header/Header";
-import TotalBalance from "../../components/TotalBalance/TotalBalance";
-import MainForm from "../../components/MainForm/MainForm";
+import TotalBalance from "../components/TotalBalance/TotalBalance";
+import MainForm from "../components/MainForm/MainForm";
 
-import s from "./MainPage.module.css";
-import sprite from "../.././assets/icons/sprite.svg";
+import s from "./Page.module.css";
+import sprite from ".././assets/icons/sprite.svg";
 
 import { useDispatch } from "react-redux";
-import { update } from "../../redux/filter/filterSlice";
+import { update } from "../redux/filter/filterSlice";
 
 const MainPage = () => {
   const dispatch = useDispatch();
@@ -17,7 +17,6 @@ const MainPage = () => {
   return (
     <>
       {/* <Header title={params["*"] === "" ? "Wallet" : "Category"} /> */}
-      <main className={s.mainWrapper}>
         {params["*"] === "" && <TotalBalance /> }
         <MainForm />
         <Routes>
@@ -49,7 +48,6 @@ const MainPage = () => {
             }
           />
         </Routes>
-      </main>
     </>
   );
 };

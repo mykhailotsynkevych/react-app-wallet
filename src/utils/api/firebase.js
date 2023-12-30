@@ -29,3 +29,24 @@ export const registerUserApi = (userData) => {
         return postedUserData;
       });
   };
+
+  export const loginUserApi = (userData) => {
+    setBaseUrl(url.AUTH);
+    return axios
+      .post(
+        "/accounts:signInWithPassword",
+        {
+          ...userData,
+          returnSecureToken: true,
+        },
+        {
+          params: {
+            key: API_KEY,
+          },
+        }
+      )
+      .then(({ data }) => {
+        const { idToken, email, refreshToken, localId } = data;
+        return { idToken, email, refreshToken, localId };
+      });
+  };

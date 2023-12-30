@@ -1,11 +1,7 @@
-.mainWrapper {
-height: 100%;
-}
-
 .btnTransactionWrapper {
 display: flex;
 justify-content: space-evenly;
-margin: 10px 7px 9px;
+margin-top: 10px;
 }
 
 .btnTransaction {
@@ -18,5 +14,17 @@ margin: 10px 7px 9px;
 .btnTransaction:focus {
   cursor: pointer;
   scale: 1.05;
+}
+
+.categoriesWrapper {
+  display: flex;
+  flex-direction: column;
+  flex: 1 1 auto;
+  justify-content: space-between;
+  height: 100%;
+  }
+
+  .editPageWrapper {
+    padding-top: 8px;
 }
 
