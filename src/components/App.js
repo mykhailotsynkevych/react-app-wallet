@@ -29,6 +29,7 @@ const App = () => {
         <Suspense fallback={<Loader />}>
         {isAuth ? (
             <Routes>
+              {/* <Route path="/*" element={<MainPage />} /> */}
               <Route path="/*" element={<MainPage />} />
               <Route
                 path="/transactions/:transactionArt"

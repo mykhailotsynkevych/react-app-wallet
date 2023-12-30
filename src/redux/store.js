@@ -15,7 +15,7 @@ import categories from "../redux/categories/categoriesSlice";
 import transactions from "../redux/transactions/transactionsSlice";
 import filterReducer from "../redux/filter/filterSlice";
 import langReducer from "../redux/lang/langSlice";
-import auth from "../redux/auth/authSlice";
+import authReducer from "../redux/auth/authSlice";
 
 const filterPersistConfig = {
   key: "filter",
@@ -31,13 +31,20 @@ const langPersistConfig = {
   whitelist: ["value"],
 };
 
+const authPersistConfig = {
+  key: "token",
+  storage,
+  whitelist: ["idToken"],
+};
+
 const filterPersistedReducer = persistReducer(filterPersistConfig, filterReducer);
 const langPersistedReducer = persistReducer(langPersistConfig, langReducer);
+const authPersistedReducer = persistReducer(authPersistConfig , authReducer);
 
 
 export const store = configureStore({
   reducer: {
-    auth,
+    auth: authPersistedReducer,
     categories,
     transactions,
     filter: filterPersistedReducer,

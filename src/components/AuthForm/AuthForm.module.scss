@@ -81,8 +81,8 @@
   margin: 0 auto;
   padding: 8px 16px;
   border: none;
-  background-color: rgba(54, 32, 32, 0.8);
-  color: #a6eaf5;
+  background-color: var(--main-color);
+  color: var(--white);
   font-size: 18px;
   border-radius: var(--border-radius);
 }
