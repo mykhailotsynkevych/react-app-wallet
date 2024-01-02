@@ -28,3 +28,16 @@ export const loginUser = createAsyncThunk(
     }
   }
 );
+
+export const getCurUser = createAsyncThunk(
+  "auth/getCurUser",
+  async (_, { rejectWithValue, getState }) => {
+    try {
+      const { idToken } = getState().auth;
+      const userData = await getCurUserApi(idToken);
+      return userData;
+    } catch (error) {
+      return rejectWithValue(error.message);
+    }
+  }
+);

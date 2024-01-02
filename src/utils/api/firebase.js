@@ -50,3 +50,21 @@ export const registerUserApi = (userData) => {
         return { idToken, email, refreshToken, localId };
       });
   };
+
+  export const getCurUserApi = (idToken) => {
+    setBaseUrl(url.AUTH);
+    return axios
+      .post(
+        "/accounts:lookup",
+        { idToken },
+        {
+          params: {
+            key: API_KEY,
+          },
+        }
+      )
+      .then(({ data }) => {
+        const { localId, email } = data.users[0];
+        return { localId, email };
+      });
+  };
