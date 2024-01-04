@@ -1,13 +1,15 @@
 // First  - Bibliothek
-import { lazy, Suspense } from "react";
+import { useEffect, lazy, Suspense } from "react";
 import { Navigate, Route, Routes } from "react-router-dom";
-import { useSelector } from "react-redux";
+import { useSelector, useDispatch } from "react-redux";
 
 // Second - Components
 import Header from "../components/Header/Header";
 import Loader from "../components/Loader/Loader";
 
-import { selectIsAuth } from "../redux/auth/authSelector";
+//auth
+import { getCurUser } from "../redux/auth/authOperations";
+import { selectIsAuth, selectCurUser } from "../redux/auth/authSelector";
 
 //lazy
 const MainPage = lazy(() => import("../pages/MainPage"));
@@ -19,7 +21,14 @@ const LoginPage = lazy(() => import("../pages/LoginPage"));
 const RegisterPage = lazy(() => import("../pages/RegisterPage"));
 
 const App = () => {
+  const dispatch = useDispatch();
   const isAuth = useSelector(selectIsAuth);
+  const curUser = useSelector(selectCurUser);
+
+  
+  useEffect(() => {
+    curUser && dispatch(getCurUser());
+  }, [dispatch, curUser]);
 
   return (
     <div className="page">
