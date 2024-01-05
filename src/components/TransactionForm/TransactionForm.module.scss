@@ -120,6 +120,11 @@ label {
   background-color: var(--main-bgc);
 }
 
+textarea {
+  font-size: 18px;
+  border-bottom: 1px solid rgb(182, 182, 182);
+}
+
 .formBtnSubmit {
   width: 98%;
   color: black;

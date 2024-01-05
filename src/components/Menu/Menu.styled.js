@@ -14,6 +14,7 @@ const StyledMenuBackdrop = styled.div`
 const StyledMenuModal = styled.div`
   box-sizing: border-box;
   display: flex;
+  flex-direction: column;
   justify-content: space-between;
   align-items: flex-end;
   height: 100%;
@@ -26,6 +27,13 @@ const StyledMenuModal = styled.div`
   ${({ isOpenMenu }) => isOpenMenu && "transform: translateX(0); width: 50%;"}
 `;
 
+
+const SelectsWrapper = styled.div`
+width: 100%;
+display: flex;
+justify-content: space-between;
+`;
+
 const StyledMenuLabel = styled.label`
 
   position: relative;
@@ -34,6 +42,32 @@ const StyledMenuLabel = styled.label`
   height: 24px;
   padding: 0px;
 `;
+
+const StyledIconFind = styled.button`
+background-color: inherit;
+width: 26px;
+padding: 0px;
+margin-left: auto;
+margin-right: 10px;
+transition: transform 0.2s linear;
+
+:hover {
+cursor: pointer;
+}
+
+${({ isOpenSearchInput }) =>
+isOpenSearchInput &&
+"transform: rotate(90deg); width: 30px"}`;
+
+const StyledIconUser = styled.button`
+background-color: inherit;
+width: 30px;
+transition: transform 0.5s linear;
+padding: 0px;
+
+:hover {
+  cursor: pointer;
+  }`;
 
 const StyledMenuSwitchSlider = styled.span`
   position: absolute;
@@ -82,5 +116,8 @@ export {
   StyledMenuBackdrop,
   StyledMenuLabel,
   StyledMenuSwitchInput,
-  StyledMenuSwitchSlider
+  StyledMenuSwitchSlider,
+  StyledIconFind,
+  StyledIconUser,
+  SelectsWrapper
 };

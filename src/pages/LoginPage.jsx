@@ -9,8 +9,10 @@ const LoginPage = () => {
   const handleSubmit = (userData) => dispatch(loginUser(userData));
   return (
     <>
+    <div>
       <h1>Welcome Back!</h1>
       <h4>Log in to your existing account</h4>
+    </div>
       <AuthForm
         login={true}
         // navTo="/register"

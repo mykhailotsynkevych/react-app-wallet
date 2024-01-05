@@ -1,17 +1,36 @@
+import Search from "../Search/Search";
+
 import {
-  StyledMenuModal,
   StyledMenuBackdrop,
+  StyledMenuModal,
   StyledMenuLabel,
   StyledMenuSwitchInput,
   StyledMenuSwitchSlider,
+  SelectsWrapper,
+  // StyledIconUser,
+  StyledIconFind,
 } from "./Menu.styled";
 // import s from "./Menu.module.css";
 import LangSelect from "../LangSelect/LangSelect";
+// import userIcon from "../../assets/icons/user.svg";
+import findIcon from "../../assets/icons/find.svg";
+import closeIcon from "../../assets/icons/close.svg";
+// import returnArrow from "../../assets/icons/return.svg";
 
 const Menu = ({ isOpenMenu }) => {
   return (
     <StyledMenuBackdrop isOpenMenu={isOpenMenu}>
       <StyledMenuModal data-menu-modal isOpenMenu={isOpenMenu}>
+      <Search />
+      {/* <StyledIconFind
+          type="button"
+          // isOpenSearchInput={isOpenSearchInput}
+          // onClick={searchInputToggle}
+        >
+          <img src={findIcon} alt="icon" />
+        </StyledIconFind> */}
+        <SelectsWrapper>
+
       <LangSelect />
         {/* <div className={s.switch}>
           <input
@@ -28,6 +47,7 @@ const Menu = ({ isOpenMenu }) => {
           <StyledMenuSwitchInput type="checkbox" />
           <StyledMenuSwitchSlider></StyledMenuSwitchSlider>
         </StyledMenuLabel>
+        </SelectsWrapper>
       </StyledMenuModal>
     </StyledMenuBackdrop>
   );

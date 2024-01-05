@@ -1,19 +1,20 @@
 import styled from "styled-components";
 
 const StyledSearchForm = styled.form`
-  top: 12px;
-  width: 45%;
+  // top: 12px;
+  width: 100%;
   height: 26px;
   background-color: white;
-  position: absolute;
+  // position: absolute;
   display: flex;
   align-items: center;
-  border-radius: 8px;
-  visibility: hidden;
+  border: solid 1px black;
+  border-radius: 3px;
+  // visibility: hidden;
 
-  z-index: 1;
-  transition: transform 0.2s linear;
-  transform: translateX(90%);
+  // z-index: 1;
+  // transition: transform 0.2s linear;
+  // transform: translateX(90%);
 
 
 
@@ -33,6 +34,7 @@ font-size: 16px;
 `;
 
 const StyledSearchInput = styled.input`
+border: none;
 width: 100%;
 outline: none;
 font-size: 16px;
@@ -40,10 +42,10 @@ padding-left: 3px;
 `;
 
 const StyledSearchButton = styled.button`
-margin: 0px 5px 0px 0px;
-padding: 0;
+padding: 2px;
 color: grey;
-background-color: inherit;
+background-color: silver;
+height: 100%;
 width: 26px;
 
 :hover {

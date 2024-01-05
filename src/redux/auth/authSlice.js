@@ -6,12 +6,24 @@ const authSlice = createSlice({
   initialState: {
     user: {
       email: null,
-      refreshToken: null,
       localId: null,
     },
     idToken: null,
+    refreshToken: null,
     isLoding: false,
     error: null,
+  },
+  reducers: {
+    logOut(state) {
+      state.user = {
+        email: null,
+        localId: null,
+      };
+      state.refreshToken = null;
+      state.idToken = null;
+      state.isLoding = false;
+      state.error = null;
+    },
   },
   extraReducers: {
     //register
@@ -35,10 +47,11 @@ const authSlice = createSlice({
       state.error = null;
     },
     [loginUser.fulfilled]: (state, { payload }) => {
-      const { idToken, ...rest } = payload;
+      const { idToken, refreshToken, ...rest } = payload;
       state.isLoding = false;
       state.user = rest;
       state.idToken = idToken;
+      state.refreshToken = refreshToken;
     },
     [loginUser.rejected]: (state, { payload }) => {
       state.isLoading = false;
@@ -60,4 +73,5 @@ const authSlice = createSlice({
   }
 });
 
+export const { logOut } = authSlice.actions;
 export default authSlice.reducer;
