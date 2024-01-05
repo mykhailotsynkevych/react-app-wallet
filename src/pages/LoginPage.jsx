@@ -12,7 +12,7 @@ const LoginPage = () => {
       <h1>Welcome Back!</h1>
       <h4>Log in to your existing account</h4>
       <AuthForm
-        btnTitle="Login"
+        login={true}
         // navTo="/register"
         // linkTitle="To Register"
         cbOnSubmit={handleSubmit}

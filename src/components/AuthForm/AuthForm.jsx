@@ -2,25 +2,28 @@
 import { useForm } from "../../utils/hooks/useForm";
 import s from "./AuthForm.module.scss";
 
-const AuthForm = ({ cbOnSubmit, btnTitle}) => {
+const AuthForm = ({ cbOnSubmit, login }) => {
   const { form, handleChange, handleSubmit } = useForm({
-    initialValues: {email: "", password: "" },
+    initialValues: { email: "", password: "" },
     onSubmit: (values) => cbOnSubmit(values),
   });
 
   const { email, password } = form;
   return (
     <form className={s.form} onSubmit={handleSubmit}>
-      {/* <label className={s.label}>
-        <span> Name </span>
-        <input
-          className={s.input}
-          type="text"
-          name="name"
-          value={name}
-          onChange={handleChange}
-        />
-      </label> */}
+      {/* {!login && (
+        <label className={s.label}>
+          <span> Name </span>
+          <input
+            className={s.input}
+            type="text"
+            name="name"
+            value={name}
+            onChange={handleChange}
+          />
+        </label>
+      )} */}
+
       <label className={s.label}>
         <span> Email </span>
         <input
@@ -42,7 +45,7 @@ const AuthForm = ({ cbOnSubmit, btnTitle}) => {
         />
       </label>
       <button className="button" type="submit">
-        {btnTitle}
+        {login ? "Login" : "Register"}
       </button>
 
       {/* <Link

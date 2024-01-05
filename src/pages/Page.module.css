@@ -1,7 +1,7 @@
 .btnTransactionWrapper {
-display: flex;
-justify-content: space-evenly;
-margin-top: 10px;
+  display: flex;
+  justify-content: space-evenly;
+  margin-top: 10px;
 }
 
 .btnTransaction {
@@ -22,9 +22,8 @@ margin-top: 10px;
   flex: 1 1 auto;
   justify-content: space-between;
   height: 100%;
-  }
-
-  .editPageWrapper {
-    padding-top: 8px;
 }
 
+.editPageWrapper {
+  padding-top: 8px;
+}

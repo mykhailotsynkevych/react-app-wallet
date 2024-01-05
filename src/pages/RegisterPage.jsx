@@ -10,7 +10,7 @@ const RegisterPage = () => {
     <>
       <h1>Register</h1>
       <AuthForm
-        btnTitle="Register"
+        login={false}
         // navTo="/register"
         // linkTitle="To Register"
         cbOnSubmit={handleSubmit}
