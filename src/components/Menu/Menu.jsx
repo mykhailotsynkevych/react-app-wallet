@@ -8,13 +8,13 @@ import {
   StyledMenuSwitchSlider,
   SelectsWrapper,
   // StyledIconUser,
-  StyledIconFind,
+  // StyledIconFind,
 } from "./Menu.styled";
 // import s from "./Menu.module.css";
 import LangSelect from "../LangSelect/LangSelect";
 // import userIcon from "../../assets/icons/user.svg";
-import findIcon from "../../assets/icons/find.svg";
-import closeIcon from "../../assets/icons/close.svg";
+// import findIcon from "../../assets/icons/find.svg";
+// import closeIcon from "../../assets/icons/close.svg";
 // import returnArrow from "../../assets/icons/return.svg";
 
 const Menu = ({ isOpenMenu }) => {

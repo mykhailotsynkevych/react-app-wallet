@@ -1,4 +1,7 @@
-import { Link, useNavigate, useLocation } from "react-router-dom";
+import { Link,
+  // useNavigate,
+  // useLocation
+} from "react-router-dom";
 import { useSelector, useDispatch } from "react-redux";
 import { useEffect } from "react";
 import { useToggle } from "../../utils/hooks/useToggle";
@@ -24,8 +27,8 @@ const Header = ({ title }) => {
   const isAuth = useSelector(selectIsAuth);
   // const [isOpenSearchInput, searchInputToggle] = useToggle(false);
   const [isOpenMenu, menuToggle] = useToggle(false);
-  const navigate = useNavigate();
-  const location = useLocation();
+  // const navigate = useNavigate();
+  // const location = useLocation();
 
   useEffect(() => {
     const menuModal = document.querySelectorAll("[data-menu-modal]");
