@@ -13,6 +13,7 @@ import { selectIsAuth, selectCurUser } from "../redux/auth/authSelector";
 
 //lazy
 const MainPage = lazy(() => import("../pages/MainPage"));
+const CategoriesListPage = lazy(() => import("../pages/CategoriesListPage"));
 const EditPage = lazy(() => import("../pages/EditPage"));
 const TransactionsList = lazy(() =>
   import("./TransactionsList/TransactionList")
@@ -25,7 +26,6 @@ const App = () => {
   const isAuth = useSelector(selectIsAuth);
   const curUser = useSelector(selectCurUser);
 
-  
   useEffect(() => {
     curUser && dispatch(getCurUser());
   }, [dispatch, curUser]);
@@ -39,11 +39,14 @@ const App = () => {
           <Suspense fallback={<Loader />}>
             {isAuth ? (
               <Routes>
-                {/* <Route path="/*" element={<MainPage />} /> */}
                 <Route path="/*" element={<MainPage />} />
                 <Route
                   path="/transactions/:transactionArt"
                   element={<TransactionsList />}
+                />
+                <Route
+                  path="/categories/:transactionArt"
+                  element={<CategoriesListPage />}
                 />
                 <Route path="/edit/:transactionId" element={<EditPage />} />
                 <Route path="*" element={<Navigate to="/" />} />
