@@ -42,7 +42,7 @@ export const addTransactions = createAsyncThunk(
       return newTransactionEl;
     } catch (error) {
       setTimeout(() => {
-        dispatch(errorHandler({ error, cb: () => addTransactions(category) }));
+        dispatch(errorHandler({ error, cb: () => addTransactions(transactionEl) }));
       }, 0);
       return rejectWithValue(error.message);
     }
