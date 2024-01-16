@@ -5,6 +5,7 @@ import {
   deleteTransactionsApi,
   editTransactionsApi,
 } from "../../utils/api/firebase";
+import { errorHandler } from "../error/errorHandler";
 
 export const getTransactions = createAsyncThunk(
   "getTransactions",
@@ -19,6 +20,9 @@ export const getTransactions = createAsyncThunk(
       const transactions = await getTransactionsApi({ localId, idToken });
       return transactions;
     } catch (error) {
+      setTimeout(() => {
+        thunkApi.dispatch(errorHandler({ error, cb: getTransactions }));
+      }, 0);
       return thunkApi.rejectWithValue(error.message);
     }
   }
@@ -26,7 +30,7 @@ export const getTransactions = createAsyncThunk(
 
 export const addTransactions = createAsyncThunk(
   "addTransactions",
-  async (transactionEl, { rejectWithValue, getState }) => {
+  async (transactionEl, { rejectWithValue, getState, dispatch }) => {
     const {
       auth: {
         idToken,
@@ -37,6 +41,9 @@ export const addTransactions = createAsyncThunk(
       const newTransactionEl = await addTransactionsApi({transactionEl, localId, idToken });
       return newTransactionEl;
     } catch (error) {
+      setTimeout(() => {
+        dispatch(errorHandler({ error, cb: () => addTransactions(category) }));
+      }, 0);
       return rejectWithValue(error.message);
     }
   }

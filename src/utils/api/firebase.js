@@ -5,6 +5,7 @@ const API_KEY = process.env.REACT_APP_API_KEY;
 const url = {
   AUTH: "https://identitytoolkit.googleapis.com/v1/",
   DB: "https://react-app-wallet-af308-default-rtdb.firebaseio.com/",
+  REFRESH_TOKEN: "https://identitytoolkit.googleapis.com/v1"
 };
 
 const setBaseUrl = (url) => (axios.defaults.baseURL = url);
@@ -67,6 +68,32 @@ export const getCurUserApi = (idToken) => {
       const { localId, email } = data.users[0];
       return { localId, email };
     });
+};
+
+//REFRESH USER
+//when the token is no longer valid, then the function automatically updates the token
+//https://firebase.google.com/docs/reference/rest/auth?authuser=0#section-refresh-token
+
+export const refreshTokenApi = (refreshToken) => {
+  setBaseUrl(url.REFRESH_TOKEN);
+  return axios
+    .post(
+      "/token",
+      {
+        grant_type: "refresh_token",
+        refresh_token: refreshToken,
+      },
+      {
+        params: {
+          key: API_KEY,
+        },
+      }
+    )
+    .then(({ data }) => ({
+      refreshToken: data.refresh_token,
+      idToken: data.id_token,
+      localId: data.user_id,
+    }));
 };
 
 //USER CATEGORIES

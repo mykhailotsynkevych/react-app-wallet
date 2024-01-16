@@ -34,7 +34,7 @@ const langPersistConfig = {
 const authPersistConfig = {
   key: "token",
   storage,
-  whitelist: ["idToken"],
+  whitelist: ["idToken", "refreshToken"],
 };
 
 const filterPersistedReducer = persistReducer(filterPersistConfig, filterReducer);

@@ -1,5 +1,6 @@
 import { createAsyncThunk } from "@reduxjs/toolkit";
 import { getCategoriesApi, addCategoriesApi, deleteCategoriesApi} from "../../utils/api/firebase";
+import { errorHandler } from "../error/errorHandler";
 
 export const getCategories = createAsyncThunk(
   "getCategories",
@@ -15,6 +16,9 @@ export const getCategories = createAsyncThunk(
       const categories = await getCategoriesApi({ localId, idToken });
       return categories;
     } catch (error) {
+      setTimeout(() => {
+        thunkApi.dispatch(errorHandler({ error, cb: getCategories }));
+      }, 0);
       return thunkApi.rejectWithValue(error.message);
     }
   }
@@ -22,7 +26,7 @@ export const getCategories = createAsyncThunk(
 
 export const addCategories = createAsyncThunk(
   "addCategories",
-  async (category, { rejectWithValue, getState }) => {
+  async (category, { rejectWithValue, getState, dispatch }) => {
     const {
       auth: {
         idToken,
@@ -33,6 +37,9 @@ export const addCategories = createAsyncThunk(
       const newCategory = await addCategoriesApi({category, localId, idToken});
       return newCategory;
     } catch (error) {
+      setTimeout(() => {
+        dispatch(errorHandler({ error, cb: () => addCategories(category) }));
+      }, 0);
       return rejectWithValue(error.message);
     }
   }
@@ -40,7 +47,7 @@ export const addCategories = createAsyncThunk(
 
 export const deleteCategories = createAsyncThunk(
   "deleteCategories",
-  async (id, { rejectWithValue, getState }) => {
+  async (id, { rejectWithValue, getState, dispatch }) => {
     const {
       idToken,
       user: { localId },
@@ -50,6 +57,9 @@ export const deleteCategories = createAsyncThunk(
       await deleteCategoriesApi({id, localId, idToken });
       return id;
     } catch (error) {
+      setTimeout(() => {
+        dispatch(errorHandler({ error, cb: () => deleteCategories(id) }));
+      }, 0);
       return rejectWithValue(error.message);
     }
   }

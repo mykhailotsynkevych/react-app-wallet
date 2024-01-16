@@ -4,16 +4,15 @@ import { Route, Routes } from "react-router-dom";
 import { useSelector, useDispatch } from "react-redux";
 
 // Second - Components
-import Header from "../components/Header/Header";
-import Loader from "../components/Loader/Loader";
+import Header from "./Header/Header";
+import Loader from "./Loader/Loader";
 import PublicRoute from "./PublicRoute";
 import PrivateRoute from "./PrivateRoute";
 
-//Funktions
+// Third - Functions
 //auth
 import { getCurUser } from "../redux/auth/authOperations";
 import { selectCurUser } from "../redux/auth/authSelector";
-
 //lazy
 const MainPage = lazy(() => import("../pages/MainPage"));
 const CategoriesListPage = lazy(() => import("../pages/CategoriesListPage"));
@@ -50,7 +49,6 @@ const App = () => {
               {/* Public */}
               <Route path="/login" element={<PublicRoute component={LoginPage} restricted/>} />
               <Route path="/register" element={<PublicRoute component={RegisterPage} restricted/>} />
-              <Route path="*" element={<h1>Ooops, something wrong</h1>} />
             </Routes>
           </Suspense>
         </main>
