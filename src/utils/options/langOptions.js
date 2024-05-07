@@ -57,6 +57,10 @@ const langOptions = {
   comment: {
     de: "Kommentar",
     en: "comment"
+  },
+  search: {
+    de: "Suchen...",
+    en: "Search..."
   }
 };
 

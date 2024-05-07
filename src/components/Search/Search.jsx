@@ -1,25 +1,32 @@
-import {
-  StyledSearchForm,
-  StyledSearchLabel,
-  StyledSearchInput,
-  StyledSearchButton,
-} from "./Search.styled";
+import {useSelector } from "react-redux";
 import findIcon from "../../assets/icons/find.svg";
+import s from "./Search.module.scss";
+import langOptions from "../../utils/options/langOptions";
+import { selectLang } from "../../redux/lang/langSelectors";
 
-const Search = ({ isOpenSearchInput }) => {
+const Search = () => {
+  const language = useSelector(selectLang);
+
   return (
-    <StyledSearchForm
-    isOpenSearchInput={isOpenSearchInput}
+    <form
       name="search_form"
-      autocomplete="on"
-      novalidate
+      autoComplete="on"
+      className={s.searchForm}
+      noValidate
     >
-      <StyledSearchLabel>
-        <StyledSearchInput type="search" name="search" placeholder="Search..."/>
-      </StyledSearchLabel>
+      <label className={s.searchLabel}>
+        <input
+          type="search"
+          name="search"
+          placeholder={langOptions.search[language]}
+          className={s.searchInput}
+        />
+      </label>
 
-      <StyledSearchButton type="submit"><img src={findIcon} alt="findIcon" /></StyledSearchButton>
-    </StyledSearchForm>
+      <button type="submit" className={s.searchBtn}>
+        <img src={findIcon} alt="findIcon" />
+      </button>
+    </form>
   );
 };
 export default Search;
