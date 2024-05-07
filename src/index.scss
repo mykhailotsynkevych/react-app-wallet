@@ -81,7 +81,9 @@ img {
 
 .mainWrapper {
   height: 100%;
-  padding: 10px;
+  padding: 20px 10px;
+  display: flex;
+  flex-direction: column;
   }
 
 .button {

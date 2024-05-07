@@ -1,3 +1,7 @@
+.subTitle {
+  font-weight: 500;
+}
+
 .btnTransactionWrapper {
   display: flex;
   justify-content: space-evenly;
@@ -26,4 +30,11 @@
 
 .editPageWrapper {
   padding-top: 8px;
+}
+
+.linkBtn {
+  margin-top: auto;
+  font-weight: 400;
+  transition: var(--transition);
+  text-decoration: underline;
 }

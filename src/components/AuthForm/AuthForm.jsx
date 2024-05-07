@@ -1,8 +1,14 @@
 // import { Link } from "react-router-dom";
+import { useSelector } from "react-redux";
 import { useForm } from "../../utils/hooks/useForm";
+
 import s from "./AuthForm.module.scss";
 
+import langOptions from "../../utils/options/langOptions";
+import { selectLang } from "../../redux/lang/langSelectors";
+
 const AuthForm = ({ cbOnSubmit, login }) => {
+  const language = useSelector(selectLang);
   const { form, handleChange, handleSubmit } = useForm({
     initialValues: { email: "", password: "" },
     onSubmit: (values) => cbOnSubmit(values),
@@ -35,7 +41,7 @@ const AuthForm = ({ cbOnSubmit, login }) => {
         />
       </label>
       <label className={s.label}>
-        <span> Password </span>
+        <span>{langOptions.authPassword[language]}</span>
         <input
           className={s.input}
           type="text"
