@@ -34,7 +34,7 @@
 
 .linkBtn {
   margin-top: auto;
-  font-weight: 400;
+  font-weight: 500;
   transition: var(--transition);
   text-decoration: underline;
 }

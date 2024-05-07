@@ -14,10 +14,11 @@
   border: 1px solid var(--white);
   padding: 5px;
   outline: none;
-  background-color: var(--white);
+  background-color: var(--white) !important;
 
   &:focus {
     border: 1px solid var(--main-color);
+    background-color: var(--white) !important;
   }
 }
 

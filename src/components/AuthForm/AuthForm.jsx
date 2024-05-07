@@ -1,16 +1,14 @@
-// import { Link } from "react-router-dom";
 import { useSelector } from "react-redux";
 import { useForm } from "../../utils/hooks/useForm";
-
-import s from "./AuthForm.module.scss";
-
 import langOptions from "../../utils/options/langOptions";
 import { selectLang } from "../../redux/lang/langSelectors";
+import s from "./AuthForm.module.scss";
 
-const AuthForm = ({ cbOnSubmit, login }) => {
+
+const AuthForm = ({ login, cbOnSubmit,  }) => {
   const language = useSelector(selectLang);
   const { form, handleChange, handleSubmit } = useForm({
-    initialValues: { email: "", password: "" },
+    initialValues: {email: "", password: "" },
     onSubmit: (values) => cbOnSubmit(values),
   });
 
@@ -19,7 +17,7 @@ const AuthForm = ({ cbOnSubmit, login }) => {
     <form className={s.form} onSubmit={handleSubmit}>
       {/* {!login && (
         <label className={s.label}>
-          <span> Name </span>
+          <span>Name</span>
           <input
             className={s.input}
             type="text"
@@ -31,7 +29,7 @@ const AuthForm = ({ cbOnSubmit, login }) => {
       )} */}
 
       <label className={s.label}>
-        <span> Email </span>
+        <span>Email</span>
         <input
           className={s.input}
           type="text"
@@ -53,14 +51,6 @@ const AuthForm = ({ cbOnSubmit, login }) => {
       <button className="button" type="submit">
         {login ? "Login" : "Register"}
       </button>
-
-      {/* <Link
-        className={s.submit}
-          to={navTo}
-      >
-        {linkTitle}
-        return
-      </Link> */}
     </form>
   );
 };

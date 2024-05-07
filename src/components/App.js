@@ -20,8 +20,7 @@ const EditPage = lazy(() => import("../pages/EditPage"));
 const TransactionsList = lazy(() =>
   import("./TransactionsList/TransactionList")
 );
-const LoginPage = lazy(() => import("../pages/LoginPage"));
-const RegisterPage = lazy(() => import("../pages/RegisterPage"));
+const AuthPage = lazy(() => import("../pages/AuthPage"));
 
 //other - styles, ...
 
@@ -47,8 +46,8 @@ const App = () => {
               <Route path="/categories/:categoriesArt" element={<PrivateRoute component={CategoriesListPage} />} />
               <Route path="/edit/:transactionId" element={<PrivateRoute component={EditPage} />} />
               {/* Public */}
-              <Route path="/login" element={<PublicRoute component={LoginPage} restricted/>} />
-              <Route path="/register" element={<PublicRoute component={RegisterPage} restricted/>} />
+              <Route path="/login" element={<PublicRoute component={AuthPage} restricted/>} />
+              <Route path="/register" element={<PublicRoute component={AuthPage} restricted/>} />
             </Routes>
           </Suspense>
         </main>
