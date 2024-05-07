@@ -2,6 +2,7 @@ import styled from "styled-components";
 
 const StyledHeaderWrapper = styled.header`
   display: flex;
+  justify-content: space-between;
   align-items: center;
   padding: 10px;
   background-color: var(--main-color);
@@ -10,6 +11,7 @@ const StyledHeaderWrapper = styled.header`
 
 const StyledMainTitle = styled.button`
 font-size: 24px;
+line-height: 1.25;
 text-align: center;
 background-color: transparent;
 color: var(--black-color);
@@ -37,31 +39,17 @@ isOpen &&
 "transform: rotate(90deg)"}
 `;
 
-const StyledIconFind = styled.button`
+const StyledBtnLogOut = styled.button`
 background-color: inherit;
-width: 26px;
-padding: 0px;
-margin-left: auto;
-margin-right: 10px;
-transition: transform 0.2s linear;
-
-:hover {
-cursor: pointer;
-}
-
-${({ isOpenSearchInput }) =>
-isOpenSearchInput &&
-"transform: rotate(90deg); width: 30px"}`;
-
-const StyledIconUser = styled.button`
-background-color: inherit;
-width: 30px;
-transition: transform 0.5s linear;
+width: 22px;
 padding: 0px;
 
 :hover {
   cursor: pointer;
-  }`;
+}
+`;
 
 
-export { StyledMainTitle, StyledHeaderWrapper, StyledMenuBurger, StyledIconUser, StyledIconFind };
+
+
+export { StyledMainTitle, StyledHeaderWrapper, StyledMenuBurger, StyledBtnLogOut };

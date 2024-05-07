@@ -1,0 +1,41 @@
+.subTitle {
+  font-weight: 500;
+}
+
+.btnTransactionWrapper {
+  display: flex;
+  justify-content: space-evenly;
+  margin-top: 10px;
+}
+
+.btnTransaction {
+  display: flex;
+  background-color: inherit;
+  transition: scale 0.3s ease 0s;
+}
+
+.btnTransaction:hover,
+.btnTransaction:focus {
+  cursor: pointer;
+  scale: 1.05;
+}
+
+.categoriesWrapper {
+  display: flex;
+  flex-direction: column;
+  flex: 1 1 auto;
+  justify-content: space-between;
+  height: 100%;
+}
+
+.editPageWrapper {
+  padding-top: 8px;
+}
+
+.linkBtn {
+  margin-top: auto;
+  font-weight: 500;
+  transition: var(--transition);
+  text-decoration: underline;
+  margin-bottom: 10px;
+}

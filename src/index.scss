@@ -1,14 +1,5 @@
 @import-normalize;
-
-:root {
-  --main-color: rgb(242, 143, 57);
-  --secondary-color: rgb(83, 82, 82);
-  --main-bgc: rgb(234, 234, 234);
-  --black: rgb(0, 0, 0);
-  --white: rgb(255, 255, 255);
-  --black-color: rgb(0, 0, 0);
-  --border-radius: 3px;
-  }
+@import "./assets/styles/main";
 
 body {
   margin: 0;
@@ -68,10 +59,7 @@ img {
 
 //STYLES
 .page {
-  background: linear-gradient(
-    to top,
-    var(--main-color), var(--secondary-color)
-  );
+  background: linear-gradient(180deg, var(--secondary-color) 0%, var(--main-color) 75%);
   height: 100vh;
   text-align: center;
 }
@@ -89,4 +77,36 @@ img {
   overflow: hidden;
   background-color: rgb(237, 233, 222);
   box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
+}
+
+.mainWrapper {
+  height: 100%;
+  padding: 10px;
+  display: flex;
+  flex-direction: column;
+  }
+
+.button {
+  margin: 0 auto;
+  padding: 8px 16px;
+  border: none;
+  background-color: var(--main-color);
+  color: var(--white);
+  font-size: 18px;
+  border-radius: var(--border-radius);
+  transition: all 0.3s ease-in-out;
+
+  &:hover {
+    cursor: pointer;
+    background-color: var(--secondary-color);
+  }
+}
+
+.link {
+  color: var(--main-color);
+  transition: var(--transition);
+  &:hover {
+    cursor: pointer;
+    color: var(--secondary-color);
+  }
 }

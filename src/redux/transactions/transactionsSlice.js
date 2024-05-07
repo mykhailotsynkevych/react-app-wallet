@@ -5,6 +5,7 @@ import {
   deleteTransactions,
   editTransactions,
 } from "./transactionsOperations";
+import { logOut } from "../auth/authSlice";
 
 const handlePending = (state) => {
   state.isLoading = true;
@@ -65,6 +66,12 @@ const transactionsSlice = createSlice({
     })
     .addCase(editTransactions.rejected, handleRejected)
   },
+    //user logout
+    [logOut]: ({state}) => {
+      state.transactions = [];
+      state.isLoading = false;
+      state.error = null;
+    },
 });
 
 export default transactionsSlice.reducer;
