@@ -6,7 +6,7 @@ export const useForm = ({ initialValues, onSubmit }) => {
   const handleChange = (e) => {
     const { name, value } = e.target;
     setForm((prev) => {
-      return { ...prev, [name]: value };
+      return { ...prev, [name]: value.trim() };
     });
   };
 

@@ -12,7 +12,7 @@ const AuthForm = ({ login, cbOnSubmit }) => {
   const language = useSelector(selectLang);
   const { form, handleChange, handleSubmit } = useForm({
     initialValues: { email: "", password: "" },
-    onSubmit: (values) => cbOnSubmit(values.trim()),
+    onSubmit: (values) => cbOnSubmit(values),
   });
 
   const { email, password } = form;
