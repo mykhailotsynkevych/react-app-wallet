@@ -9,47 +9,36 @@ const AuthForm = ({ login, cbOnSubmit,  }) => {
   const language = useSelector(selectLang);
   const { form, handleChange, handleSubmit } = useForm({
     initialValues: {email: "", password: "" },
-    onSubmit: (values) => cbOnSubmit(values),
+    onSubmit: (values) => cbOnSubmit(values.trim()),
   });
 
   const { email, password } = form;
   return (
     <form className={s.form} onSubmit={handleSubmit}>
-      {/* {!login && (
-        <label className={s.label}>
-          <span>Name</span>
-          <input
-            className={s.input}
-            type="text"
-            name="name"
-            value={name}
-            onChange={handleChange}
-          />
-        </label>
-      )} */}
-
       <label className={s.label}>
         <span>Email</span>
         <input
           className={s.input}
-          type="text"
+          type="email"
           name="email"
           value={email}
           onChange={handleChange}
+          required
         />
       </label>
       <label className={s.label}>
         <span>{langOptions.authPassword[language]}</span>
         <input
           className={s.input}
-          type="text"
+          type="password"
           name="password"
           value={password}
           onChange={handleChange}
+          required
         />
       </label>
       <button className="button" type="submit">
-        {login ? "Login" : "Register"}
+        {login ? langOptions.loginBtn[language] : langOptions.registerTitle[language]}
       </button>
     </form>
   );

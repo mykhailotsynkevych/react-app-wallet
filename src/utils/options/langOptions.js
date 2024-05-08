@@ -8,6 +8,10 @@ const langOptions = {
     de: "Melde dich bei deinem bestehenden Konto an",
     en: "Log in to your existing account",
   },
+  loginBtn: {
+    de: "Anmelden",
+    en: "Login",
+  },
   toRegisterText: {
     de: "Konto erstellen",
     en: "Create Account",
@@ -28,6 +32,7 @@ const langOptions = {
     de: "Passwort",
     en: "Password",
   },
+  
 
   //transactionForm
   transaction: {
