@@ -33,3 +33,25 @@
     background-color: var(--white) !important;
   }
 }
+
+.passwordInputWrapper {
+  position: relative;
+  width: 100%;
+
+  input {
+    width: 100%;
+  }
+}
+
+.togglePasswordVisibility {
+  position: absolute;
+  top: 8px;
+  right: 8px;
+  width: fit-content;
+  background: none;
+  border: none;
+}
+
+.togglePasswordVisibility:hover {
+  cursor: pointer;
+}

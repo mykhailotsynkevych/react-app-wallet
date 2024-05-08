@@ -1,14 +1,17 @@
+import { useState } from "react";
 import { useSelector } from "react-redux";
 import { useForm } from "../../utils/hooks/useForm";
 import langOptions from "../../utils/options/langOptions";
 import { selectLang } from "../../redux/lang/langSelectors";
 import s from "./AuthForm.module.scss";
+import eyeShow from "../../assets/icons/eye-password-show.svg";
+import eyeHide from "../../assets/icons/eye-password-hide.svg";
 
-
-const AuthForm = ({ login, cbOnSubmit,  }) => {
+const AuthForm = ({ login, cbOnSubmit }) => {
+  const [isPasswordShown, setIsPasswordShown] = useState(false);
   const language = useSelector(selectLang);
   const { form, handleChange, handleSubmit } = useForm({
-    initialValues: {email: "", password: "" },
+    initialValues: { email: "", password: "" },
     onSubmit: (values) => cbOnSubmit(values.trim()),
   });
 
@@ -28,17 +31,33 @@ const AuthForm = ({ login, cbOnSubmit,  }) => {
       </label>
       <label className={s.label}>
         <span>{langOptions.authPassword[language]}</span>
-        <input
-          className={s.input}
-          type="password"
-          name="password"
-          value={password}
-          onChange={handleChange}
-          required
-        />
+        <div className={s.passwordInputWrapper}>
+          {password && (
+            <div
+              onClick={() => setIsPasswordShown(!isPasswordShown)}
+              className={s.togglePasswordVisibility}
+            >
+              {isPasswordShown ? (
+                <img src={eyeHide} alt="show password" />
+              ) : (
+                <img src={eyeShow} alt="hide password" />
+              )}
+            </div>
+          )}
+          <input
+            className={s.input}
+            type={isPasswordShown ? "text" : "password"}
+            name="password"
+            value={password}
+            onChange={handleChange}
+            required
+          />
+        </div>
       </label>
       <button className="button" type="submit">
-        {login ? langOptions.loginBtn[language] : langOptions.registerTitle[language]}
+        {login
+          ? langOptions.loginBtn[language]
+          : langOptions.registerTitle[language]}
       </button>
     </form>
   );
