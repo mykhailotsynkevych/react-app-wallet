@@ -12,6 +12,7 @@ import {
 } from 'redux-persist';
 
 import categories from "../redux/categories/categoriesSlice";
+import balance from "../redux/balance/balanceSlice";
 import transactions from "../redux/transactions/transactionsSlice";
 import filterReducer from "../redux/filter/filterSlice";
 import langReducer from "../redux/lang/langSlice";
@@ -46,6 +47,7 @@ export const store = configureStore({
   reducer: {
     auth: authPersistedReducer,
     categories,
+    balance,
     transactions,
     filter: filterPersistedReducer,
     lang: langPersistedReducer 

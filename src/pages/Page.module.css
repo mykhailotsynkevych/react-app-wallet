@@ -32,10 +32,3 @@
   padding-top: 8px;
 }
 
-.linkBtn {
-  margin-top: auto;
-  font-weight: 500;
-  transition: var(--transition);
-  text-decoration: underline;
-  margin-bottom: 10px;
-}

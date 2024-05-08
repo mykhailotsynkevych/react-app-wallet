@@ -202,3 +202,16 @@ export const editTransactionsApi = async ({
   );
   return response.data;
 };
+
+//BALANCE
+// https://firebase.google.com/docs/database/rest/auth?authuser=0#authenticate_with_an_id_token
+
+export const getBalanceApi = async ({ localId, idToken }) => {
+  setBaseUrl(url.DB);
+  const { data } = await axios.get(`/users/${localId}/name.json`, {
+    params: {
+      auth: idToken,
+    },
+  });
+  return data;
+};

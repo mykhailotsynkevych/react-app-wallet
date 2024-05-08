@@ -1,4 +1,4 @@
-import { Link, useLocation } from "react-router-dom";
+import { useLocation } from "react-router-dom";
 import { useDispatch, useSelector } from "react-redux";
 import AuthForm from "../components/AuthForm/AuthForm";
 import { loginUser, registerUser } from "../redux/auth/authOperations";
@@ -11,9 +11,8 @@ const AuthPage = () => {
   const isLoginPage = pathname === "/login";
   const dispatch = useDispatch();
   const handleSubmit = (userData) =>
-    isLoginPage
-      ? dispatch(loginUser(userData))
-      : dispatch(registerUser(userData));
+    dispatch(isLoginPage ? loginUser(userData) : registerUser(userData));
+
   const language = useSelector(selectLang);
 
   return (
@@ -29,14 +28,6 @@ const AuthPage = () => {
           : langOptions.registerSubTitle[language]}
       </h4>
       <AuthForm login={isLoginPage} cbOnSubmit={handleSubmit} />
-      <Link
-        to={isLoginPage ? "/register" : "/login"}
-        className={`${s.linkBtn} link`}
-      >
-        {isLoginPage
-          ? langOptions.toRegisterText[language]
-          : langOptions.toLoginText[language]}
-      </Link>
     </>
   );
 };
