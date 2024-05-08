@@ -1,5 +1,20 @@
 import { createSlice } from "@reduxjs/toolkit";
-import { registerUser, loginUser, getCurUser, refreshToken } from "./authOperations";
+import {
+  registerUser,
+  loginUser,
+  getCurUser,
+  refreshToken,
+} from "./authOperations";
+
+const handlePending = (state) => {
+  state.isLoading = true;
+  state.error = null;
+};
+
+const handleRejected = (state, { payload }) => {
+  state.isLoading = false;
+  state.error = payload;
+};
 
 const authSlice = createSlice({
   name: "auth",
@@ -10,7 +25,7 @@ const authSlice = createSlice({
     },
     idToken: null,
     refreshToken: null,
-    isLoding: false,
+    isLoading: false,
     error: null,
   },
   reducers: {
@@ -21,73 +36,50 @@ const authSlice = createSlice({
       };
       state.refreshToken = null;
       state.idToken = null;
-      state.isLoding = false;
+      state.isLoading = false;
       state.error = null;
     },
   },
-  extraReducers: {
-    //register
-    [registerUser.pending]: (state) => {
-      state.isLoading = true;
-      state.error = null;
-    },
-    [registerUser.fulfilled]: (state, { payload }) => {
-      const { idToken, refreshToken, ...rest } = payload;
-      state.isLoding = false;
-      state.user = rest;
-      state.idToken = idToken;
-      state.refreshToken = refreshToken;
-    },
-    [registerUser.rejected]: (state, { payload }) => {
-      state.isLoading = false;
-      state.error = payload;
-    },
-    //login
-    [loginUser.pending]: (state) => {
-      state.isLoading = true;
-      state.error = null;
-    },
-    [loginUser.fulfilled]: (state, { payload }) => {
-      const { idToken, refreshToken, ...rest } = payload;
-      state.isLoding = false;
-      state.user = rest;
-      state.idToken = idToken;
-      state.refreshToken = refreshToken;
-    },
-    [loginUser.rejected]: (state, { payload }) => {
-      state.isLoading = false;
-      state.error = payload;
-    },
-    //curUser
-    [getCurUser.pending]: (state) => {
-      state.isLoading = true;
-      state.error = null;
-    },
-    [getCurUser.fulfilled]: (state, { payload }) => {
-      state.isLoading = false;
-      state.user = { ...state.user, ...payload };
-    },
-    [getCurUser.rejected]: (state, { payload }) => {
-      state.isLoading = false;
-      state.error = payload;
-    },
-    //refreshToken
-    [refreshToken.pending]: (state) => {
-      state.isLoading = true;
-      state.error = null;
-    },
-    [refreshToken.fulfilled]: (state, { payload }) => {
-      const { idToken, localId, refreshToken } = payload;
-      state.isLoading = false;
-      state.idToken = idToken;
-      state.refreshToken = refreshToken;
-      state.user = { ...state.user, localId };
-    },
-    [refreshToken.rejected]: (state, { payload }) => {
-      state.isLoading = false;
-      state.error = payload;
-    },
-  }
+  extraReducers: (builder) => {
+    builder
+      //register
+      .addCase(registerUser.pending, handlePending)
+      .addCase(registerUser.fulfilled, (state, { payload }) => {
+        const { idToken, refreshToken, ...rest } = payload;
+        state.isLoading = false;
+        state.user = rest;
+        state.idToken = idToken;
+        state.refreshToken = refreshToken;
+      })
+      .addCase(registerUser.rejected, handleRejected)
+      //login
+      .addCase(loginUser.pending, handlePending)
+      .addCase(loginUser.fulfilled, (state, { payload }) => {
+        const { idToken, refreshToken, ...rest } = payload;
+        state.isLoading = false;
+        state.user = rest;
+        state.idToken = idToken;
+        state.refreshToken = refreshToken;
+      })
+      .addCase(loginUser.rejected, handleRejected)
+      //curUser
+      .addCase(getCurUser.pending, handlePending)
+      .addCase(getCurUser.fulfilled, (state, { payload }) => {
+        state.isLoading = false;
+        state.user = { ...state.user, ...payload };
+      })
+      .addCase(getCurUser.rejected, handleRejected)
+      //refreshToken
+      .addCase(refreshToken.pending, handlePending)
+      .addCase(refreshToken.fulfilled, (state, { payload }) => {
+        const { idToken, localId, refreshToken } = payload;
+        state.isLoading = false;
+        state.idToken = idToken;
+        state.refreshToken = refreshToken;
+        state.user = { ...state.user, localId };
+      })
+      .addCase(refreshToken.rejected, handleRejected);
+  },
 });
 
 export const { logOut } = authSlice.actions;
