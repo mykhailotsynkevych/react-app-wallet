@@ -1,7 +1,7 @@
 import { createSlice } from "@reduxjs/toolkit";
 import {
   getBalance,
-  // createUserName,
+  editBalance,
   // deleteCategories,
 } from "./balanceOperations";
 
@@ -17,7 +17,7 @@ const handleRejected = (state, { payload }) => {
 const balanceSlice = createSlice({
   name: "balance",
   initialState: {
-    balance: 0,
+    balance: 100,
     isLoading: false,
     error: null,
   },
@@ -32,14 +32,14 @@ const balanceSlice = createSlice({
       })
       .addCase(getBalance.rejected, handleRejected)
 
-      //add
-      // .addCase(createUserName.pending, handlePending)
-      // .addCase(createUserName.fulfilled, (state, { payload }) => {
-      //   state.isLoading = false;
-      //   state.error = null;
-      //   state.userName = payload;
-      // })
-      // .addCase(createUserName.rejected, handleRejected)
+      // edit
+      .addCase(editBalance.pending, handlePending)
+      .addCase(editBalance.fulfilled, (state, { payload }) => {
+        state.isLoading = false;
+        state.error = null;
+        state.balance = payload;
+      })
+      .addCase(editBalance.rejected, handleRejected)
 
       //delete
       // .addCase(deleteCategories.pending, handlePending)

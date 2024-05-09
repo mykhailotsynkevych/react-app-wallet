@@ -66,6 +66,7 @@ img {
 
 .wallet {
   transform: translateY(10px);
+
   display: flex;
   flex-direction: column;
   position: relative;
@@ -80,7 +81,7 @@ img {
 }
 
 .mainWrapper {
-  height: 100%;
+  height: calc(100% - 60px);
   padding: 10px;
   display: flex;
   flex-direction: column;

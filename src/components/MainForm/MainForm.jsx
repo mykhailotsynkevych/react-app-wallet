@@ -6,8 +6,9 @@ import CategoriesList from "../CategoriesList/CategoriesList";
 import TransactionForm from "../TransactionForm/TransactionForm";
 import CategoriesPage from "../../pages/CategoriesListPage";
 
-import { addTransactions } from "../../redux/transactions/transactionsOperations";
 import { useDispatch} from "react-redux";
+import { addTransactions } from "../../redux/transactions/transactionsOperations";
+import { editBalance } from "../../redux/balance/balanceOperations";
 
 const curDate = moment().format("YYYY-MM-DD");//new Date().toLocaleDateString().split(".").reverse().join("-");
 const curTime = moment().format("HH:mm");//new Date().toTimeString().slice(0, 5);
@@ -27,6 +28,7 @@ const MainForm = () => {
 
   const handleAddDispatch = () => {
     dispatch(addTransactions(form));
+    dispatch(editBalance(form));
       setForm(initialForm);
   };
 

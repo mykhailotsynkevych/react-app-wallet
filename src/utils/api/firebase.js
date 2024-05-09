@@ -160,6 +160,7 @@ export const addTransactionsApi = async ({
   localId,
   idToken,
 }) => {
+  setBaseUrl(url.DB);
   const response = await axios.post(
     `/users/${localId}/transactions.json`,
     transactionEl,
@@ -214,4 +215,22 @@ export const getBalanceApi = async ({ localId, idToken }) => {
     },
   });
   return data;
+};
+
+export const editBalanceApi = async ({
+  newBalance,
+  localId,
+  idToken,
+}) => {
+  const response = await axios.put(
+    `/users/${localId}/balance.json`,
+    newBalance,
+    {
+      params: {
+        auth: idToken,
+      },
+    }
+  );
+
+  return response.data;
 };

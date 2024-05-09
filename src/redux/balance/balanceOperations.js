@@ -1,5 +1,5 @@
 import { createAsyncThunk } from "@reduxjs/toolkit";
-import { getBalanceApi} from "../../utils/api/firebase";
+import { getBalanceApi, editBalanceApi} from "../../utils/api/firebase";
 import { errorHandler } from "../error/errorHandler";
 
 export const getBalance = createAsyncThunk(
@@ -24,23 +24,26 @@ export const getBalance = createAsyncThunk(
   }
 );
 
-// export const handleBalance = createAsyncThunk(
-//   "createUserName",
-//   async (userName, { rejectWithValue, getState, dispatch }) => {
-//     const {
-//       auth: {
-//         idToken,
-//         user: { localId },
-//       },
-//     } = getState();
-//     try {
-//       const createName = await createUserNameApi({userName, localId, idToken});
-//       return createName;
-//     } catch (error) {
-//       setTimeout(() => {
-//         dispatch(errorHandler({ error, cb: () => createUserName(userName) }));
-//       }, 0);
-//       return rejectWithValue(error.message);
-//     }
-//   }
-// );
+export const editBalance = createAsyncThunk(
+  "editBalance",
+  async (transaction, { rejectWithValue, getState, dispatch }) => {
+    const {
+      auth: {
+        idToken,
+        user: { localId },
+      },
+      balance: { balance },
+    } = getState();
+    try {
+      const newBalance = transaction.transaction === "Income" ? balance + transaction.amount : balance - transaction.amount;
+      const updateBalance = await editBalanceApi({newBalance, localId, idToken});
+      console.log(updateBalance)
+      return updateBalance;
+    } catch (error) {
+      setTimeout(() => {
+        dispatch(errorHandler({ error, cb: () => editBalance(transaction) }));
+      }, 0);
+      return rejectWithValue(error.message);
+    }
+  }
+);
