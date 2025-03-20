@@ -4,23 +4,20 @@ import CategoriesItem from "../CategoriesItem/CategoriesItem";
 //Redux
 import { useSelector } from "react-redux";
 import { selectCategories } from "../../redux/categories/categoriesSelectors";
-import { selectFilter } from "../../redux/filter/filterSelectors";
 
-  const CategoriesList = ({handleSelected}) => {
+const CategoriesList = ({test, handleSelected }) => {
   const categories = useSelector(selectCategories);
-  const filter = useSelector(selectFilter);
 
-  const getFilteredCategories = (categories, filter) => {
-    return categories.filter(({ transaction }) => transaction.includes(filter));
-  };
-
-  const filteredCategories = getFilteredCategories(categories, filter);
+    console.log("page", test);
 
   return (
     <ul className={s.categoriesList}>
-      {filteredCategories.map((categoryEl) => (
+      {categories.map((categoryEl) => (
         <li key={categoryEl.id}>
-          <CategoriesItem categoryEl={categoryEl} handleSelected={handleSelected} />
+          <CategoriesItem
+            categoryEl={categoryEl}
+            handleSelected={handleSelected}
+          />
         </li>
       ))}
     </ul>

@@ -11,6 +11,8 @@ const CategoriesItem = ({categoryEl, handleSelected}) => {
     const navigate = useNavigate();
     const dispatch = useDispatch();
 
+ 
+
     const handleDelete = () => dispatch(deleteCategories(categoryEl.id));
     return (
         <div className={s.categoriesItem}>

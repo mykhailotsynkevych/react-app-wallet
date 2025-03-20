@@ -3,7 +3,6 @@ import { selectTransactions, selectHasTransactions } from "../../redux/transacti
 import { useEffect } from 'react';
 import { selectFilter } from "../../redux/filter/filterSelectors";
 
-
 // import Header from "../Header/Header";
 import TransactionsItem from "../TransactionsItem/TransactionsItem";
 import s from "./TransactionsList.module.css";

@@ -22,10 +22,6 @@ const CategoriesForm = () => {
   const handleSubmit = (e) => {
     e.preventDefault();
 
-    if (nameCategory === "") {
-      return alert("Please enter category");
-    }
-
     const newCategory = {transaction: filter, nameCategory}
     dispatch(addCategories(newCategory));
     setNameCategory("");
@@ -47,10 +43,11 @@ const CategoriesForm = () => {
           className={s.addItemInput}
           value={nameCategory}
           onChange={handleChange}
+
         />
       </label>
 
-      <button type="submit" className={s.btnAdd}>
+      <button type="submit" className={s.btnAdd} disabled={!nameCategory}>
         <img src={addIcon} alt="icon Add" />
       </button>
     </form>

@@ -1,7 +1,7 @@
 import axios from "axios";
 
-// const API_KEY = process.env.REACT_APP_API_KEY;
-const API_KEY = "AIzaSyCc9vvOCsgpi2oaPMfF1wsRQPqAHlw_iak";
+const API_KEY = process.env.REACT_APP_API_KEY;
+// const API_KEY = "AIzaSyCc9vvOCsgpi2oaPMfF1wsRQPqAHlw_iak";
 
 const url = {
   AUTH: "https://identitytoolkit.googleapis.com/v1/",
@@ -100,22 +100,27 @@ export const refreshTokenApi = (refreshToken) => {
 //USER CATEGORIES
 // https://firebase.google.com/docs/database/rest/auth?authuser=0#authenticate_with_an_id_token
 
-export const getCategoriesApi = async ({ localId, idToken }) => {
+export const getCategoriesApi = async ({filter, localId, idToken }) => {
   setBaseUrl(url.DB);
-  const { data } = await axios.get(`/users/${localId}/categories.json`, {
+
+  // console.log(filter, localId, idToken)
+
+  const { data } = await axios.get(`/users/${localId}/categories/${filter}.json`, {
     params: {
       auth: idToken,
     },
   });
+  
   return data
     ? Object.entries(data).map(([id, category]) => ({ id, ...category }))
     : [];
 };
 
 export const addCategoriesApi = async ({ category, localId, idToken }) => {
+  const { transaction, nameCategory } = category;
   const response = await axios.post(
-    `/users/${localId}/categories.json`,
-    category,
+    `/users/${localId}/categories/${transaction}.json`,
+    {nameCategory: nameCategory},
     {
       params: {
         auth: idToken,

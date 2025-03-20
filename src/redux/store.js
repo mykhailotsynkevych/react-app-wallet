@@ -35,13 +35,13 @@ const langPersistConfig = {
 const authPersistConfig = {
   key: "token",
   storage,
-  whitelist: ["idToken", "refreshToken"],
+  whitelist: ["idToken", "refreshToken", "user"],
 };
+
 
 const filterPersistedReducer = persistReducer(filterPersistConfig, filterReducer);
 const langPersistedReducer = persistReducer(langPersistConfig, langReducer);
 const authPersistedReducer = persistReducer(authPersistConfig , authReducer);
-
 
 export const store = configureStore({
   reducer: {

@@ -4,7 +4,7 @@ import { errorHandler } from "../error/errorHandler";
 
 export const getCategories = createAsyncThunk(
   "getCategories",
-  async (_, thunkApi) => {
+  async (filter, thunkApi) => {
     const {
       auth: {
         idToken,
@@ -13,7 +13,7 @@ export const getCategories = createAsyncThunk(
     } = thunkApi.getState();
 
     try {
-      const categories = await getCategoriesApi({ localId, idToken });
+      const categories = await getCategoriesApi({filter, localId, idToken });
       return categories;
     } catch (error) {
       setTimeout(() => {

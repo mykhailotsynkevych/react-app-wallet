@@ -15,7 +15,7 @@ import { getCurUser } from "../redux/auth/authOperations";
 import { selectCurUser } from "../redux/auth/authSelector";
 //lazy
 const MainPage = lazy(() => import("../pages/MainPage"));
-const CategoriesListPage = lazy(() => import("../pages/CategoriesListPage"));
+const CategoriesPage = lazy(() => import("../pages/CategoriesPage"));
 const EditPage = lazy(() => import("../pages/EditPage"));
 const TransactionsList = lazy(() =>
   import("./TransactionsList/TransactionList")
@@ -43,7 +43,7 @@ const App = () => {
               {/* Private */}
               <Route path="/*" element={<PrivateRoute component={MainPage} />} />
               <Route path="/transactions/:transactionArt" element={<PrivateRoute component={TransactionsList} />} />
-              <Route path="/categories/:categoriesArt" element={<PrivateRoute component={CategoriesListPage} />} />
+              <Route path="/categories/:categoriesArt" element={<PrivateRoute component={CategoriesPage} />} />
               <Route path="/edit/:transactionId" element={<PrivateRoute component={EditPage} />} />
               {/* Public */}
               <Route path="/login" element={<PublicRoute component={AuthPage} restricted/>} />

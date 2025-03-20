@@ -23,8 +23,13 @@
   background-color: inherit;
   padding: 0px;
   width: 30px;
+  transition: all 0.3s ease-in-out;
 }
 
 .btnAdd:hover {
   cursor: pointer;
+}
+
+.btnAdd:disabled {
+  opacity: 50%;
 }

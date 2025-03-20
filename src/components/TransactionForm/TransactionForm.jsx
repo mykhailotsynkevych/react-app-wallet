@@ -50,10 +50,10 @@ const TransactionForm = ({form, setForm, handleDispatch}) => {
           className={s.input}
           type="radio"
           name="transaction"
-          value="Expense"
-          defaultChecked={transaction === "Expense"}
+          value="expense"
+          defaultChecked={transaction === "expense"}
           onChange={handleChange}
-          onClick={() => dispatch(update("Expense"))}
+          onClick={() => dispatch(update("expense"))}
         />
         <label
           className={`${s.radioLabel} ${s.radio}`}
@@ -66,10 +66,10 @@ const TransactionForm = ({form, setForm, handleDispatch}) => {
           className={s.input}
           type="radio"
           name="transaction"
-          value="Income"
-          defaultChecked={transaction === "Income"}
+          value="income"
+          defaultChecked={transaction === "income"}
           onChange={handleChange}
-          onClick={() => dispatch(update("Income"))}
+          onClick={() => dispatch(update("income"))}
         />
         <label
           className={`${s.radioLabel} ${s.radio}`}

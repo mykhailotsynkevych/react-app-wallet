@@ -2,9 +2,9 @@ import moment from "moment";
 import { useState } from "react";
 import { Route, Routes } from "react-router-dom";
 
+import CategoriesPage from "../../pages/CategoriesPage";
 import CategoriesList from "../CategoriesList/CategoriesList";
 import TransactionForm from "../TransactionForm/TransactionForm";
-import CategoriesPage from "../../pages/CategoriesListPage";
 
 import { useDispatch} from "react-redux";
 import { addTransactions } from "../../redux/transactions/transactionsOperations";
@@ -14,7 +14,7 @@ const curDate = moment().format("YYYY-MM-DD");//new Date().toLocaleDateString().
 const curTime = moment().format("HH:mm");//new Date().toTimeString().slice(0, 5);
 
 const initialForm = {
-  transaction: "Expense",
+  transaction: "expense",
   date: curDate,
   time: curTime,
   category: "Food",
@@ -33,16 +33,17 @@ const MainForm = () => {
   };
 
   const handleSelected = (name, selected) => {
-    setForm((prev) => ({ ...prev, [name]: selected }));
+    // setForm((prev) => ({ ...prev, [name]: selected }));
+    console.log("TEST")
   };
 
   return (
     <Routes>
       <Route
         path="/categories"
-        element={<CategoriesPage handleSelected={handleSelected} />}
+        element={<CategoriesPage  />}
       >
-        <Route path=":categoriesArt" element={<CategoriesList />} />
+        <Route path=":categoriesArt" element={<CategoriesList test={"123"} handleSelected={handleSelected}/>} />
       </Route>
       <Route
         index
